@@ -75,17 +75,19 @@
         {
           "criterium": {
             "number": 2,
-            "title": "Is every [decorative image](#decorative-image) correctly ignored by assistive technologies?",
+            "title": "Is every [decorative image](#decorative-image), without a caption, correctly ignored by assistive technologies?",
             "tests": {
               "1": [
                 "Does each [decorative image](#decorative-image) (`<img>` tag), without [image caption](#image-caption), meet one of these conditions?",
                 "The `<img>` tag has an empty `alt` attribute (`alt=\"\"`) and no other attribute to provide a [text alternative](#text-alternative-image).",
-                "The `<img>` tag has a WAI-ARIA `aria-hidden=\"true\"` attribute or `role=\"presentation\"`."
+                "The `<img>` tag has a WAI-ARIA `aria-hidden=\"true\"` attribute.",
+                "The `<img>` tag has a `role=\"presentation\"` or a `role=\"none\"` attribute and does not have the `title`, `aria-label`, or `aria-labelledby` attributes."
               ],
               "2": [
                 "Does each [non-clickable](#non-clickable-area) [decoration area](#decorative-image) (`<area>` tag without `href` attribute), meet one of these conditions?",
                 "The `<area>` tag has an empty `alt` attribute (`alt=\"\"`) and no other attribute to provide a [text alternative](#text-alternative-image).",
-                "The `<area>` tag has a WAI-ARIA `aria-hidden=\"true\"` or `role=\"presentation\"` attribute."
+                "The `<area>` tag has a WAI-ARIA `aria-hidden=\"true\"`.",
+                "The `<area>` tag has a `role=\"presentation\"` or a `role=\"none\"` attribute and does not have the `title`, `aria-label`, or `aria-labelledby` attributes."
               ],
               "3": [
                 "Does each [decorative](#decorative-image) [object image](#object-image) (`<object>` tag with `type=\"image/...\"` attribute), without [image caption](#image-caption), meet these conditions?",
@@ -94,11 +96,7 @@
                 "There is no alternative text between `<object>` and `</object>`."
               ],
               "4": [
-                "Does each [decorative](#decorative-image) vector image (`<svg>` tag), without [image caption](#image-caption), meet these conditions?",
-                "The `<svg>` tag has a WAI-ARIA `aria-hidden=\"true\"` attribute.",
-                "The `<svg>` tag and its children have no [text alternative](#text-alternative-image).",
-                "The `<title>` and `<desc>` tags are missing or empty.",
-                "The `<svg>` tag and its children have no `title` attribute."
+                "Each [decorative](#decorative-image) vector image (`<svg>` tag), without [image caption](#image-caption), has a WAI-ARIA `aria-hidden=\"true\"` attribute. Is this rule respected?"
               ],
               "5": [
                 "Does each [decorative](#decorative-image) bitmap image (`<canvas>` tag), without [image caption](#image-caption), meet these conditions?",
@@ -165,7 +163,7 @@
                 "If present, the [passage of text](#passage-of-text-linked-by-aria-labelledby-or-aria-describedby) associated via the `aria-labelledby` WAI-ARIA attribute is relevant."
               ],
               "4": [
-                "For each [object image](#object-image) (`<object>` tag with the `type=\"image/...\"` attribute) [conveying information](#image-conveying-information), having a [alternative text](#text-alternative-image) or an [alternative content](#alternative-content), is this alternative relevant (excluding special cases)?",
+                "For each [object image](#object-image) (`<object>` tag with the `type=\"image/...\"` attribute) [conveying information](#image-conveying-information), having an [alternative text](#text-alternative-image) or an [alternative content](#alternative-content), is this alternative relevant (excluding special cases)?",
                 "If present, the value of the `title` attribute is relevant.",
                 "If present, the value of the WAI-ARIA `aria-label` attribute is relevant.",
                 "If present, the [passage of text](#passage-of-text-linked-by-aria-labelledby-or-aria-describedby) associated via the `aria-labelledby` WAI-ARIA attribute is relevant.",
@@ -538,36 +536,26 @@
               "1": [
                 "If necessary, does each image with an [image caption](#image-caption) (`<img>`, `<input>` tags with the `type=\"image\"` attribute or with a WAI-ARIA `role=\"img\"` attribute associated with an adjacent [image caption](#image-caption)) meet these conditions?",
                 "The image (`<img>`, `<input>` tag with the `type=\"image\"` attribute or tag having a WAI-ARIA `role=\"img\"` attribute) and its adjacent [image caption](#image-caption) are contained in a `<figure>` tag.",
-                "The `<figure>` tag has a WAI-ARIA `role=\"figure\"` or `role=\"group\"` attribute.",
-                "The `<figure>` tag has a WAI-ARIA `aria-label` attribute whose content is identical to the content of the [image caption](#image-caption).",
                 "The [image caption](#image-caption) is contained in a `<figcaption>` tag."
               ],
               "2": [
                 "Does each [object image](#object-image) with an [image caption](#image-caption) (`<object>` tag with the `type=\"image/...\"` attribute associated with an adjacent [image caption](#image-caption)), if necessary, meet these conditions?",
                 "The [object image](#object-image) and its adjacent [image caption](#image-caption) are contained in a `<figure>` tag.",
-                "The `<figure>` tag has a WAI-ARIA `role=\"figure\"` or `role=\"group\"` attribute.",
-                "The `<figure>` tag has a WAI-ARIA `aria-label` attribute whose content is identical to the content of the [image caption](#image-caption).",
                 "The [image caption](#image-caption) is contained in a `<figcaption>` tag."
               ],
               "3": [
                 "Does each embedded image with an [image caption](#image-caption) (`<embed>` tag associated with an adjacent [image caption](#image-caption)), if necessary, meet these conditions?",
                 "The embedded image (`<embed>` tag) and its adjacent [image caption](#image-caption) are contained in a `<figure>` tag.",
-                "The `<figure>` tag has a WAI-ARIA `role=\"figure\"` attribute or `role=\"group\"`.",
-                "The `<figure>` tag has a WAI-ARIA `aria-label` attribute whose content is identical to the content of the [image caption](#image-caption).",
                 "The [image caption](#image-caption) is contained in a `<figcaption>` tag."
               ],
               "4": [
                 "Does each vector image with an [image caption](#image-caption) (`<svg>` tag associated with an adjacent [image caption](#image-caption)), if necessary, meet these conditions?",
                 "The vector image (`<svg>` tag) and its adjacent [image caption](#image-caption) are contained in a `<figure>` tag.",
-                "The `<figure>` tag has a WAI-ARIA `role=\"figure\"` or `role=\"group\"` attribute.",
-                "The `<figure>` tag has a WAI-ARIA `aria-label` attribute whose content is identical to the content of the [image caption](#image-caption).",
                 "The [image caption](#image-caption) is contained in a `<figcaption>` tag."
               ],
               "5": [
                 "Does each bitmap image with an [image caption](#image-caption) (`<canvas>` tag associated with an adjacent [image caption](#image-caption)), if necessary, meet these conditions?",
                 "The bitmap image (`<canvas>` tag) and its adjacent [image caption](#image-caption) are contained in a `<figure>` tag.",
-                "The `<figure>` tag has a WAI-ARIA `role=\"figure\"` or `role=\"group\"` attribute.",
-                "The `<figure>` tag has a WAI-ARIA `aria-label` attribute whose content is identical to the content of the [image caption](#image-caption).",
                 "The [image caption](#image-caption) is contained in a `<figcaption>` tag."
               ]
             },
@@ -771,7 +759,7 @@
         {
           "criterium": {
             "number": 3,
-            "title": "On each web page, are the colours used in the [user interface components](#user-interface-component) or graphic element conveying informations sufficiently contrasting (excluding special cases)?",
+            "title": "On each web page, are the colours used in the [user interface components](#user-interface-component) or graphic element conveying information sufficiently contrasting (excluding special cases)?",
             "tests": {
               "1": [
                 "On each web page, does the [contrast](#contrast) ratio between the colours of a [user interface component](#user-interface-component) in its various states and the [adjacent background colour](#adjacent-background-colour-and-adjacent-colour) satisfy one of these conditions (excluding special cases)?",
@@ -934,7 +922,7 @@
         {
           "criterium": {
             "number": 3,
-            "title": "Does each pre-recorded synchronised [time-based media](#time-based-media-audio-video-and-synchronised) have, if necessary, synchronised [captions](#synchronised-captions-media-object) (excluding special cases)?",
+            "title": "Does each synchronised [time-based media](#time-based-media-audio-video-and-synchronised) have, if necessary, synchronised [captions](#synchronised-captions-media-object) (excluding special cases)?",
             "tests": {
               "1": [
                 "Does each pre-recorded synchronised [time-based media](#time-based-media-audio-video-and-synchronised) meet, if necessary, one of these conditions (excluding special cases)?",
@@ -943,6 +931,9 @@
               ],
               "2": [
                 "For each pre-recorded synchronised [time-based media](#time-based-media-audio-video-and-synchronised) with synchronised [captions](#synchronised-captions-media-object) broadcast via a `<track>` tag, does the `<track>` tag have a `kind=\"captions\"` attribute?"
+              ],
+              "3": [
+                "Does each live synchronised [time-based media](#time-based-media-audio-video-and-synchronised) have synchronised [captions](#synchronised-captions-media-object) where necessary (except in special cases)?"
               ]
             },
             "references": [
@@ -974,10 +965,16 @@
         {
           "criterium": {
             "number": 4,
-            "title": "For each pre-recorded synchronised [time-based media](#time-based-media-audio-video-and-synchronised) with synchronised [captions](#synchronised-captions-media-object), are these captions relevant?",
+            "title": "For each synchronised [time-based media](#time-based-media-audio-video-and-synchronised) with synchronised [captions](#synchronised-captions-media-object), are these captions relevant (excluding special cases)?",
             "tests": {
               "1": [
                 "For each pre-recorded synchronised [time-based media](#time-based-media-audio-video-and-synchronised) with synchronised [captions](#synchronised-captions-media-object), does at least one caption track meet these conditions?",
+                "The captions are in the language of the video;",
+                "The captions are relevant;",
+                "The captions are correctly synchronised."
+              ],
+              "2": [
+                "For each live synchronised [time-based media](#time-based-media-audio-video-and-synchronised) with synchronised [captions](#synchronised-captions-media-object), does at least one caption track meet these conditions?",
                 "The captions are in the language of the video;",
                 "The captions are relevant;",
                 "The captions are correctly synchronised."
@@ -1688,6 +1685,11 @@
                 "For each tag with a WAI-ARIA `role=\"rowheader\"` or `role=\"columnheader\"` attribute whose content applies to the entire row or column, does the tag meet one of these conditions?",
                 "The tag has a WAI-ARIA `role=\"rowheader\"` attribute for [row headers](#column-or-row-header).",
                 "The tag has a WAI-ARIA `role=\"columnheader\"` attribute for [column headers](#column-or-row-header)."
+              ],
+              "6": [
+                "For each `<th>` tag content that applies to a group of columns or rows and has a scope attribute, does the `<th>` tag meet one of these conditions?",
+                "The `<th>` tag has a `scope` attribute with the value `rowgroup` for [groups of row headers](#column-or-row-header).",
+                "The `<th>` tag has a `scope` attribute with the value `colgroup` for [groups of column headers](#column-or-row-header)."
               ]
             },
             "references": [
@@ -1774,6 +1776,9 @@
               ],
               "5": [
                 "For each [link](#link) with a [visible label](#visible-label), does the [accessible name of the link](#accessible-name-of-a-link) contain at least the [visible label](#visible-label) (excluding special cases)?"
+              ],
+              "6": [
+                "Does each [identical link](#identical-link) have the same function and destination (excluding special cases)?"
               ]
             },
             "references": [
@@ -1821,7 +1826,7 @@
             "title": "On each web page, does each [link](#link) have an [accessible name](#accessible-name-of-a-link)?",
             "tests": {
               "1": [
-                "On each web page, does each [link](#link) have an [accessible name](#accessible-name-of-a-link) between `<a>` and `</a>`?"
+                "On each web page, does each [link](#link) have an [accessible name](#accessible-name-of-a-link)?"
               ]
             },
             "references": [
@@ -2439,13 +2444,25 @@
             "title": "On each web page, is the [document structure](#document-structure) consistent (excluding special cases)?",
             "tests": {
               "1": [
-                "On each web page, does the [document structure](#document-structure) meet these conditions (excluding special cases)?",
-                "The [page header region](#header-region) is structured using a `<header>` tag.",
-                "The [main and secondary navigation regions](#menu-and-navigation-bar) are implemented using a `<nav>` tag.",
-                "The `<nav>` tag is reserved for structuring the [main and secondary navigation regions](#menu-and-navigation-bar).",
-                "The [main content region](#main-content-region) is structured using a `<main>` tag.",
-                "The [document structure](#document-structure) uses a single visible `<main>` tag.",
-                "The [footer region](#footer-region) is structured using a `<footer>` tag."
+                "On each web page, do the key regions of the page that make up the [document structure](#document-structure) meet these conditions?",
+                "The element containing the page [header region](#header-region) has a [computed role](#computed-role) of `banner`.",
+                "The elements containing the [primary and secondary navigation regions](#menu-and-navigation-bar) have a [computed role](#computed-role)  of `navigation`.",
+                "The element containing the [search engine region](#search-engine-internal-to-a-website) has a [computed role](#computed-role)  of `search`.",
+                "The element containing the [main content region](#main-content-region) has a [computed role](#computed-role)  of `main`.",
+                "The element containing the [footer region](#footer-region) has a [computed role](#computed-role)  of `contentinfo`."
+              ],
+              "2": [
+                "On each web page, do the [document structure](#document-structure) meet these conditions?",
+                "The [document structure](#document-structure) uses a single visible element with the computed role of `main`.",
+                "The [document structure](#document-structure) uses a single visible element with the computed role of `banner`.",
+                "The [document structure](#document-structure) uses a single visible element with the computed role of `contentinfo`.",
+                "Elements that have a computed role of `navigation` are reserved for structuring primary and secondary navigation regions."
+              ],
+              "3": [
+                "The `<header>` element, without the WAI-ARIA `role` attribute, used to structure the [header region of the page](#header-region), is nested within an element with a computed role other than `article`, `complementary`, `main`, `navigation`, and `section`. Is this rule respected?"
+              ],
+              "4": [
+                "The `<footer>` element, without the WAI-ARIA `role` attribute, used to structure the [footer region of the page](#footer-region), is nested within an element with a computed role other than `article`, `complementary`, `main`, `navigation`, and `section`. Is this rule respected?"
               ]
             },
             "references": [
@@ -2601,10 +2618,10 @@
         {
           "criterium": {
             "number": 2,
-            "title": "On each web page, is the [visible content](#visible-content) conveying information still present when the [style sheets](#style-sheet) are deactivated?",
+            "title": "On each web page, is the [visible content](#visible-content) conveying information accessible to assistive technologies?",
             "tests": {
               "1": [
-                "On each web page, does the information remain present when the [style sheets](#style-sheet) are deactivated?"
+                "On each web page, is the [visible content](#visible-content) conveying information accessible to assistive technologies?"
               ]
             },
             "references": [
@@ -2781,10 +2798,10 @@
         {
           "criterium": {
             "number": 7,
-            "title": "On each web page, for each element receiving the focus, is the [focus](#when-focused) visible?",
+            "title": "On each web page, for each element receiving keyboard focus, is the [focus](#when-focused) visible?",
             "tests": {
               "1": [
-                "For each element receiving focus, does the [focus](#when-focused) meet one of these conditions?",
+                "For each element receiving keyboard focus, does the [focus](#when-focused) meet one of these conditions?",
                 "The browser's native focus style is not removed or degraded.",
                 "An author-defined focus style is visible."
               ]
@@ -2979,10 +2996,10 @@
             "tests": {
               "1": [
                 "On each web page, does the text remain legible when the display is modified according to these conditions (excluding special cases)?",
-                "The spacing between lines (`line-height`) is increased up to 1.5 times the font size.",
-                "The spacing between paragraphs (`<p>` tag) is increased to 2 times the font size.",
-                "Letter spacing (`letter-spacing`) is increased to 0.12 times the font size.",
-                "Word-spacing is increased to 0.16 times the font size."
+                "The spacing between lines (`line-height`) is set to at least 1.5 times the font size.",
+                "The spacing between paragraphs (`<p>` tag) is set to at least 2 times the font size.",
+                "Letter spacing (`letter-spacing`) is set to at least 0.12 times the font size.",
+                "Word-spacing is set to at least 0.16 times the font size."
               ]
             },
             "references": [
@@ -3469,29 +3486,32 @@
             "title": "In each [form](#form), is the [error management](#error-management-form) used appropriately (excluding special cases)?",
             "tests": {
               "1": [
-                "Do the [mandatory field indications](#mandatory-field-indication) meet one of these conditions (excluding special cases)?",
-                "A [mandatory field indication](#mandatory-field-indication) is visible and allows the field concerned to be identified before the form is validated.",
-                "The mandatory field has the `aria-required=\"true\"` or `required` attribute before the form is validated."
+                "Do the [indications of mandatory or optional field entries](#indication-of-mandatory-or-optional-fields) meet one of these conditions (excluding special cases)?",
+                "A [mandatory field indication](#indication-of-mandatory-or-optional-fields) is visible and allows the relevant field to be identified by name before entering data.",
+                "The mandatory field has the `aria-required=\"true\"` or `required` attribute before entering data.",
+                "An [optional field indication](#indication-of-mandatory-or-optional-fields) is visible and allows the relevant field to be identified by name before entering data."
               ],
               "2": [
                 "Do required fields with the `aria-required=\"true\"` or `required` attribute meet one of these conditions?",
-                "A [mandatory field indication](#mandatory-field-indication) is visible and located in the label associated with the field prior to form validation.",
-                "A [mandatory field indication](#mandatory-field-indication) is visible and located in the [passage of text](#passage-of-text-linked-by-aria-labelledby-or-aria-describedby) associated with the field prior to validation of the form."
+                "A [mandatory field indication](#indication-of-mandatory-or-optional-fields) is visible and allows the relevant field to be identified by name before data is entered.",
+                "A [mandatory field indication](#indication-of-mandatory-or-optional-fields) is visible and located in the label associated with the field before data is entered.",
+                "A [mandatory field indication](#indication-of-mandatory-or-optional-fields) is visible and located in the [passage of text](#passage-of-text-linked-by-aria-labelledby-or-aria-describedby) associated with the field before data is entered.",
+                "A [mandatory field indication](#indication-of-mandatory-or-optional-fields) is visible and located in the [legend](#legend) associated with the group of fields before data is entered."
               ],
               "3": [
                 "Do error messages indicating that a mandatory field has not been entered meet one of these conditions?",
-                "The error message indicating that a mandatory field has not been entered is visible and allows the field in question to be identified.",
+                "The error message indicating that a mandatory field has not been entered is visible and allows the field in question to be identified by name.",
                 "The mandatory field has the `aria-invalid=\"true\"` attribute."
               ],
               "4": [
-                "Do required fields with the `aria-invalid=\"true\"` attribute meet any of these conditions?",
+                "Do fields with the `aria-invalid=\"true\"` attribute meet any of these conditions?",
                 "The error message indicating that the input is invalid is visible and located in the label associated with the field.",
                 "The error message indicating that the input is invalid is visible and located in the [passage of text](#passage-of-text-linked-by-aria-labelledby-or-aria-describedby) associated with the field."
               ],
               "5": [
-                "Do the mandatory instructions and indications of data type and/or format meet any of these conditions?",
-                "An instruction or indication of mandatory data type and/or format is visible and enables the field concerned to be identified before the form is validated.",
-                "An instruction or indication of data type and/or mandatory format is visible in the label or [passage of text](#passage-of-text-linked-by-aria-labelledby-or-aria-describedby) associated with the field prior to validation of the form."
+                "Do the instructions and indications of mandatory data type and/or format meet any of these conditions?",
+                "An instruction or indication of mandatory data type and/or format is visible and enables the relevant field to be identified by name before entering data.",
+                "An instruction or indication of mandatory data type and/or format is visible in the label or [passage of text](#passage-of-text-linked-by-aria-labelledby-or-aria-describedby) associated with the field before entering data."
               ],
               "6": [
                 "Do error messages providing an instruction or indication of data type and/or mandatory field indication meet any of these conditions?",
@@ -3830,15 +3850,15 @@
         {
           "criterium": {
             "number": 6,
-            "title": "Can content grouping regions present in several web pages ([header](#header-region), [main navigation](#menu-and-navigation-bar), [main content](#main-content-region), [footer](#footer-region) and [search engine](#search-engine-internal-to-a-website)) be reached or avoided?",
+            "title": "Can content grouping blocks present on several web pages (with the exception of the main regions composing the document structure) be reached or avoided, if necessary?",
             "tests": {
               "1": [
-                "On each web page where they are present, do the [header](#header-region), [main navigation](#menu-and-navigation-bar), [main content](#main-content-region), [footer](#footer-region) and [search engine](#search-engine-internal-to-a-website) regions comply with at least one of these conditions?",
-                "The zone has a WAI-ARIA role of type [landmark](#landmarks) corresponding to its nature.",
-                "The zone has a heading whose content makes it possible to understand the nature of the zone's content.",
-                "The zone can be hidden by means of a button directly preceding the zone in the order of the source code.",
-                "The zone can be avoided by means of a [skip link](#bypass-or-skip-links) directly preceding the zone in the order of the source code.",
-                "The zone can be reached by means of a [bypass link](#bypass-or-skip-links) visible or, failing that, visible when focused."
+                "Do the content grouping blocks present on several web pages (with the exception of the main regions composing the document structure) meet at least one of these conditions, if necessary?",
+                "The block has a WAI-ARIA role of type [landmark](#landmarks) corresponding to its nature.",
+                "The block has a heading whose content makes it possible to understand the nature of the block's content.",
+                "The block can be hidden by means of a button directly preceding the block in the order of the source code.",
+                "The block can be avoided by means of a [skip link](#bypass-or-skip-links) directly preceding the block in the order of the source code.",
+                "The block can be reached by means of a [bypass link](#bypass-or-skip-links) visible or, failing that, visible when focused."
               ]
             },
             "references": [
@@ -4215,12 +4235,15 @@
         {
           "criterium": {
             "number": 5,
-            "title": "Is there an alternative to every cryptic content (ASCII art, emoticon, cryptic syntax) on every web page?",
+            "title": "On each web page, is each cryptic content correctly identified?",
             "tests": {
               "1": [
-                "On each web page, does each cryptic content (ASCII art, emoticon, cryptic syntax) meet one of these conditions?",
-                "A title attribute is available.",
-                "A definition is given by the adjacent context."
+                "On each web page, does each [cryptic content](#cryptic-content) conveying information meet one of these conditions?",
+                "The meaning of the content is provided in the adjacent context.",
+                "The meaning of the content is provided by a method that is [compatible with accessibility](#compatible-with-assistive-technologies)."
+              ],
+              "2": [
+                "On each web page, is each [cryptic content](#cryptic-content) correctly ignored by assistive technologies using a WAI-ARIA `aria-hidden=\"true\"` attribute?"
               ]
             },
             "references": [
@@ -4248,12 +4271,12 @@
         {
           "criterium": {
             "number": 6,
-            "title": "On each web page, for each cryptic content (ASCII art, emoticon, cryptic syntax) having an alternative, is this alternative relevant?",
+            "title": "On each web page, for each [cryptic content](#cryptic-content) having an alternative, is this alternative relevant?",
             "tests": {
               "1": [
-                "On each web page, does each cryptic content (ASCII art, emoticon, cryptic syntax) meet one of these conditions?",
-                "The value of the `title` attribute is relevant.",
-                "The definition given by the adjacent context is relevant."
+                "On each web page, does each [cryptic content](#cryptic-content) meet one of these conditions?",
+                "The meaning given in the adjacent context is relevant.",
+                "The meaning provided by a method [compatible with accessibility](#compatible-with-assistive-technologies) is relevant."
               ]
             },
             "references": [
@@ -4284,17 +4307,17 @@
             "tests": {
               "1": [
                 "On each web page, does every image or multimedia element (`<video>` tag, `<img>` tag, `<svg>` tag, `<canvas>` tag, `<embed>` tag or `<object>` tag) that causes a sudden change in brightness or blinking meet one of these conditions?",
-                "The frequency of the effect is less than 3 per second.",
+                "The frequency of the effect is less than or equal to 3 per second.",
                 "The total cumulative area of the effects is less than or equal to 21824 pixels."
               ],
               "2": [
                 "On each web page, does each script that causes [a sudden change in brightness or blinking](#sudden-change-in-brightness-or-blinking) meet one of these conditions?",
-                "The effect frequency is less than 3 per second.",
+                "The effect frequency is less than or equal to 3 per second.",
                 "The total cumulative area of the effects is less than or equal to 21824 pixels."
               ],
               "3": [
                 "On each web page, does each CSS layout that causes [a sudden change in brightness or blinking](#sudden-change-in-brightness-or-blinking) meet one of these conditions?",
-                "The effect frequency is less than 3 per second.",
+                "The effect frequency is less than or equal to 3 per second.",
                 "The total cumulative area of the effects is less than or equal to 21824 pixels."
               ]
             },
@@ -4322,7 +4345,7 @@
         {
           "criterium": {
             "number": 8,
-            "title": "On each web page, is every moving or blinking content [controllable](#control-moving-or-blinking-content) by the user?",
+            "title": "On each web page, is every moving or blinking content [controllable](#control-moving-or-blinking-content) by the user (excluding special cases)?",
             "tests": {
               "1": [
                 "On each web page, does each automatically-triggered moving content meet one of these conditions?",
@@ -4569,6 +4592,7 @@
                 "Does the website's [documentation](#documentation) include at least the following elements?",
                 "A description of the [accessibility features](#accessibility-feature) provided by the website.",
                 "A user guide for the [accessibility features](#accessibility-feature) provided by the website.",
+                "A list of non-compliances or a description of non-compliant items.",
                 "A description of the components that are not compatible with assistive technologies."
               ]
             },
@@ -4613,10 +4637,10 @@
             "title": "Does the website [documentation](#documentation) comply with the [digital accessibility rules](#digital-accessibility-rules)?",
             "tests": {
               "1": [
-                "Does the [documentation](#documentation) provided in web format (HTML, CSS) comply with the [RAWeb](../raweb1/criteres.html)"
+                "Does the [documentation](#documentation) provided in web format (HTML, CSS) comply with the [RAWeb](../raweb1.1/criteres.html)"
               ],
               "2": [
-                "Does the [documentation](#documentation) made available in PDF format comply with the [RAPDF](../rapdf1/index.html)"
+                "Does the [documentation](#documentation) made available in PDF format comply with the [RAPDF](../rapdf1.1/index.html)"
               ],
               "3": [
                 "Does the [documentation](#documentation) made available in a non-web format (excluding PDF) comply with the criteria of [section 10 Non-web documents](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf#page=52) of European standard EN 301 549 v3.2.1?"
@@ -4647,13 +4671,16 @@
             "title": "Does each [editing tool](#editing-tool) allow you to define the [accessibility information](#accessibility-information) needed to create content that complies with the [digital accessibility rules](#digital-accessibility-rules)?",
             "tests": {
               "1": [
-                "Does each [editing tool](#editing-tool) that creates content in web format (HTML, CSS) allow you to define the [accessibility information](#accessibility-information) needed to create content that complies with the [RAWeb](../raweb1/index.html)?"
+                "Does each [editing tool](#editing-tool) that creates content in web format (HTML, CSS) allow you to define the [accessibility information](#accessibility-information) needed to create content that complies with the [RAWeb](../raweb1.1/index.html)?"
               ],
               "2": [
-                "Does each [editing tool](#editing-tool) that creates content in PDF format have the ability to define the [accessibility information](#accessibility-information) needed to create [RAPDF](../rapdf1/index.html)-compliant content?"
+                "Does each [editing tool](#editing-tool) that creates content in PDF format have the ability to define the [accessibility information](#accessibility-information) needed to create [RAPDF](../rapdf1.1/index.html)-compliant content?"
               ],
               "3": [
                 "Does each [editing tool](#editing-tool) that creates content in non-web format (except PDF) allow the definition of the [accessibility information](#accessibility-information) necessary to create content that complies with the criteria of [section 10 Non-web documents](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf#page=52) of the European standard EN 301 549 v3.2.1?"
+              ],
+              "4": [
+                "Does each [editing tool](#editing-tool) that creates content distributed in a mobile application allow you to define the [accessibility information](#accessibility-information) needed to create content that complies with the [RAAM](../raam1.1/index.html)?"
               ]
             },
             "references": [
@@ -4745,13 +4772,16 @@
             "title": "For each set of [templates](#template), at least one template complies with the [digital accessibility rules](#digital-accessibility-rules). Is this rule respected?",
             "tests": {
               "1": [
-                "For each set of [templates](#template) in web format (HTML, CSS), at least one template conforms to the [RAWeb](../raweb1/criteres.html). Is this rule respected?"
+                "For each set of [templates](#template) in web format (HTML, CSS), at least one template conforms to the [RAWeb](../raweb1.1/criteres.html). Is this rule respected?"
               ],
               "2": [
-                "For each set of [templates](#template) in PDF format, at least one template complies with the [RAPDF](../rapdf1/index.html). Is this rule respected?"
+                "For each set of [templates](#template) in PDF format, at least one template complies with the [RAPDF](../rapdf1.1/index.html). Is this rule respected?"
               ],
               "3": [
                 "For each set of [templates](#template) in non-web format (excluding PDF), at least one template complies with the criteria of [section 10 Non-web documents](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf#page=52) of European standard EN 301 549 v3.2.1. Is this rule respected?"
+              ],
+              "4": [
+                "For each set of [templates](#template) used to distribute content in a mobile application, at least one template complies with the [RAAM](../raam1.1/referentiel-technique.html) criteria. Is this rule respected?"
               ]
             },
             "references": [
@@ -4822,10 +4852,10 @@
         {
           "criterium": {
             "number": 2,
-            "title": "The [support service](#support-service) meets the communication needs of people with disabilities directly or through [a relay service](#relay-service). Is this rule respected?",
+            "title": "Each [support service](#support-service) meets the communication needs of people with disabilities directly or through [a relay service](#relay-service). Is this rule respected?",
             "tests": {
               "1": [
-                "The [support service](#support-service) meets the communication needs of people with disabilities directly or through [a relay service](#relay-service). Is this rule respected?"
+                "Each [support service](#support-service) meets the communication needs of people with disabilities directly or through [a relay service](#relay-service). Is this rule respected?"
               ]
             },
             "references": [

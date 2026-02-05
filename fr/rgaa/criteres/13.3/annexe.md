@@ -25,15 +25,15 @@ Techniques:
   - F15
   - G10
   - G135
-Norm: tous les critères de la section 10 <span lang="en">Non-web documents</span>.
+Norm: tous les critères de la section 10 Non-web documents.
 ---
 
 #### Cas particuliers
 
 Il existe une gestion de cas particuliers :
 
-- Si les fichiers bureautiques (ex : PDF, documents Microsoft ou libreOffice, etc.) ont été publiés avant le 23 septembre 2018 (sauf si ces contenus sont nécessaires pour les besoins de processus administratifs actifs concernant des tâches effectuées par l’organisme du secteur public concerné), ils sont exemptés de l’obligation d’accessibilité, d’après la loi du [28 mai 2019](http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo)
+- Si les fichiers bureautiques (ex : PDF, documents Microsoft ou LibreOffice, etc.) ont été publiés avant le 23 septembre 2018 sur un site internet d’un organisme du secteur public soumis à la [loi du 28 mai 2019](http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo) (sauf si ces contenus sont nécessaires pour les besoins de processus administratifs actifs concernant des tâches effectuées par l’organisme du secteur public concerné), ils sont exemptés de l’obligation d’accessibilité.
 
 Dans cette situation, le critère est non applicable.
 
-Dans le cas de documents PDF, s’il n’existe pas de version alternative accessible, ceux-ci doivent être conformes au [référentiel d’évaluation de l’accessibilité des documents au format PDF (RAPDF)](../rapdf1/index.html).
+Dans le cas de documents PDF, s’il n’existe pas de version alternative accessible, ceux-ci doivent être conformes au [référentiel d’évaluation de l’accessibilité des documents au format PDF (RAPDF)](../rapdf1.1/index.html).
