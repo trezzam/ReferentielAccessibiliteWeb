@@ -2453,10 +2453,10 @@
               ],
               "2": [
                 "On each web page, do the [document structure](#document-structure) meet these conditions?",
-                "The [document structure](#document-structure) uses a single visible element with the computed role of `main`.",
-                "The [document structure](#document-structure) uses a single visible element with the computed role of `banner`.",
-                "The [document structure](#document-structure) uses a single visible element with the computed role of `contentinfo`.",
-                "Elements that have a computed role of `navigation` are reserved for structuring primary and secondary navigation regions."
+                "The [document structure](#document-structure) uses a single visible element with the [computed role](#computed-role) of `main`.",
+                "The [document structure](#document-structure) uses a single visible element with the [computed role](#computed-role) of `banner`.",
+                "The [document structure](#document-structure) uses a single visible element with the [computed role](#computed-role) of `contentinfo`.",
+                "Elements that have a [computed role](#computed-role) of `navigation` are reserved for structuring primary and secondary navigation regions."
               ],
               "3": [
                 "The `<header>` element, without the WAI-ARIA `role` attribute, used to structure the [header region of the page](#header-region), is nested within an element with a computed role other than `article`, `complementary`, `main`, `navigation`, and `section`. Is this rule respected?"
