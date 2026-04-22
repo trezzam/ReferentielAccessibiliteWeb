@@ -1,27 +1,28 @@
-*Version 1.1, published on 6 February 2026*
+*Versión 1.1, publicada el 6 de febrero de 2026*
 
-According to the [law of 28 May 2019](http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo), all websites and mobile applications of Luxembourg public sector bodies must be accessible. The [Information and Press Service](https://sip.gouvernement.lu/en.html) is responsible for monitoring their compliance with accessibility requirements. Furthermore, the [law of 8 March 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo) extends this obligation to certain types of products and services. Monitoring their accessibility is the responsibility of the [OSAPS](https://accessibilite-produits-services.public.lu/en.html).
+De acuerdo con la [ley de 28 de mayo de 2019](http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo), todos los sitios web y aplicaciones móviles de los organismos del sector público de Luxemburgo deben ser accesibles. El [Servicio de Información y Prensa](https://sip.gouvernement.lu/en.html) es responsable de supervisar su conformidad con los requisitos de accesibilidad. Además, la [ley de 8 de marzo de 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo) amplía esta obligación a determinados tipos de productos y servicios. La supervisión de su accesibilidad es responsabilidad del [OSAPS](https://accessibilite-produits-services.public.lu/en.html).
 
-In this context, the Web Accessibility Assessment Framework (RAWeb) has been defined as the accessibility framework for all public sector bodies in the scope of the law.
+En este contexto, el Marco de Evaluación de la Accesibilidad Web (RAWeb) se ha definido como el marco de accesibilidad para todos los organismos del sector público incluidos en el ámbito de la ley.
 
-The RAWeb technical method makes it possible to check that a web page - i.e. all HTML content (HTML4, XHTML1 and HTML5) - complies with the success criteria of the [Harmonised European standard EN 301 549 (.pdf)](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf) to establish the level of legal requirements in terms of digital accessibility.
+El método técnico RAWeb permite comprobar que una página web —es decir, todo el contenido HTML (HTML4, XHTML1 y HTML5)— cumple con los criterios de conformidad de la [norma europea armonizada EN 301 549 (.pdf)](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf) para establecer el nivel de requisitos legales en materia de accesibilidad digital.
 
-The RAWeb technical method provides an operational framework for checking compliance with accessibility requirements.
+El método técnico RAWeb proporciona un marco operativo para verificar el cumplimiento de los requisitos de accesibilidad.
 
-It includes 136 control criteria. Some tests refer to implementation techniques (HTML, CSS, JavaScript, etc.) to check that the criterion has been met, in order to reduce the margin of interpretation as to whether accessibility standards have been complied with.
+Incluye 136 criterios de control. Algunas pruebas hacen referencia a técnicas de implementación (HTML, CSS, JavaScript, etc.) para comprobar que el criterio se ha cumplido, reduciendo así el margen de interpretación sobre si se han respetado las normas de accesibilidad.
 
-Some tests, in particular those concerning user interface components developed in JavaScript, require content to be assessed using assistive technologies associated with browsers and operating systems. The test environment (or "baseline") is described on the [Test environment](environnement.html) page. 
+Algunas pruebas, en particular las relativas a componentes de interfaz de usuario desarrollados en JavaScript, requieren que el contenido sea evaluado mediante tecnologías de apoyo asociadas a navegadores y sistemas operativos. El entorno de pruebas (o «línea base») se describe en la página [Test environment](environnement.html).
 
-The RAWeb technical method only covers Websites, native mobile applications are covered by [RAAM 1.1](../raam1.1/index.html).
+El método técnico RAWeb solo cubre los sitios web; las aplicaciones móviles nativas están cubiertas por [RAAM 1.1](../raam1.1/index.html).
 
-The current version is version 1.1 and contains content from [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/). This framework has been adapted by the [Information and Press Service](https://sip.gouvernement.lu/en.html) to refer to the Luxembourg legal framework. The sources are available in the [accessibility-luxembourg/ReferentielAccessibiliteWeb](https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb) repository on GitHub.
-If you find any issue in this framework, feel free to create a ticket in this repository.
+La versión actual es la versión 1.1 e incluye contenido procedente de [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/). Este marco ha sido adaptado por el [Servicio de Información y Prensa](https://sip.gouvernement.lu/en.html) para ajustarse al marco jurídico de Luxemburgo. Las fuentes están disponibles en el repositorio [accessibility-luxembourg/ReferentielAccessibiliteWeb](https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb) en GitHub.
 
-### Contents
+Si detecta algún problema en este marco, no dude en crear una incidencia en este repositorio.
 
-  * [Criteria and tests](criteres.html)
-  * [Glossary](glossaire.html)
-  * [Test methodology](methodo-test.html)
-  * [Test environment](environnement.html)
-  * [References](references.html)
-  * [Review notes](notes-revision.html)
+### Contenido
+
+* [Criterios y pruebas](criteres.html)
+* [Glosario](glossaire.html)
+* [Metodología de pruebas](methodo-test.html)
+* [Entorno de pruebas](environnement.html)
+* [Referencias](references.html)
+* [Notas de revisión](notes-revision.html)

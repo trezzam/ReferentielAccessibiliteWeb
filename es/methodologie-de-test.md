@@ -1,208 +1,208 @@
 ---
-title: Test methodology
+title: Metodología de pruebas
 layout: layouts/base.njk
-description: Test methodology documenting the steps used to check whether a RAWeb criterion is compliant or not
+description: Metodología de pruebas que documenta los pasos utilizados para comprobar si un criterio RAWeb cumple o no con la normativa
 eleventyNavigation:
-  title: Resources
-  parent: resources
+  title: Recursos
+  parent: recursos
   order: 3
 ---
 
-This document has been drawn up as part of the resources to accompany the introduction of version 1 of the Web Accessibility Assessment Framework (RAWeb).
+Este documento ha sido redactado como parte de los recursos para acompañar la introducción de la versión 1 del Marco de Referencia de Accesibilidad Web (RAWeb).
 
-It is intended for anyone wishing to check that web content complies with the RAWeb. It is a testing methodology that documents the steps involved in checking whether or not a RAWeb criterion is met. This methodology is therefore to be used in addition to the RAWeb technical framework and cannot be used on its own. It does not replace a thorough reading of the technical framework, nor does it replace a RAWeb training.
+Está dirigido a cualquier persona que desee comprobar que el contenido web cumple con el RAWeb. Es una metodología de pruebas que documenta los pasos necesarios para comprobar si se cumple o no un criterio RAWeb. Por lo tanto, esta metodología debe utilizarse junto con el marco técnico RAWeb y no puede utilizarse de forma aislada. No sustituye a una lectura exhaustiva del marco técnico, ni sustituye a una formación en RAWeb.
 
-For each of the tests of a criterion, there is a corresponding test procedure. The implementation of this procedure may sometimes require the use of specific tools, otherwise a browser is sufficient to perform most of the tests.
-A list of tools is also provided to assist in carrying out the tests. They have been selected both because they are frequently used by experts in the field and because they make it easier to find certain results.
+Para cada una de las pruebas de un criterio, existe un procedimiento de prueba correspondiente. La implementación de este procedimiento a veces puede requerir el uso de herramientas específicas, aunque un navegador es suficiente para realizar la mayoría de las pruebas.
+También se proporciona una lista de herramientas para ayudar en la realización de las pruebas. Se han seleccionado tanto porque son utilizadas frecuentemente por expertos en el sector como porque facilitan la obtención de ciertos resultados.
 
 <div class="fr-callout"><p class="fr-text--lg">
-The testing methodology is now available for each test on the <a href="criteres.html">criteria and tests</a> page.</p>
+La metodología de pruebas ya está disponible para cada prueba en la página de <a href="criteres.html">criterios y pruebas</a>.</p>
 </div>
 
-### Assessment of compliance with the reference standard
+### Evaluación del cumplimiento con el estándar de referencia
 
-#### General framework
+#### Marco general
 
-In order to assess the compliance of the website with the reference standard, the organisation must conduct an accessibility audit. The audit (or evaluation) may be carried out by the organisation itself (self-evaluation) or by a third party. The evaluation is carried out on a sample of pages representative of the site. 
+Para evaluar el cumplimiento del sitio web con el estándar de referencia, la organización debe realizar una auditoría de accesibilidad. La auditoría (o evaluación) puede ser llevada a cabo por la propia organización (autoevaluación) o por un tercero. La evaluación se realiza sobre una muestra de páginas representativas del sitio.
 
-The verification of compliance of the sample pages with the applicable criteria is carried out using the [Web Accessibility Assessment Framework (RAWeb)](./index.html). 
+La verificación del cumplimiento de las páginas de la muestra con los criterios aplicables se realiza utilizando el [Marco de Referencia de Accesibilidad Web (RAWeb)](./index.html).
 
-The final phase of the audit is the accessibility statement, which reports on compliance with the applicable rules.
+La fase final de la auditoría es la declaración de accesibilidad, que informa sobre el cumplimiento de las normas aplicables.
 
-The audit (or evaluation) meets the following criteria:
+La auditoría (o evaluación) cumple los siguientes criterios:
 
-- it is reliable: it is the responsibility of the organisation concerned to ensure the reliability of its statement by all possible means (recourse to an external service provider, training of internal experts, cross-audits, etc.);
-- it is representative: it is based on a representative sample (see "Sample" section below).
+- es fiable: es responsabilidad de la organización interesada garantizar la fiabilidad de su declaración por todos los medios posibles (recurso a un proveedor de servicios externo, formación de expertos internos, auditorías cruzadas, etc.);
+- es representativa: se basa en una muestra representativa (ver sección "Muestra" a continuación).
 
-It is possible to use another test method, subject to three conditions:
+Es posible utilizar otro método de prueba, sujeto a tres condiciones:
 
-- ensure that the test method used can be communicated on request to a user or an administration;
-- produce an explicit mapping table between the criteria and tests and the chosen reference standard;
-- indicate this information in the accessibility statement.
+- asegurarse de que el método de prueba utilizado pueda comunicarse bajo petición a un usuario o a una administración;
+- producir una tabla de correspondencia explícita entre los criterios y pruebas y el estándar de referencia elegido;
+- indicar esta información en la declaración de accesibilidad.
 
-#### Sample
+#### Muestra
 
-The sample on which the audit of a website is carried out covers at least the following pages, where they exist:
- 
-1. the home page;
-1. the legal notices;
-1. the authentication page;
-1. the contact page;
-1. the "accessibility" page;
-1. the "help" page;
-1. the web page or set of web pages making up the website [documentation](./glossaire.html#documentation) (if different from the "accessibility" page and the "help" page);
-1. the web page or set of web pages making up the [documentation](./glossaire.html#documentation) for the [support service](./glossaire.html#support-service);
-1. the "site map" page;
-1. at least one relevant page for each type of service provided and any other main intended use (e.g. 1st level headings in the tree structure), including the search functionality (see below if you are subject to the law of 8 March 2023);
-1. a page containing at least one relevant downloadable document, where applicable, for each type of service provided and for any other main intended use;
-1. the set of web pages making up a process, for example, an input form or a multi-page transaction (see below if you are subject to the law of 8 March 2023);
-1. examples of pages with a significantly distinct appearance or different type of content (e.g. a page containing data tables, multimedia elements, illustrations, forms, real-time communication functionality, etc.).
+La muestra sobre la que se realiza la auditoría de un sitio web cubre al menos las siguientes páginas, siempre que existan:
 
-The selection of pages audited and their number must be representative of the site. Web analytics can be taken into account when selecting the sample.
+1. la página de inicio;
+2. el aviso legal;
+3. la página de autenticación;
+4. la página de contacto;
+5. la página de "accesibilidad";
+6. la página de "ayuda";
+7. la página web o el conjunto de páginas web que componen la [documentación](./glossaire.html#documentation) del sitio web (si es diferente de la página de "accesibilidad" y de la página de "ayuda");
+8. la página web o el conjunto de páginas web que componen la [documentación](./glossaire.html#documentation) para el [servicio de soporte](./glossaire.html#support-service);
+9. la página del "mapa del sitio";
+10. al menos una página relevante para cada tipo de servicio proporcionado y cualquier otro uso principal previsto (ej. encabezados de primer nivel en la estructura jerárquica), incluida la funcionalidad de búsqueda (ver más abajo si está sujeto a la ley del 8 de marzo de 2023);
+11. una página que contenga al menos un documento descargable relevante, cuando corresponda, para cada tipo de servicio proporcionado y para cualquier otro uso principal previsto;
+12. el conjunto de páginas web que componen un proceso, por ejemplo, un formulario de entrada o una transacción de varias páginas (ver más abajo si está sujeto a la ley del 8 de marzo de 2023);
+13. ejemplos de páginas con un aspecto significativamente distinto o un tipo de contenido diferente (ej. una página que contenga tablas de datos, elementos multimedia, ilustraciones, formularios, funcionalidad de comunicación en tiempo real, etc.).
 
-Finally, randomly selected pages representing at least 10% of the elements in the sample described above are also taken into account.
+La selección de las páginas auditadas y su número deben ser representativos del sitio. Se puede tener en cuenta la analítica web al seleccionar la muestra.
 
-##### Entities covered by the [law of 8 March 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo)
+Finalmente, también se tienen en cuenta páginas seleccionadas al azar que representen al menos el 10% de los elementos de la muestra descrita anteriormente.
 
-For entities that provide the services specified in the [law of 8 March 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo), specific mandatory pages and processes must be included in the assessment sample, depending on the services provided.
+##### Entidades cubiertas por la [ley del 8 de marzo de 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo)
 
-For example, for online banking services, the following pages and features should be included in the sample as a priority, if they exist:
+Para las entidades que prestan los servicios especificados en la [ley del 8 de marzo de 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo), deben incluirse páginas y procesos obligatorios específicos en la muestra de evaluación, dependiendo de los servicios prestados.
 
-* A page with electronic signature;
-* Account information:
-  * List of accounts;
-  * Account details;
-  * Account information;
-  * Latest transactions;
-  * Transaction details.
-* Account management:
-  * Opening;
-  * Closing;
-  * Overdraft management.
-* Transfers and standing orders:
-  * Transfer;
-  * Standing order (creation, modification, deletion);
-  * Beneficiary (creation, modification, deletion).
-* Card orders;
-* Investments:
-  * Portfolio management;
-  * Investment advice;
-  * Order execution.
-* Payment validation system (3D Secure).
-* Electronic communication functionality (secure messaging);
-* E-commerce functionality (purchase funnel through to payment).
+Por ejemplo, para los servicios de banca en línea, deben incluirse en la muestra con prioridad las siguientes páginas y características, si existen:
 
-Such a list must be drawn up for each service offered online, whether it is an electronic communication feature (secure messaging) or an e-commerce feature (purchase funnel through to payment).
+* Una página con firma electrónica;
+* Información de cuenta:
+  * Lista de cuentas;
+  * Detalles de la cuenta;
+  * Información de la cuenta;
+  * Últimas transacciones;
+  * Detalles de la transacción.
+* Gestión de cuentas:
+  * Apertura;
+  * Cierre;
+  * Gestión de descubiertos.
+* Transferencias y órdenes permanentes:
+  * Transferencia;
+  * Orden permanente (creación, modificación, eliminación);
+  * Beneficiario (creación, modificación, eliminación).
+* Pedidos de tarjetas;
+* Inversiones:
+  * Gestión de carteras;
+  * Asesoramiento de inversión;
+  * Ejecución de órdenes.
+* Sistema de validación de pagos (3D Secure).
+* Funcionalidad de comunicación electrónica (mensajería segura);
+* Funcionalidad de comercio electrónico (embudo de compra hasta el pago).
 
-This list is not exhaustive; it is intended merely to illustrate the specific obligation incumbent on entities that provide the services designated in the [law of 8 March 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo).
+Dicha lista debe elaborarse para cada servicio ofrecido en línea, ya sea una función de comunicación electrónica (mensajería segura) o una función de comercio electrónico (embudo de compra hasta el pago).
 
-#### Test environment (or "baseline")
+Esta lista no es exhaustiva; pretende únicamente ilustrar la obligación específica que incumbe a las entidades que prestan los servicios designados en la [ley del 8 de marzo de 2023](https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo).
 
-Some [RAWeb criteria](./criteres.html), particularly those in the Scripts theme, include rendering tests to be carried out on assistive technologies associated with browsers and operating systems.
+#### Entorno de pruebas (o "línea base")
 
-##### Definition of the test environment
+Algunos [criterios RAWeb](./criteres.html), particularmente aquellos en el tema de Scripts, incluyen pruebas de renderizado que deben llevarse a cabo en tecnologías de asistencia asociadas a navegadores y sistemas operativos.
 
-To validate these criteria, a test environment (or "baseline") needs to be defined. By default, it is made up of the platforms and assistive technologies most commonly used by people with disabilities. 
+##### Definición del entorno de pruebas
 
-To carry out the evaluation tests within the framework of RAWeb, it is necessary to take into account the [RAWeb test environment](./environnement.md).
+Para validar estos criterios, es necesario definir un entorno de pruebas (o "línea base"). Por defecto, está compuesto por las plataformas y tecnologías de asistencia más utilizadas por las personas con discapacidad.
 
-This minimum test environment may be supplemented, where appropriate, by available free and open source solutions or by older technologies, depending on the use of the site. Whenever it is possible to know the configuration of the workstations and the hardware used, the baseline is composed of the services actually used in this environment.
+Para llevar a cabo las pruebas de evaluación dentro del marco de RAWeb, es necesario tener en cuenta el [entorno de pruebas RAWeb](./environnement.md).
 
-#### Testing pages
+Este entorno de pruebas mínimo puede complementarse, cuando proceda, con soluciones libres y de código abierto disponibles o con tecnologías más antiguas, dependiendo del uso del sitio. Siempre que sea posible conocer la configuración de las estaciones de trabajo y el hardware utilizado, la línea base estará compuesta por los servicios utilizados realmente en este entorno.
 
-Each page in the sample must be checked against the criteria applicable to it.
+#### Páginas de prueba
 
-There are 3 reasons why a criterion may not be applicable to a page:
+Cada página de la muestra debe ser comprobada frente a los criterios que le sean aplicables.
 
-  1. The criterion relates to content or a functionality that does not exist. For example: if the page does not include a video, the criteria relating to videos will not be applicable.
-  2. The criterion relates to an exempt content or service which is therefore not subject to the accessibility obligation.
-  3. The criterion concerns content subject to derogation for disproportionate burden that is accompanied by an accessible digital alternative. For example, a statistical table with graphics that offers a text alternative. In this case, the criteria applicable to content subject to derogation will not apply. 
-      Please note: if the content subject to derogation for disproportionate burden does not offer an accessible digital alternative, the criteria for this content are considered applicable.
+Existen 3 razones por las que un criterio puede no ser aplicable a una página:
 
-The pages are then tested against the applicable criteria. These tests provide:
+  1. El criterio se refiere a un contenido o una funcionalidad que no existe. Por ejemplo: si la página no incluye un vídeo, los criterios relativos a los vídeos no serán aplicables.
+  2. El criterio se refiere a un contenido o servicio exento que, por tanto, no está sujeto a la obligación de accesibilidad.
+  3. El criterio concierne a un contenido sujeto a derogación por carga desproporcionada que va acompañado de una alternativa digital accesible. Por ejemplo, una tabla estadística con gráficos que ofrece una alternativa textual. En este caso, los criterios aplicables al contenido sujeto a derogación no se aplicarán.
+     Tenga en cuenta: si el contenido sujeto a derogación por carga desproporcionada no ofrece una alternativa digital accesible, los criterios para este contenido se consideran aplicables.
 
-  * the number of validated and non-validated criteria for each page;
-  * the compliance rate for each page.
+Las páginas se prueban entonces contra los criterios aplicables. Estas pruebas proporcionan:
 
-Please note: 
+  * el número de criterios validados y no validados para cada página;
+  * la tasa de cumplimiento para cada página.
 
-  * a criterion is validated for a given page when all the elements of the page have passed the tests used to validate the criterion;
-  * if a single element of the page does not pass the tests for a criterion, the criterion cannot be validated;
-  * if the page is part of a process (making a declaration, taking part in a public consultation, making an appointment), a criterion is validated for a page in the process only if it is validated for all the pages in the process.
+Tenga en cuenta:
 
-Some criteria or themes are applicable to the whole site and not to a particular page, so it is not necessary to evaluate them on all the pages in the sample. In this case, they may, for example, be evaluated on a single page in the sample and considered as not applicable to all the other pages. This methodology for reporting the results of the evaluation of these criteria is, of course, optional. Whatever methodology is chosen, there will be no impact on the site's overall compliance rate. This is particularly the case for the following criteria and themes:
-  * Criterion 12.3: Is the site map page relevant?
-  * Theme 14: Documentation and accessibility features
-  * Theme 16: Support services.
+  * un criterio se valida para una página determinada cuando todos los elementos de la página han superado las pruebas utilizadas para validar el criterio;
+  * si un solo elemento de la página no supera las pruebas para un criterio, el criterio no puede validarse;
+  * si la página es parte de un proceso (realizar una declaración, participar en una consulta pública, pedir una cita), un criterio se valida para una página en el proceso solo si está validado para todas las páginas del proceso.
 
-#### Compliance rate with the standard
+Algunos criterios o temas son aplicables a todo el sitio y no a una página en particular, por lo que no es necesario evaluarlos en todas las páginas de la muestra. En este caso, pueden, por ejemplo, evaluarse en una sola página de la muestra y considerarse como no aplicables a todas las demás páginas. Esta metodología para informar de los resultados de la evaluación de estos criterios es, por supuesto, opcional. Cualquiera que sea la metodología elegida, no habrá impacto en la tasa de cumplimiento global del sitio. Este es particularmente el caso de los siguientes criterios y temas:
+  * Criterio 12.3: ¿Es relevante la página del mapa del sitio?
+  * Tema 14: Documentación y características de accesibilidad
+  * Tema 16: Servicios de soporte.
 
-The compliance rate measures the progress made by the online service in complying with accessibility requirements. 
+#### Tasa de cumplimiento con el estándar
 
-This rate indicates the percentage of criteria met by the online service.
+La tasa de cumplimiento mide el progreso realizado por el servicio en línea en el cumplimiento de los requisitos de accesibilidad.
 
-The percentage of criteria met is obtained by dividing the number of validated criteria by the number of applicable criteria.
+Esta tasa indica el porcentaje de criterios cumplidos por el servicio en línea.
 
-  * Validated criterion: a criterion is validated if it is validated on all the pages in the sample. If a criterion is invalidated on only one page in the sample, it cannot be considered valid for calculating the rate.
-  * Applicable criterion: for a criterion to be applicable, it only needs to be applicable on one page in the sample. The corollary of this is that a criterion is not applicable if it is not applicable on all the pages in the sample without exception.
+El porcentaje de criterios cumplidos se obtiene dividiendo el número de criterios validados por el número de criterios aplicables.
 
-This compliance rate determines the compliance status to be mentioned in the [accessibility statement](../obligations.md#content-of-the-accessibility-statement).
+  * Criterio validado: un criterio se valida si está validado en todas las páginas de la muestra. Si un criterio está invalidado en una sola página de la muestra, no puede considerarse válido para calcular la tasa.
+  * Criterio aplicable: para que un criterio sea aplicable, solo necesita ser aplicable en una página de la muestra. El corolario de esto es que un criterio no es aplicable si no es aplicable en todas las páginas de la muestra sin excepción.
 
-#### Non-interference principle
+Esta tasa de cumplimiento determina el estado de cumplimiento que debe mencionarse en la [declaración de accesibilidad](../obligations.md#content-of-the-accessibility-statement).
 
-In an audit sample, there may be content that is not subject to the accessibility obligation:
+#### Principio de no interferencia
 
-- [exempt content](../obligations.md#exempt-content);
-- [content derogated for disproportionate burden](../obligations.md#derogation-for-disproportionate-burden);
-- non-accessible content that has an accessible alternative.
+En una muestra de auditoría, puede haber contenido que no esté sujeto a la obligación de accesibilidad:
 
-It is essential to ensure that this content does not prevent users from accessing the rest of the page.
+- [contenido exento](../obligations.md#exempt-content);
+- [contenido con derogación por carga desproporcionada](../obligations.md#derogation-for-disproportionate-burden);
+- contenido no accesible que tiene una alternativa accesible.
 
-Therefore, although the compliance of this content is not required, it must comply with the following criteria and tests:
+Es esencial asegurarse de que este contenido no impida a los usuarios acceder al resto de la página.
 
-- [Criterion 4.10](./criteres.html#crit-4-10): Is each automatically triggered sound controllable by the user?
-- [Criterion 12.9](./criteres.html#crit-12-9): On each web page, navigation must not contain any keyboard traps. Is this rule respected?
-- [Test 13.1.1](./criteres.html#test-13-1-1): For each web page, does each refresh process (`<object>` tag, `<embed>` tag, `<svg>` tag, `<canvas>` tag, `<meta>` tag) meet one of these conditions (excluding special cases)?
-- [Criterion 13.7](./criteres.html#crit-13-7): On each web page, are sudden changes in brightness or blinking used appropriately?
-- [Criterion 13.8](./criteres.html#crit-13-8): On each web page, can each moving or blinking content be controlled by the user?
+Por lo tanto, aunque no se requiera el cumplimiento de este contenido, debe cumplir con los siguientes criterios y pruebas:
 
-Failure to comply with one of these criteria or tests for one of the types of content listed renders the corresponding criteria non-compliant.
+- [Criterio 4.10](./criteres.html#crit-4-10): ¿Cada sonido activado automáticamente es controlable por el usuario?
+- [Criterio 12.9](./criteres.html#crit-12-9): En cada página web, la navegación no debe contener ninguna trampa de teclado. ¿Se respeta esta regla?
+- [Prueba 13.1.1](./criteres.html#test-13-1-1): Para cada página web, ¿cada proceso de actualización (etiqueta `<object>`, etiqueta `<embed>`, etiqueta `<svg>`, etiqueta `<canvas>`, etiqueta `<meta>`) cumple una de estas condiciones (excluyendo casos especiales)?
+- [Criterio 13.7](./criterio.html#crit-13-7): En cada página web, ¿se utilizan adecuadamente los cambios bruscos de brillo o el parpadeo?
+- [Criterio 13.8](./criteres.html#crit-13-8): En cada página web, ¿puede el usuario controlar cada contenido en movimiento o parpadeante?
 
-The non-interference principle is identified in standard EN 301 549 in criterion 9.6 WCAG conformance requirements.
+El incumplimiento de uno de estos criterios o pruebas para uno de los tipos de contenido enumerados hace que los criterios correspondientes sean no conformes.
 
-### Tools
+El principio de no interferencia se identifica en el estándar EN 301 549 en el criterio 9.6 requisitos de conformidad WCAG.
 
-The most useful tool is the code inspector available in every browser. It makes it easy to find the elements and attributes required for an accessibility test. Nowadays, development tools also offer features for accessing the properties of the accessibility tree exposed by the browser. However, this information does not replace the need for technical assistance when a criterion or test requires it.
+### Herramientas
 
-The assistive technologies listed in the chosen test environment constitute a second set of essential tools (see the section [Testing environment](environnement.html#contenu)). They are required to ensure that accessible content (alternatives to images, link headings, table titles, etc.) is rendered correctly, particularly in cases where examining the code alone would not suffice.
+La herramienta más útil es el inspector de código disponible en todos los navegadores. Facilita la búsqueda de los elementos y atributos necesarios para una prueba de accesibilidad. Hoy en día, las herramientas de desarrollo también ofrecen funciones para acceder a las propiedades del árbol de accesibilidad expuestas por el navegador. Sin embargo, esta información no sustituye a la necesidad de asistencia técnica cuando un criterio o prueba lo requiere.
 
-Other tools are available to help search for content elements. They are often presented as browser extensions and can be used to explore one or more aspects of an accessibility test.
+Las tecnologías de asistencia enumeradas en el entorno de pruebas elegido constituyen un segundo conjunto de herramientas esenciales (ver la sección [Entorno de pruebas](environnement.html#contenu)). Son necesarias para asegurar que el contenido accesible (alternativas a las imágenes, encabezados de enlaces, títulos de tablas, etc.) se represente correctamente, particularmente en casos donde examinar el código por sí solo no sería suficiente.
 
-The following toolbars are browser extensions that make it easier to visually locate certain elements in a document:
+Hay otras herramientas disponibles para ayudar a buscar elementos de contenido. A menudo se presentan como extensiones de navegador y pueden utilizarse para explorar uno o más aspectos de una prueba de accesibilidad.
 
-- [Web Developer Toolbar for Firefox](https://addons.mozilla.org/en-US/firefox/addon/web-developer/): a toolbar for developers that can help you visually locate certain elements in a document to check its accessibility;
-- [Web Developer Toolbar for Chrome](https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm): the same toolbar as above, for Chrome.
+Las siguientes barras de herramientas son extensiones de navegador que facilitan la localización visual de ciertos elementos en un documento:
 
-In addition to the simple toolbar, other tools provide a complete analysis of the document by visually highlighting accessibility errors on the page or, conversely, beneficial elements. Filters are then often used to display only some of these aspects. This is what Wave offers, a solution available both online (http://wave.webaim.org) and as a browser extension (https://wave.webaim.org/extension/).
+- [Web Developer Toolbar para Firefox](https://addons.mozilla.org/en-US/firefox/addon/web-developer/): una barra de herramientas para desarrolladores que puede ayudarle a localizar visualmente ciertos elementos en un documento para comprobar su accesibilidad;
+- [Web Developer Toolbar para Chrome](https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm): la misma barra de herramientas anterior, para Chrome.
 
-Although it is no longer necessary to check the validity of the source code, it can be useful to use the HTML validator to search for anomalies. Validation of the source code of an HTML document uses the W3C online validator (https://validator.w3.org/nu/). Note that to validate the source code generated by the browser, use the "Text input" option in the "Check by" listbox and copy the HTML source available from the browser's code inspector into the multiline input box.
-Browser extensions are also available, but you need to be careful, as the validation algorithms of these extensions are not necessarily up to date with the W3C validator and the results obtained may therefore be different.
+Además de la barra de herramientas simple, otras herramientas proporcionan un análisis completo del documento destacando visualmente los errores de accesibilidad en la página o, a la inversa, los elementos beneficiosos. A menudo se utilizan filtros para mostrar solo algunos de estos aspectos. Esto es lo que ofrece Wave, una solución disponible tanto en línea (http://wave.webaim.org) como extensión de navegador (https://wave.webaim.org/extension/).
 
-Various tools are available for checking colour contrasts:
+Aunque ya no es necesario comprobar la validez del código fuente, puede ser útil utilizar el validador HTML para buscar anomalías. La validación del código fuente de un documento HTML utiliza el validador en línea del W3C (https://validator.w3.org/nu/). Tenga en cuenta que para validar el código fuente generado por el navegador, utilice la opción "Text input" en la lista desplegable "Check by" y copie el código fuente HTML disponible desde el inspector de código del navegador en el cuadro de entrada multilínea.
+También hay extensiones de navegador disponibles, pero debe tener cuidado, ya que los algoritmos de validación de estas extensiones no están necesariamente actualizados con el validador del W3C y, por tanto, los resultados obtenidos pueden ser diferentes.
 
-- [WCAG Contrast checker for Firefox](https://addons.mozilla.org/en-US/firefox/addon/wcag-contrast-checker/): Firefox extension that automatically checks text colour contrasts in a document;
-- [WCAG Contrast checker for Chrome](https://chromewebstore.google.com/detail/wcag-color-contrast-check/plnahcmalebffmaghcpcmpaciebdhgdf): same extension as above for Chrome;
-- [Colour Contrast Analyser](https://developer.paciellogroup.com/resources/contrastanalyser/): Windows or Mac application for checking colour contrasts.
+Hay varias herramientas disponibles para comprobar los contrastes de color:
 
-A very useful extension is available for checking the document tree structure and headings hierarchy:
+- [WCAG Contrast checker para Firefox](https://addons.mozilla.org/en-US/firefox/addon/wcag-contrast-checker/): extensión de Firefox que comprueba automáticamente los contrastes de color de texto en un documento;
+- [WCAG Contrast checker para Chrome](https://chrome.google.com/webstore/detail/wcag-color-contrast-check/plnahcmalebffmaghcpcmpaciebdhgdf): misma extensión que la anterior para Chrome;
+- [Colour Contrast Analyser](https://developer.paciellogroup.com/resources/contrastanalyser/): aplicación de Windows o Mac para comprobar los contrastes de color.
 
-- [HeadingsMap for Firefox](https://addons.mozilla.org/en-US/firefox/addon/headingsmap/): Firefox extension that lets you preview the document map and its tree structure;
-- [HeadingsMap for Chrome](https://chrome.google.com/webstore/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi): same extension as above for Chrome.
+Una extensión muy útil está disponible para comprobar la estructura del árbol del documento y la jerarquía de los encabezados:
 
-Various tools can be used to analyse office files, depending on the file format:
+- [HeadingsMap para Firefox](https://addons.mozilla.org/en-US/firefox/addon/headingsmap/): extensión de Firefox que le permite previsualizar el mapa del documento y su estructura de árbol;
+- [HeadingsMap para Chrome](https://chrome.google.com/webstore/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi): misma extensión que la anterior para Chrome.
 
-- [PAC (PDF Accessibility Checker) 2024 for Windows](https://pac.pdf-accessibility.org/en): software for checking certain accessibility issues in PDF documents;
-- Recent versions of Microsoft Office offer a built-in accessibility validation feature (see the article [Make your Word documents accessible to people with disabilities](https://support.microsoft.com/en-us/office/make-your-word-documents-accessible-to-people-with-disabilities-d9bf3683-87ac-47ea-b91a-78dcacb3c66d) and related articles);
-- [Ace by DAISY App](https://inclusivepublishing.org/toolbox/ace-by-daisy-app/) is a tool for checking the accessibility of an EPUB file.
+Se pueden utilizar varias herramientas para analizar archivos de oficina, dependiendo del formato de archivo:
 
-Finally, an old but still useful program for assessing the potential of certain web content to cause epileptic seizures: [PEAT (Photosensitive Epilepsy Analysis Tool) for Windows](https://trace.umd.edu/peat).
+- [PAC (PDF Accessibility Checker) 2024 para Windows](https://pac.pdf-accessibility.org/en): software para comprobar ciertos problemas de accesibilidad en documentos PDF;
+- Las versiones recientes de Microsoft Office ofrecen una función de validación de accesibilidad integrada (ver el artículo [Hacer que sus documentos de Word sean accesibles para personas con discapacidad](https://support.microsoft.com/en-us/office/make-your-word-documents-accessible-to-people-with-disabilities-d9bf3683-87ac-47ea-b91a-78dcacb3c66d) y artículos relacionados);
+- [Ace by DAISY App](https://inclusivepublishing.org/toolbox/ace-by-daisy-app/) es una herramienta para comprobar la accesibilidad de un archivo EPUB.
+
+Finalmente, un programa antiguo pero todavía útil para evaluar el potencial de ciertos contenidos web para causar ataques epilépticos: [PEAT (Photosensitive Epilepsy Analysis Tool) para Windows](https://trace.umd.edu/peat).

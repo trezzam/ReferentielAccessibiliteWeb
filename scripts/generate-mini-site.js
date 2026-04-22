@@ -420,8 +420,18 @@ function convertLocalLinks(input, config) {
     const notesRoute = routePath(config, "notes-revision.html");
     const criteriaRoute = routePath(config, "criteres.html");
     const glossaryRoute = routePath(config, "glossaire.html");
+    const generatedPageRoutes = {
+        "index.html": indexRoute,
+        "obligations.html": obligationsRoute,
+        "methodo-test.html": methodoRoute,
+        "environnement.html": environmentRoute,
+        "references.html": referencesRoute,
+        "notes-revision.html": notesRoute,
+        "criteres.html": criteriaRoute,
+        "glossaire.html": glossaryRoute,
+    };
 
-    return input
+    let normalized = input
         .replace(/\((?:\.\/)?introduction\.md\)/g, `(${indexRoute})`)
         .replace(/\((?:\.\/)?obligations\.md\)/g, `(${obligationsRoute})`)
         .replace(/\((?:\.\/)?methodologie-de-test\.md\)/g, `(${methodoRoute})`)
@@ -429,8 +439,21 @@ function convertLocalLinks(input, config) {
         .replace(/\((?:\.\/)?references\.md\)/g, `(${referencesRoute})`)
         .replace(/\((?:\.\/)?notes-de-revision\.md\)/g, `(${notesRoute})`)
         .replace(/\((?:\.\/)?rgaa\/criteres\/?\)/g, `(${criteriaRoute})`)
+        .replace(/\.\.\/raweb1\.1\/index\.html/g, indexRoute)
+        .replace(/\.\.\/raweb1\.1\/criteres\.html/g, criteriaRoute)
         .replace(/\/(?:en|fr|es)\/raweb1\.1\/criteres\.html/g, criteriaRoute)
+        .replace(/\/(?:en|fr|es)\/raweb1\.1\/index\.html/g, indexRoute)
         .replace(/\/(?:en|fr|es)\/raweb1\.1\/glossaire\.html/g, glossaryRoute);
+
+    for (const [fileName, route] of Object.entries(generatedPageRoutes)) {
+        const escapedFileName = fileName.replace('.', '\\.');
+        normalized = normalized
+            .replace(new RegExp(`\\((?:\\./)?${escapedFileName}\\)`, "g"), `(${route})`)
+            .replace(new RegExp(`href=\"(?:\\./)?${escapedFileName}\"`, "g"), `href=\"${route}\"`)
+            .replace(new RegExp(`href=\"/(?:en|fr|es)/${escapedFileName}\"`, "g"), `href=\"${route}\"`);
+    }
+
+    return normalized;
 }
 
 function linkGlossaryAnchors(html, config) {
@@ -568,12 +591,12 @@ function renderNotesItems(items, config) {
     return items
         .map((item) => {
             if (typeof item === "string") {
-                return linkGlossaryAnchors(toHtml(item), config);
+                return linkGlossaryAnchors(toHtml(convertLocalLinks(item, config)), config);
             }
 
             if (item && Array.isArray(item.ul)) {
                 return `<ul>${item.ul
-                    .map((line) => `<li>${linkGlossaryAnchors(toInlineHtml(line.replace(/^-\s*/, "")), config)}</li>`)
+                    .map((line) => `<li>${linkGlossaryAnchors(toInlineHtml(convertLocalLinks(line.replace(/^-\s*/, ""), config)), config)}</li>`)
                     .join("")}</ul>`;
             }
 
@@ -638,14 +661,20 @@ function renderCriteriaPage(config, criteriaData, methodologiesData, notesByCrit
                 .map((entry) => {
                     const criterion = entry.criterium;
                     const fullNumber = criterionNumber(topic.number, criterion.number);
-                    const criterionTitle = linkGlossaryAnchors(toInlineHtml(criterion.title), config);
+                    const criterionTitle = linkGlossaryAnchors(
+                        toInlineHtml(convertLocalLinks(criterion.title, config)),
+                        config
+                    );
 
                     const tests = Object.entries(criterion.tests || {})
                         .sort((a, b) => Number(a[0]) - Number(b[0]))
                         .map(([testNumber, lines]) => {
                             const testId = `test-${fullNumber.replaceAll(".", "-")}-${testNumber}`;
                             const [first, ...rest] = lines;
-                            const firstHtml = linkGlossaryAnchors(toInlineHtml(first), config);
+                            const firstHtml = linkGlossaryAnchors(
+                                toInlineHtml(convertLocalLinks(first, config)),
+                                config
+                            );
                             const methodologyKey = `${fullNumber}.${testNumber}`;
                             const methodologyFromJson = renderMethodology(
                                 methodologiesData && methodologiesData[methodologyKey],
@@ -654,7 +683,7 @@ function renderCriteriaPage(config, criteriaData, methodologiesData, notesByCrit
                             const methodologyHtml = methodologyFromJson
                                 || (rest.length
                                     ? `<ul>${rest
-                                        .map((line) => `<li>${linkGlossaryAnchors(toInlineHtml(line), config)}</li>`)
+                                        .map((line) => `<li>${linkGlossaryAnchors(toInlineHtml(convertLocalLinks(line, config)), config)}</li>`)
                                         .join("")}</ul>`
                                     : `<p class="muted">${label.noMethodology}</p>`);
 
