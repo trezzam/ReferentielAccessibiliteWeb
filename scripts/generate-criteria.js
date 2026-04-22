@@ -1,5 +1,6 @@
 const fs = require("fs").promises;
 const fm = require("front-matter");
+const path = require("path");
 
 
 /**
@@ -23,26 +24,26 @@ async function parseReferences(path) {
 	const data = await fs.readFile(path, "utf-8");
 	const result = await fm(data);
 
-    let wcag = []
-    if (Array.isArray(result.attributes.WCAG)) {
-        wcag = result.attributes.WCAG.map((w) => {
-            return `${w.successCriterion} ${w.title} (${w.level})`;
-        });
-    } 
+	let wcag = []
+	if (Array.isArray(result.attributes.WCAG)) {
+		wcag = result.attributes.WCAG.map((w) => {
+			return `${w.successCriterion} ${w.title} (${w.level})`;
+		});
+	}
 
-    let norm = []
-    if (result.attributes.Norm !== undefined) {
-        if (Array.isArray(result.attributes.Norm)) {
-            norm = result.attributes.Norm.map((w) => {
-                if (w.criterion === undefined) {
-                    console.log(`${w.criterion} ${file}`)
-                }
-                return `${w.criterion} ${w.title}`;
-            });
-        } else {
-            norm = result.attributes.Norm
-        }
-    } 
+	let norm = []
+	if (result.attributes.Norm !== undefined) {
+		if (Array.isArray(result.attributes.Norm)) {
+			norm = result.attributes.Norm.map((w) => {
+				if (w.criterion === undefined) {
+					console.log(`${w.criterion} ${file}`)
+				}
+				return `${w.criterion} ${w.title}`;
+			});
+		} else {
+			norm = result.attributes.Norm
+		}
+	}
 
 	return [
 		{
@@ -266,5 +267,41 @@ async function generateCriteria(lang) {
 	}
 }
 
-generateCriteria('fr');
-generateCriteria('en');
+async function pathExists(targetPath) {
+	try {
+		await fs.access(targetPath);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+async function canGenerateCriteria(lang) {
+	const requiredPaths = [
+		path.join(__dirname, "..", lang, "themes.json"),
+		path.join(__dirname, "..", lang, "rgaa", "criteres"),
+	];
+
+	for (const requiredPath of requiredPaths) {
+		if (!(await pathExists(requiredPath))) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+async function run() {
+	const languages = ["fr", "en", "es"];
+	for (const lang of languages) {
+		if (await canGenerateCriteria(lang)) {
+			await generateCriteria(lang);
+		} else if (lang === "es") {
+			console.log("ℹ️ Skipping criteria generation for 'es' (missing themes.json and/or rgaa/criteres).");
+		}
+	}
+}
+
+run().catch((error) => {
+	console.error(`❌ Failed while generating criteria: ${error}`);
+});

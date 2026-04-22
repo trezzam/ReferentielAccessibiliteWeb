@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Changelog from RAWeb 1 to RAWeb 1.1 | RAWeb mini site</title>
+    <style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f8;
+  --text: #1f2328;
+  --muted: #57606a;
+  --link: #0969da;
+  --border: #d0d7de;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+.brand {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+}
+.nav-section { margin: 18px 0; }
+.nav-title {
+  margin: 0 0 10px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.nav-list { list-style: none; margin: 0; padding: 0; }
+.nav-list li { margin: 6px 0; }
+.main {
+  padding: 28px 36px;
+  max-width: 1200px;
+}
+h1, h2, h3, h4 { line-height: 1.25; }
+h1 { margin-top: 0; }
+article img { max-width: 100%; }
+article pre {
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f6f8fa;
+}
+article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace;
+}
+.details {
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+  padding-top: 16px;
+}
+.criterion {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.tests { margin-top: 8px; }
+.tests > li { margin-bottom: 10px; }
+.muted { color: var(--muted); }
+.collapse {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	margin: 10px 0;
+	background: #fff;
+}
+.collapse > summary {
+	cursor: pointer;
+	padding: 10px 12px;
+	font-weight: 600;
+}
+.collapse-content {
+	padding: 0 12px 12px;
+}
+.collapse.nested {
+	border-color: #e5e7eb;
+	margin: 8px 0;
+}
+.mapping-list {
+	margin: 0;
+	padding-left: 20px;
+}
+.mapping-list > li { margin: 8px 0; }
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 16px;
+}
+.page-header h1 {
+	margin: 0;
+}
+.page-actions {
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+.page-actions button {
+	border: 1px solid var(--border);
+	background: #fff;
+	border-radius: 6px;
+	padding: 8px 12px;
+	cursor: pointer;
+	font: inherit;
+}
+.page-actions button:hover {
+	background: var(--surface);
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  .main { padding: 20px; }
+	.page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.page-actions {
+		margin-left: 0;
+	}
+}
+</style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">RAWeb mini site</h1>
+        <div class="nav-section">
+          <p class="nav-title">Español</p>
+          <ul class="nav-list">
+            <li><a href="/es">Introducción</a></li>
+<li><a href="/es/criteres">Criterios y tests</a></li>
+<li><a href="/es/glossaire">Glosario</a></li>
+<li><a href="/es/methodo-test">Metodología de test</a></li>
+<li><a href="/es/environnement">Entorno de test</a></li>
+<li><a href="/es/references">Referencias</a></li>
+<li><strong>Notas de revisión</strong></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <p class="nav-title">Languages</p>
+          <ul class="nav-list">
+            <li><a href="/en/notes-revision">English</a></li>
+<li><a href="/fr/notes-revision">Français</a></li>
+<li><a href="/es/notes-revision">Español</a></li>
+          </ul>
+        </div>
+      </aside>
+      <main class="main">
+        <article>
+          <p><a href="/en/raweb1.1/">RAWeb 1.1</a> is the Luxembourg accessibility framework that covers all the requirements of European standard <a href="https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf">EN 301 549 v3.2.1</a> currently in force throughout Europe.
+This is an update of <a href="/en/raweb1/">RAWeb 1.0</a>, itself derived from <a href="https://accessibilite.numerique.gouv.fr/">RGAA 4.1.2</a> published by DINUM in France.
+RAWeb 1.0 has its own <a href="/en/raweb1/notes-revision.html">changelog</a>.</p>
+<p>All the changes made between versions 1.1 and 1.0 of RAWeb are detailed below.</p>
+<h3>Summary of changes with a major impact</h3>
+<p>In this section, we identify the changes that cause backward compatibility issues with RAWeb 1. Indeed, some implementations that were considered compliant in RAWeb 1 are no longer compliant in RAWeb 1.1. It is therefore important to identify them correctly for future accessibility audits and acceptance tests.</p>
+<ul>
+<li>Criterion 1.2 has been modified to reduce the use of <code>role=&quot;presentation&quot;</code> and <code>role=&quot;none&quot;</code>.</li>
+<li>Criterion 13.5 has been modified and no longer considers the use of the <code>&lt;abbr&gt;</code> tag and the <code>title</code> attribute as a compliant method for providing an alternative to cryptic content.</li>
+</ul>
+<h3>Criteria</h3>
+<h4>1.2</h4>
+<h5>Change in title</h5>
+<p>The title of <a href="/es/criteres#crit-1-2">criterion 1.2</a> has been modified to include the notion of &quot;without a caption&quot;, as is already the case in the test title.</p>
+<h6>In RAWeb 1</h6>
+<blockquote>Is every decorative image correctly ignored by assistive technologies?</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>Is every decorative image, without a caption, correctly ignored by assistive technologies?</blockquote>
+<h5>Technical note</h5>
+<p>Addition of a clarification concerning images for which the <code>aria-hidden=&quot;true&quot;</code> attribute is set on a parent element and not on the image itself.</p>
+<blockquote>If an image is nested within a tag with an `aria-hidden="true"` attribute, it will be considered hidden by assistive technologies.</blockquote>
+<p>Removal of the note on the difference in support between <code>role=&quot;presentation&quot;</code> and <code>role=&quot;none&quot;</code>. In the testing environment, support is equivalent. The tests now cover both possible values.</p>
+<blockquote>
+<p>A WAI-ARIA <code>role=&quot;presentation&quot;</code> attribute can be used on decorative images and decorative non-clickable areas. The <code>&quot;none&quot;</code> role introduced in ARIA 1.1 and synonymous with the <code>&quot;presentation&quot;</code> role can also be used. However, it is still preferable to use the <code>&quot;presentation&quot;</code> role while waiting for satisfactory support for the <code>&quot;none&quot;</code> role.</p>
+</blockquote>
+<h5>Restriction on the use of <code>role=&quot;presentation&quot;</code> and introduction of <code>role=&quot;none&quot;</code> for <code>&lt;img&gt;</code> or <code>&lt;area&gt;</code> elements</h5>
+<p>In <a href="/es/criteres#test-1-2-1">tests 1.2.1</a> and <a href="/es/criteres#test-1-2-2">1.2.2</a>, RAWeb 1 stipulated that it was possible to hide an image (<code>&lt;img&gt;</code> or <code>&lt;area&gt;</code>) with <code>role=&quot;presentation&quot;</code>, without any other conditions.</p>
+<p>Recent tests on the testing environment have shown that an image with <code>role=&quot;presentation&quot;</code> and a <code>title</code> attribute or ARIA naming property was not ignored. The tests are being rewritten to take these particularities into account.</p>
+<p>As <code>role=&quot;none&quot;</code> has similar effects for hiding images, it is being introduced into the tests.</p>
+<p>The testing methodologies are being modified accordingly.</p>
+<p><b>Please note:</b> There is a case of <strong>backward incompatibility with RAWeb 1</strong> here. Images hidden with <code>role=&quot;presentation&quot;</code> but with a <code>title</code>, <code>aria-label</code> or <code>aria-labelledby</code> attribute may have been considered compliant. They will be considered non-compliant with this new version of the test.</p>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Test 1.2.1 Does each decorative image (<code>&lt;img&gt;</code> tag), without image caption, meet one of these conditions?</p>
+<ul>
+<li>The <code>&lt;img&gt;</code> tag has an empty <code>alt</code> attribute (<code>alt=&quot;&quot;</code>) and no other attribute to provide a text alternative.</li>
+<li>The <code>&lt;img&gt;</code> tag has a WAI-ARIA attribute <code>aria-hidden=&quot;true&quot;</code> or <code>role=&quot;presentation&quot;</code>.</li>
+</ul>
+<p>Test 1.2.2 Does each non-clickable decoration area (<code>&lt;area&gt;</code> tag without an <code>href</code> attribute), meet one of these conditions?</p>
+<ul>
+<li>The <code>&lt;area&gt;</code> tag has an empty <code>alt</code> attribute (<code>alt=&quot;&quot;</code>) and no other attribute to provide a text alternative.</li>
+<li>The <code>&lt;area&gt;</code> tag has a WAI-ARIA <code>aria-hidden=&quot;true&quot;</code> or <code>role=&quot;presentation&quot;</code> attribute.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Test 1.2.1 Does each decorative image (<code>&lt;img&gt;</code> tag), without image caption, meet one of these conditions?</p>
+<ul>
+<li>The <code>&lt;img&gt;</code> tag has an empty <code>alt</code> attribute (<code>alt=&quot;&quot;</code>) and no other attribute to provide a text alternative.</li>
+<li>The <code>&lt;img&gt;</code> tag has a WAI-ARIA <code>aria-hidden=&quot;true&quot;</code> attribute.</li>
+<li>The <code>&lt;img&gt;</code> tag has a <code>role=&quot;presentation&quot;</code> or a <code>role=&quot;none&quot;</code> attribute and does not have the <code>title</code>, <code>aria-label</code>, or <code>aria-labelledby</code> attributes.</li>
+</ul>
+<p>Test 1.2.2 Does each non-clickable decoration area (<code>&lt;area&gt;</code> tag without <code>href</code> attribute), meet one of these conditions?</p>
+<ul>
+<li>The <code>&lt;area&gt;</code> tag has an empty <code>alt</code> attribute (<code>alt=&quot;&quot;</code>) and no other attribute to provide a text alternative.</li>
+<li>The <code>&lt;area&gt;</code> tag has a WAI-ARIA <code>aria-hidden=&quot;true&quot;</code>.</li>
+<li>The <code>&lt;area&gt;</code> tag has a <code>role=&quot;presentation&quot;</code> or a <code>role=&quot;none&quot;</code> attribute and does not have the <code>title</code>, <code>aria-label</code>, or <code>aria-labelledby</code> attributes.</li>
+</ul>
+</blockquote>
+<h5>Removal of test conditions on <code>&lt;svg&gt;</code> element naming properties</h5>
+<p>In <a href="/es/criteres#test-1-2-4">test 1.2.4</a>, RAWeb 1 required testing for the absence of a naming method for the <code>&lt;svg&gt;</code> element even in the presence of an <code>aria-hidden=&quot;true&quot;</code> property. Recent tests on the testing environment have shown that, even in the presence of a naming method, the mere presence of the <code>aria-hidden=&quot;true&quot;</code> property is sufficient for the image to be ignored. It is no longer necessary to check for the absence of a naming method.</p>
+<p>The methodology has been modified accordingly.</p>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Does each decorative vector image (<code>&lt;svg&gt;</code> tag), without image caption, meet these conditions?</p>
+<ul>
+<li>The <code>&lt;svg&gt;</code> tag has a WAI-ARIA <code>aria-hidden=&quot;true&quot;</code> attribute.</li>
+<li>The <code>&lt;svg&gt;</code> tag and its children have no text alternative.</li>
+<li>The <code>&lt;title&gt;</code> and <code>&lt;desc&gt;</code> tags are missing or empty.</li>
+<li>The <code>&lt;svg&gt;</code> tag and its children have no <code>title</code> attribute.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Each decorative vector image (<code>&lt;svg&gt;</code> tag), without image caption, has a WAI-ARIA <code>aria-hidden=&quot;true&quot;</code> attribute. Is this rule respected?</p>
+</blockquote>
+<h4>1.6</h4>
+<p>The technical note for <a href="/es/criteres#crit-1-6">criterion 1.6</a> has been modified to take into account:</p>
+<ul>
+<li>the inclusion of the <code>&lt;title&gt;</code> element in the computation of the accessible name of an <code>&lt;SVG&gt;</code> element (see the change to the glossary entry <a href="glossaire.html#text-alternative-image">Text alternative (image)</a>);</li>
+<li>the evolution of <a href="/es/criteres#crit-1-9">criterion 1.9</a> and the removal of requirements related to the presence of a <code>role</code> and <code>aria-label</code> attribute.</li>
+</ul>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>In the case of SVG, the lack of support for the <code>&lt;title&gt;</code> and <code>&lt;desc&gt;</code> elements by assistive technologies creates a difficulty in implementing the text alternative of the image and its detailed description. In this case, it is recommended to use the WAI-ARIA <code>aria-label</code> attribute to implement both the short text alternative and the reference to the adjacent detailed description or the WAI-ARIA <code>aria-labelledby</code> attribute to associate the passage of texts acting as short alternative and detailed description.</p>
+<p>The use of the WAI-ARIA <code>aria-describedby</code> attribute is not recommended for linking an image (<code>&lt;img&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;canvas&gt;</code>) to its detailed description, due to a lack of support for assistive technologies. However, when it is used, the attribute must necessarily refer to the <code>id</code> of the zone containing the detailed description.</p>
+<p>The adjacent detailed description may be implemented via a <code>&lt;figcaption&gt;</code> tag, in which case criterion 1.9 must be checked (use of <code>&lt;figure&gt;</code> and the WAI-ARIA <code>role=&quot;figure&quot;</code> and <code>aria-label</code> attributes, in particular).</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>In the case of SVG, the lack of support for the <code>&lt;desc&gt;</code> element means that it cannot be used to implement a detailed description.</p>
+<p>The use of the WAI-ARIA <code>aria-describedby</code> attribute is not recommended for linking an image (<code>&lt;img&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;canvas&gt;</code>) to its detailed description, due to a lack of support for assistive technologies. However, when it is used, the attribute must necessarily refer to the <code>id</code> of the zone containing the detailed description.</p>
+<p>The adjacent detailed description may be implemented via a <code>&lt;figcaption&gt;</code> tag, in which case criterion 1.9 must be checked.</p>
+</blockquote>
+<h4>1.9</h4>
+<p>In RAWeb 1, the tests for <a href="/es/criteres#crit-1-9">criterion 1.9</a> always required checking for the presence of a <code>role=&quot;group&quot;</code> or <code>role=&quot;figure&quot;</code> and a WAI-ARIA <code>aria-label</code> attribute on the <code>&lt;figure&gt;</code> tag.</p>
+<p>Recent tests on the testing environment have shown that captioned images are correctly identified and presented to users with the simple implementation of <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code>.</p>
+<p>The conditions relating to the presence of the <code>role</code> and <code>aria-label</code> attributes have been removed from the five tests:</p>
+<blockquote>
+<ul>
+<li>The <code>&lt;figure&gt;</code> tag has a WAI-ARIA attribute <code>role=&quot;figure&quot;</code> or <code>role=&quot;group&quot;</code>.</li>
+<li>The <code>&lt;figure&gt;</code> tag has a WAI-ARIA <code>aria-label</code> attribute whose content is identical to the content of the legend.</li>
+</ul>
+</blockquote>
+<p>The methodologies have been modified accordingly.</p>
+<p>The technical note has also been modified to take these changes into account.</p>
+<h5>Technical note</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>The implementation of a WAI-ARIA <code>role=&quot;group&quot;</code> or <code>role=&quot;figure&quot;</code> attribute on the <code>&lt;figure&gt;</code> parent element is intended to compensate for the current lack of support for <code>&lt;figure&gt;</code> elements by assistive technologies. The use of a <code>&lt;figcaption&gt;</code> element to associate an image caption with an image requires at least the use of a WAI-ARIA <code>aria-label</code> attribute on the <code>&lt;figure&gt;</code> parent element, the content of which will be identical to the content of the <code>&lt;figcaption&gt;</code> element. To ensure optimal support, an explicit association can also be made between the content of the image's text alternative and the content of the <code>&lt;figcaption&gt;</code> element, for example:</p>
+<p><code>&lt;img src=&quot;image.png&quot; alt=&quot;Sunset photo&quot; /&gt;&lt;figcaption&gt;Photo: credit xxx&lt;/figcaption&gt;</code></p>
+<p>The WAI-ARIA <code>aria-labelledby</code> and <code>aria-describedby</code> attributes cannot currently be used due to a lack of support by assistive technologies.</p>
+<p>Note: captioned images must also comply with criteria 1.1 and 1.3 relating to images conveying information.</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Captioned images must also comply with criteria 1.1 and 1.3 relating to images conveying information.</p>
+</blockquote>
+<h4>3.1</h4>
+<p>The testing methodologies for <a href="/es/criteres#crit-3-1">criterion 3.1</a> were incomplete and have been modified to better reflect what is actually expected in terms of graphics and code implementation. For each of the six tests, the second step has been modified.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ol start="2">
+<li>For each of these pieces of information, check that there is another way of retrieving this information (presence of a title attribute, an icon or a graphic effect in terms of shape or position, a typographic effect, etc.).</li>
+</ol>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ol start="2">
+<li>For each of these pieces of information, check for the presence of:</li>
+</ol>
+<ul>
+<li>additional information in the code (<code>title</code>, <code>aria-label</code>, visually hidden text, <code>aria-current</code>, etc.);</li>
+<li>and additional visual information to complement the colour (icon, graphic effect in terms of shape or position, typographical effect, etc.).</li>
+</ul>
+</blockquote>
+<h4>4.1</h4>
+<p>The specific case referred to in <a href="/es/criteres#crit-4-1">criterion 4.1</a> has been amended to take into account the entry into force of the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a> in order to make the exemption of temporary media published before 23 September 2020 conditional only on public sector bodies subject to the <a href="http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo">law of 28 May 2019</a>.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ul>
+<li>Time-based media was published before 23 September 2020 (in accordance with the law of 28 May 2019).</li>
+</ul>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ul>
+<li>Time-based media was published before 23 September 2020 on a website belonging to a public sector organisation subject to the law of 28 May 2019.</li>
+</ul>
+</blockquote>
+<h4>4.3</h4>
+<p><a href="/es/criteres#crit-4-3">Criterion 4.3</a> is amended to take into account the entry into force of the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a>, which does not grant exemptions for live multimedia content.</p>
+<ul>
+<li>The criterion has been reworded to remove the notion of &quot;pre-recorded&quot;.</li>
+<li><a href="/es/criteres#test-4-3-3">Test 4.3.3</a> is created with its testing methodology.</li>
+<li>A special case is added to take into account exemptions from the law of 28 May 2019.</li>
+</ul>
+<h5>Criterion</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Does each pre-recorded synchronised time-based media have, if necessary, synchronised captions (excluding special cases)?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Does each synchronised time-based media have, if necessary, synchronised captions (excluding special cases)?</p>
+</blockquote>
+<h5>Special case</h5>
+<p>Addition of the exemption from the <a href="https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo">law of 28 May 2019</a>.</p>
+<blockquote>
+<p>Live synchronised time-based media broadcast via a website subject to the law of 28 May 2019 are exempt.</p>
+</blockquote>
+<h4>4.4</h4>
+<p><a href="/es/criteres#crit-4-4">Criterion 4.4</a> is amended to take into account the entry into force of the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a>, which does not grant exemptions for live multimedia content.</p>
+<ul>
+<li>The criterion has been reworded to remove the notion of &quot;pre-recorded&quot;.</li>
+<li><a href="/es/criteres#test-4-4-2">Test 4.4.2</a> has been created with its testing methodology.</li>
+<li>A special case has been added to take into account the exemptions in the law of 28 May 2019.</li>
+</ul>
+<h5>Criterion</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>For each pre-recorded synchronised time-based media with synchronised captions, are these captions relevant?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>For each synchronised time-based media with synchronised captions, are these captions relevant (excluding special cases)?</p>
+</blockquote>
+<h5>Special case</h5>
+<p>Addition of the exemption from the <a href="https://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo">law of 28 May 2019</a>.</p>
+<blockquote>
+<p>Live synchronised media broadcast via a website subject to the law of 28 May 2019 are exempt.</p>
+</blockquote>
+<h4>5.1</h4>
+<p>The testing methodology of <a href="/es/criteres#test-5-1-1">test 5.1.1</a> has been modified to remove the reference to the <code>summary</code> attribute. This attribute is obsolete.</p>
+<p>For the record, the methodology condition referencing the attribute in RAWeb 1:</p>
+<blockquote>
+<ul>
+<li>or in the <code>summary</code> attribute of the <code>&lt;table&gt;</code> element (in versions of HTML and XHTML prior to HTML 5);</li>
+</ul>
+</blockquote>
+<h4>5.7</h4>
+<p><a href="/es/criteres#test-5-7-6">Test 5.7.6</a> (and its methodology) has been created to support column groups and row groups as table headers.</p>
+<h4>6.1</h4>
+<p><a href="/es/criteres#test-6-1-6">Test 6.1.6</a> is created following the modification of the glossary note <a href="#accessible-name-of-a-link">accessible name of a link</a>: one of the five notes removed, transformed into a test.</p>
+<h4>6.2</h4>
+<p>The title of <a href="/es/criteres#test-6-2-1">test 6.2.1</a> has been modified, as has its methodology, to limit it to searching for links without accessible names.</p>
+<p>This change accompanies the change to the glossary note <a href="glossaire.html#accessible-name-of-a-link">accessible name of a link</a>, which no longer requires criteria 6.2 and 10.2 to be invalidated in cases where a link has no content between the tags. <a href="/es/criteres#crit-6-2">Criterion 6.2</a> now only concerns the presence of an accessible name.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>On each web page, does each link have an accessible name between <code>&lt;a&gt;</code> and <code>&lt;/a&gt;</code>?</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>On each web page, does each link have an accessible name?</p>
+</blockquote>
+<h4>7.1</h4>
+<p>The testing methodology of <a href="/es/criteres#test-7-1-3">test 7.1.3</a> has been modified. It referred to the accessible name and the visible text as two names for the same element.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ol>
+<li>For each user interface component that has passed test 7.1.1, check that the user interface component has</li>
+</ol>
+<ul>
+<li>a relevant name (visible label);</li>
+<li>a relevant role.</li>
+</ul>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ol>
+<li>For each user interface component that has passed test 7.1.1, check that the user interface component has</li>
+</ol>
+<ul>
+<li>a relevant name;</li>
+<li>a relevant role.</li>
+</ul>
+</blockquote>
+<h4>7.3</h4>
+<p>The testing methodology of <a href="/es/criteres#test-7-3-1">test 7.3.1</a> has been modified in accordance with the modification of the glossary entry <a href="glossaire.html##accessible-and-operable-by-keyboard-and-any-pointing-device">accessible and operable by keyboard and any pointing device</a>, so as not to restrict keyboard activation to the <kbd>Enter</kbd> key alone.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>If the element manages a simple action, it can be activated from the keyboard using the enter key.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>If the element manages a simple action, it can be activated using the keyboard with the default keys in the user agents (e.g. <kbd>Enter</kbd>, <kbd>Space</kbd>).</p>
+</blockquote>
+<h4>9.1</h4>
+<p>The testing methodology of <a href="/es/criteres#test-9-1-3">test 9.1.3</a> has been modified.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>For each heading identified in test 9.1.1, check that</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>For each passage of text making up a heading, check that</p>
+</blockquote>
+<h4>9.2</h4>
+<p><a href="/es/criteres#crit-9-2">Criterion 9.2</a> has been modified to take into account the evolution of support by assistive technologies for HTML tags used to structure large areas of the page. It is no longer mandatory to use both an HTML5 tag and an equivalent ARIA <code>role</code>. <a href="/es/criteres#crit-12-6">Criterion 12.6</a> has also been modified accordingly.</p>
+<ul>
+<li>The concept of <a href="glossaire.html#computed-role">computed role</a> has been added to the glossary for this purpose.</li>
+<li><a href="/es/criteres#test-9-2-1">Test 9.2.1</a> has been modified, as has its methodology.</li>
+<li>Tests <a href="/es/criteres#test-9-2-2">9.2.2</a>, <a href="/es/criteres#test-9-2-3">9.2.3</a> and <a href="/es/criteres#test-9-2-4">9.2.4</a> have been created, along with their testing methodologies.</li>
+<li>The special case relating to DOCTYPE is removed.</li>
+<li>The technical note is removed.</li>
+</ul>
+<h5>Special case</h5>
+<h6>In RAWeb 1</h6>
+<p>For the record, the deleted special case:</p>
+<blockquote>
+<p>When the doctype declared in the page is not the HTML5 doctype, this criterion is not applicable.</p>
+</blockquote>
+<h5>Technical note</h5>
+<p>For the record, the technical note in RAWeb 1</p>
+<blockquote>
+<p>The <code>&lt;main&gt;</code> tag can be used several times in the same HTML document. However, there can only ever be one visible and readable tag by assistive technologies, and the others must have a <code>hidden</code> attribute or a style that allows them to be hidden from assistive technologies. However, it should be noted that using only one style will not be sufficient to ensure the uniqueness of a <code>&lt;main&gt;</code> tag that is visible if the style sheets are deactivated.</p>
+</blockquote>
+<h5>9.2.1</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>On each web page, does the document structure meet these conditions (excluding special cases)?</p>
+<ul>
+<li>The page header region is structured using a <code>&lt;header&gt;</code> tag.</li>
+<li>The main and secondary navigation regions are implemented using a <code>&lt;nav&gt;</code> tag.</li>
+<li>The <code>&lt;nav&gt;</code> tag is reserved for structuring the main and secondary navigation regions.</li>
+<li>The main content region is structured using a <code>&lt;main&gt;</code> tag.</li>
+<li>The document structure uses a single visible <code>&lt;main&gt;</code> tag.</li>
+<li>The footer region is structured using a <code>&lt;footer&gt;</code> tag.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, do the key regions of the page that make up the document structure meet these conditions?</p>
+<ul>
+<li>The element containing the page header region has a computed role of <code>banner</code>.</li>
+<li>The elements containing the primary and secondary navigation regions have a computed role of <code>navigation</code>.</li>
+<li>The element containing the search engine region has a computed role of <code>search</code>.</li>
+<li>The element containing the main content region has a computed role of <code>main</code>.</li>
+<li>The element containing the footer region has a computed role of <code>contentinfo</code>.</li>
+</ul>
+</blockquote>
+<h4>10.1</h4>
+<p>The testing methodology of <a href="/es/criteres#test-10-1-2">test 10.1.2</a> is modified to add the <code>&lt;iframe&gt;</code>, <code>&lt;source&gt;</code> elements and <code>&lt;svg&gt;</code> children elements, with the exception of the use of the <code>width</code> and <code>height</code> attributes. The first condition of the testing methodology is modified.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ol>
+<li>Check that these presentation attributes are not present: <code>align</code>, <code>alink</code>, <code>background</code>, <code>bgcolour</code>, <code>border</code>, <code>cellpadding</code>, <code>cellspacing</code>, <code>char</code>, <code>charoff</code>, <code>clear</code>, <code>colour</code>, <code>compact</code>, <code>frameborder</code>, <code>hspace</code>, <code>link</code>, <code>marginheight</code>, <code>marginwidth</code>, <code>text</code>, <code>valign</code>, <code>vlink</code>, <code>vspace</code>, <code>size</code> (with the exception of the <code>&lt;select&gt;</code> element), <code>width</code> (with the exception of the <code>&lt;img&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;canvas&gt;</code> and <code>&lt;svg&gt;</code> elements), <code>height</code> (with the exception of the <code>&lt;img&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;canvas&gt;</code> and <code>&lt;svg&gt;</code> elements).</li>
+</ol>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ol>
+<li>Check that these presentation attributes are not present: <code>align</code>, <code>alink</code>, <code>background</code>, <code>bgcolour</code>, <code>border</code>, <code>cellpadding</code>, <code>cellspacing</code>, <code>char</code>, <code>charoff</code>, <code>clear</code>, <code>colour</code>, <code>compact</code>, <code>frameborder</code>, <code>hspace</code>, <code>link</code>, <code>marginheight</code>, <code>marginwidth</code>, <code>text</code>, <code>valign</code>, <code>vlink</code>, <code>vspace</code>, <code>size</code> (with the exception of the <code>&lt;select&gt;</code> element)</li>
+<li>Check that the <code>width</code> or <code>height</code> attributes, if used, are only present on the <code>&lt;canvas&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;iframe&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;source&gt;</code>, <code>&lt;svg&gt;</code> elements  (or the children of the <code>&lt;svg&gt;</code> elements).</li>
+</ol>
+</blockquote>
+<h4>10.2</h4>
+<p><a href="/es/criteres#crit-10-2">Criterion 10.2</a> and <a href="/es/criteres#test-10-2-1">test 10.2.1</a> have been reworded to improve understanding of the requirement and the scope of evaluation. The testing methodology for test 10.2.1 has also been updated.</p>
+<p>This change accompanies the modification of the glossary note <a href="glossaire.html#visible-content">visible content</a>.</p>
+<h5>Criterion</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>On each web page, is the visible content conveying information still present when the style sheets are deactivated?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, is the visible content conveying information accessible to assistive technologies?</p>
+</blockquote>
+<h5>10.2.1</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>On each web page, does the information remain present when the style sheets are deactivated?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, is the visible content conveying information accessible to assistive technologies?</p>
+</blockquote>
+<h4>10.4</h4>
+<p>The testing methodologies <a href="/es/criteres#test-10-4-1">test 10.4.1</a> and <a href="/es/criteres#test-10-4-2">test 10.4.2</a> have been modified to clarify that only one of the conditions needs to be met.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ul>
+<li>The browser's text zoom is set to 200%.</li>
+<li>The browser's graphical zoom is set to 200%.</li>
+<li>The personalised zoom functions offered by the document are used.</li>
+</ul>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ul>
+<li>When the browser's text zoom is set to 200%.</li>
+<li>Or when the browser's graphical zoom is set to 200%.</li>
+<li>Or when the personalised zoom functions offered by the document are used.</li>
+</ul>
+</blockquote>
+<h4>10.7</h4>
+<p><a href="/es/criteres#crit-10-7">Criterion 10.7</a> and <a href="/es/criteres#test-10-7-1">test 10.7.1</a> are modified to clarify that this refers only to keyboard focus and not mouse focus.</p>
+<p>The methodology has also been modified accordingly.</p>
+<h5>Criterion</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>On each web page, for each element receiving focus, is the focus visible?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, for each element receiving keyboard focus, is the focus visible?</p>
+</blockquote>
+<h5>10.7.1</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>For each element receiving focus, does the focus meet one of these conditions?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>For each element receiving keyboard focus, does the focus meet one of these conditions?</p>
+</blockquote>
+<h4>10.12</h4>
+<p>The conditions in <a href="/es/criteres#test-10-12-1">test 10.12.1</a> have been reworded to better reflect what is expected: &quot;increased to&quot; has been replaced by &quot;set to at least&quot;.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ul>
+<li>The spacing between lines (<code>line-height</code>) is increased up to 1.5 times the font size.</li>
+<li>The spacing between paragraphs (<code>&lt;p&gt;</code> tag) is increased to 2 times the font size.</li>
+<li>Letter spacing (<code>letter-spacing</code>) is increased to 0.12 times the font size.</li>
+<li>Word spacing (<code>word-spacing</code>) is increased to 0.16 times the font size.</li>
+</ul>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ul>
+<li>The spacing between lines (<code>line-height</code>) is set to at least 1.5 times the font size.</li>
+<li>The spacing after paragraphs (<code>&lt;p&gt;</code> tag) is set to at least 2 times the font size.</li>
+<li>Letter spacing (<code>letter-spacing</code>) is set to at least 0.12 times the font size.</li>
+<li>Word spacing (<code>word-spacing</code>) is set to at least 0.16 times the font size.</li>
+</ul>
+</blockquote>
+<h4>11.10</h4>
+<p>The tests for <a href="/es/criteres#crit-11-10">criterion 11.10</a> are modified:</p>
+<ul>
+<li>to introduce optional fields in the tests (previously referenced only in specific cases);</li>
+<li>to extend the possibilities for identifying mandatory fields (test 11.10.2);</li>
+<li>to extend the requirement to indicate input formats to all fields whose format is checked, and not only to mandatory fields (test 11.10.4);</li>
+<li>to change &quot;prior to form validation&quot; to &quot;before entry&quot; (tests 11.10.1, 11.10.2 and 11.10.5) in order to be able to handle cases where error management takes place when exiting a field.</li>
+</ul>
+<p>The methodologies have been modified accordingly.</p>
+<p>Special cases have been modified to reflect these changes. A special case for identifying mandatory fields has been added in order to exclude cases where usage allows the mandatory nature of fields to be inferred (e.g. login forms).</p>
+<p>The technical note has been modified to reflect these changes.</p>
+<p>The glossary note <a href="glossaire.html#indication-of-mandatory-or-optional-fields">Mandatory field indication</a> has been renamed &quot;Indication of mandatory or optional fields&quot; and modified to accompany this change.</p>
+<h5>11.10.1</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Do the mandatory field indications meet one of these conditions (excluding special cases)?</p>
+<ul>
+<li>A mandatory field indication is visible and allows the field concerned to be identified before the form is validated.</li>
+<li>The mandatory field has the <code>aria-required=&quot;true&quot;</code> or <code>required</code> attribute before the form is validated.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Do the indications of mandatory or optional field entries meet one of these conditions (excluding special cases)?</p>
+<ul>
+<li>A mandatory field indication is visible and allows the relevant field to be identified by name before entering data.</li>
+<li>The mandatory field has the <code>aria-required=&quot;true&quot;</code> or <code>required</code> attribute before entering data.</li>
+<li>An optional field indication is visible and allows the relevant field to be identified by name before entering data.</li>
+</ul>
+</blockquote>
+<h5>11.10.2</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Do required fields with the <code>aria-required=&quot;true&quot;</code> or <code>required</code> attribute meet one of these conditions?</p>
+<ul>
+<li>A mandatory field indication is visible and located in the label associated with the field prior to form validation.</li>
+<li>A mandatory field indication is visible and located in the passage of text associated with the field prior to validation of the form.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Do mandatory fields with the <code>aria-required=&quot;true&quot;</code> or <code>required</code> attribute meet one of these conditions?</p>
+<ul>
+<li>A mandatory field indication is visible and allows the relevant field to be identified by name before data is entered.</li>
+<li>A mandatory field indication is visible and located in the label associated with the field before data is entered.</li>
+<li>A mandatory field indication is visible and located in the passage of text associated with the field before data is entered.</li>
+<li>A mandatory field indication is visible and located in the legend associated with the group of fields before data is entered.</li>
+</ul>
+</blockquote>
+<h5>11.10.4</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Do required fields with the <code>aria-invalid=&quot;true&quot;</code> attribute meet any of these conditions?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Do fields with the <code>aria-invalid=&quot;true&quot;</code> attribute meet any of these conditions?</p>
+</blockquote>
+<h5>11.10.5</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Do the mandatory instructions and indications of data type and/or format meet any of these conditions?</p>
+<ul>
+<li>An instruction or indication of mandatory data type and/or format is visible and enables the field concerned to be identified before the form is validated.</li>
+<li>An instruction or indication of data type and/or mandatory format is visible in the label or passage of text associated with the field prior to validation of the form.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Do the mandatory instructions and indications of data type and/or format meet any of these conditions?</p>
+<ul>
+<li>An instruction or indication of mandatory data type and/or format is visible and enables the relevant field to be identified by name before entering data.</li>
+<li>An instruction or indication of mandatory data type and/or format is visible in the label or passage of text associated with the field before entering data.</li>
+</ul>
+</blockquote>
+<h5>Special cases</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Test 11.10.1 and Test 11.10.2 will be considered not applicable when the form contains a single form input field or indicates optional fields</p>
+<ul>
+<li>Visible;</li>
+<li>In the <code>&lt;label&gt;</code> tag or in the legend associated with the field.</li>
+</ul>
+<p>If all the fields in a form are mandatory, tests 11.10.1 and 11.10.2 still apply.</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Test 11.10.1 and Test 11.10.2 will be considered not applicable when:</p>
+<ul>
+<li>the form contains only one form field;</li>
+<li>the form contains only a username field and a password field (in the case of a login form).</li>
+</ul>
+<p>If all the fields in a form are mandatory, tests 11.10.1 and 11.10.2 still apply.</p>
+</blockquote>
+<h5>Technical notes</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>In a long form where the majority of fields are mandatory, you may find that it is the few remaining optional fields that are explicitly marked as such. In this case, you should ensure that</p>
+<ul>
+<li>A visual message at the top of the form states that &quot;all fields are mandatory except those indicated as optional&quot;;</li>
+<li>The word &quot;optional&quot; is visually present in the label of optional fields or in the legend for a group of optional fields;</li>
+<li>A <code>required</code> or <code>aria-required=&quot;true&quot;</code> attribute remains associated with each field that is not affected by this optional character.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>Test 11.10.1 and test 11.10.2 address fields independently; however, it must be ensured that the method chosen to alert users (mandatory fields or optional fields) is consistent throughout the form.</p>
+</blockquote>
+<h4>12.6</h4>
+<p><a href="/es/criteres#crit-12-6">Criterion 12.6</a> has been modified to take into account changes in the requirements for implementing landmarks (see the <a href="#9.2">evolution of criterion 9.2</a>): it is no longer mandatory to use both an HTML5 tag and an equivalent ARIA <code>role</code>.</p>
+<p>Criterion 12.6 has therefore been modified to apply only to regions other than the main areas already identified in <a href="/es/criteres#crit-9-2">criterion 9.2</a>.</p>
+<p><a href="#landmarks">The definition of Landmarks is modified</a> to reflect these changes.</p>
+<p>The methodology is amended accordingly.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>Criterion 12.6: Can content grouping regions present in several web pages (header, main navigation, main content, footer and search engine) be reached or avoided?</p>
+<p>Test 12.6.1: On each web page where they are present, do the header, main navigation, main content, footer and search engine regions comply with at least one of these conditions?</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>Criterion 12.6: Can content grouping blocks present on several web pages (with the exception of the main regions composing the document structure) be reached or avoided, if necessary?</p>
+<p>Test 12.6.1: Do the content grouping blocks present on several web pages (with the exception of the main regions composing the document structure) meet at least one of these conditions, if necessary?</p>
+</blockquote>
+<h4>13.1</h4>
+<p>The testing methodology for <a href="/es/criteres#test-13-1-2">test 13.1.2</a> has been modified for greater clarity.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ol>
+<li>In the document, find an automatic redirect initiated by a <code>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;URL='[targeted URL]'&quot; /&gt;</code> element.</li>
+<li>Check that the redirect is immediate.</li>
+<li>If this is the case, <strong>the test is validated</strong>.</li>
+</ol>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ol>
+<li>In the document, find an automatic redirect initiated by a <code>&lt;meta http-equiv=&quot;refresh&quot; /&gt;</code> element.</li>
+<li>If a redirection process exists, check:
+<ul>
+<li>either that the redirection is immediate (the <code>content</code> property must have the value 0, for example <code>content=&quot;0; URL='https://url.com'&quot;</code>)</li>
+<li>or that the time limit before redirection is at least twenty hours (the <code>content</code> property then has a value greater than or equal to 72000, for example <code>content=&quot;80000; URL='https://url.com'&quot;</code>).</li>
+</ul>
+</li>
+<li>If this is the case, <strong>the test is validated</strong>.</li>
+</ol>
+</blockquote>
+<h4>13.2</h4>
+<p>The testing methodology of <a href="/es/criteres#test-13-2-1">test 13.2.1</a> has been modified for greater precision.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<ol>
+<li>Check that no new window (pop-up or pop-under, for example) is opened when the document is opened.</li>
+<li>If this is the case, <strong>the test is validated</strong>.</li>
+</ol>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<ol>
+<li>When viewing a page, ensure that no new windows (browser windows or new tabs) are opened without user action.</li>
+<li>If this is the case, <strong>the test is validated</strong>.</li>
+</ol>
+</blockquote>
+<h4>13.3</h4>
+<p>The specific case referred to in <a href="/es/criteres#crit-13-3">criterion 13.3</a> has been modified to take into account the entry into force of the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a> in order to make the exemption of office files published before 23 September 2020 conditional only on public sector bodies subject to the <a href="http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo">law of 28 May 2019</a>.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>Special cases can be managed:</p>
+<ul>
+<li>If the office files (e.g. PDF, Microsoft Office or LibreOffice documents, etc.) were published before 23 September 2018 (unless this content is necessary for the needs of active administrative processes concerning tasks carried out by the public sector body concerned), they are exempt from the accessibility obligation, according to the law of 28 May 2019</li>
+</ul>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>Special cases can be managed:</p>
+<ul>
+<li>If the office files (e.g. PDF, Microsoft Office or LibreOffice documents, etc.) were published before 23 September 2018 on a website of a public sector body subject to the law of 28 May 2019 (unless this content is necessary for the needs of active administrative processes concerning tasks carried out by the public sector body concerned), they are exempt from the accessibility obligation.</li>
+</ul>
+</blockquote>
+<h4>13.5</h4>
+<p><a href="/es/criteres#crit-13-5">Criterion 13.5</a> is amended to better define the scope of the criterion (the definition <a href="glossaire.html#cryptic-content">Cryptic Content</a> has also been created) and the cases of implementations deemed compatible with accessibility.</p>
+<p><a href="/es/criteres#test-13-5-1">Test 13.5.1</a> has been modified: the <code>title</code> attribute is no longer referenced as a valid method. It is necessary to ensure an implementation that is compatible with accessibility and supported on the testing environment.</p>
+<p><a href="/es/criteres#test-13-5-2">Test 13.5.2</a> has been added to check that cryptic content is ignored by assistive technologies and that only the definition remains available.</p>
+<p>The methodologies have been modified accordingly and a technical note has been added.</p>
+<p><b>Warning:</b> There is a case of <strong>backward incompatibility with RAWeb 1</strong> here. The use of the <code>&lt;abbr&gt;</code> tag and the <code>title</code> attribute is no longer considered a compliant method for providing alternative content for cryptic content.</p>
+<h5>Criterion</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>Is there an alternative to every cryptic content (ASCII art, emoticon, cryptic syntax) on every web page?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, is each cryptic content correctly identified?</p>
+</blockquote>
+<h5>13.5.1</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>On each web page, does each cryptic content (ASCII art, emoticon, cryptic syntax) meet one of these conditions?</p>
+<ul>
+<li>A <code>title</code> attribute is available.</li>
+<li>A definition is given by the adjacent context.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, does each cryptic piece of content carrying information meet one of these conditions?</p>
+<ul>
+<li>The meaning of the content is provided in the adjacent context.</li>
+<li>The meaning of the content is provided by a method that is compatible with accessibility.</li>
+</ul>
+</blockquote>
+<h5>Technical note</h5>
+<p>New technical note in RAWeb 1.1</p>
+<blockquote>
+<p>If cryptic content conveying information is nested within a tag with a WAI-ARIA <code>role=&quot;img&quot;</code> attribute, it will be evaluated against criteria 1.1 and 1.3, and criterion 13.5 will be considered not applicable.</p>
+<p>If cryptic decorative content is nested within a tag with a WAI-ARIA <code>aria-hidden=&quot;true&quot;</code> attribute, regardless of the level of nesting, it will be considered hidden from assistive technologies.</p>
+<p>Due to the limited support for the <code>&lt;abbr&gt;</code> tag and the <code>title</code> attribute, providing the meaning of cryptic content with this implementation does not make the criterion compliant.</p>
+</blockquote>
+<h4>13.6</h4>
+<p><a href="/es/criteres#crit-13-6">Criterion 13.6</a> is modified to take into account the changes made to <a href="/es/criteres#crit-13-5">criterion 13.5</a>.</p>
+<h5>Criterion</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>On each web page, for each cryptic content (ASCII art, emoticon, cryptic syntax) having an alternative, is this alternative relevant?</p>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, for each cryptic content having an alternative, is this alternative relevant?</p>
+</blockquote>
+<h5>13.6.1</h5>
+<h6>In RAWeb 1</h6>
+<blockquote>
+<p>On each web page, does each cryptic content (ASCII art, emoticon, cryptic syntax) meet one of these conditions?</p>
+<ul>
+<li>The value of the <code>title</code> attribute is relevant.</li>
+<li>The definition given by the adjacent context is relevant.</li>
+</ul>
+</blockquote>
+<h6>In RAWeb 1.1</h6>
+<blockquote>
+<p>On each web page, does each cryptic content meet one of these conditions?</p>
+<ul>
+<li>The meaning given in the adjacent context is relevant.</li>
+<li>The meaning provided by a method compatible with accessibility is relevant.</li>
+</ul>
+</blockquote>
+<h4>13.7</h4>
+<p>The first condition of the three tests in <a href="/es/criteres#crit-13-7">criterion 13.7</a> has been modified, as it was more restrictive than the standard (&quot;less than&quot; instead of &quot;less than or equal to&quot;).</p>
+<p>The methodologies have also been modified accordingly.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>The frequency of the effect is less than 3 per second.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>The frequency of the effect is less than or equal to 3 per second.</p>
+</blockquote>
+<h4>13.8</h4>
+<p>A special case is added to <a href="/es/criteres#crit-13-8">criterion 13.8</a> (the words &quot;(excluding special cases)&quot; are added to the criterion and tests). This special case is taken from note 3 of the glossary definition <I>Control (moving or blinking content)</I>, which is deleted.</p>
+<blockquote>
+<p>When movement, blinking or scrolling is essential to the proper functioning or understanding of a feature, the criterion does not apply.</p>
+<p>In some cases, movement is an integral part of the component and it is not possible to give the user control over it, for example a progress bar (or a loader) whose function is to indicate the progress of an event such as a download by means of movement. In this case, the criterion is not applicable.</p>
+</blockquote>
+<h4>14.1</h4>
+<p>A condition is added to <a href="/es/criteres#crit-14-1">criterion 14.1</a> and the methodology is modified accordingly.</p>
+<blockquote>
+<p>A list of non-compliances or a description of non-compliant items.</p>
+</blockquote>
+<h4>15.1</h4>
+<p><a href="/es/criteres#test-15-1-4">Test 15.1.4</a> is created to cover mobile content delivery technologies. The testing methodology is created accordingly.</p>
+<blockquote>
+<p>Does each editing tool that creates content distributed in a mobile application allow you to define the accessibility information needed to create content that complies with RAAM?</p>
+</blockquote>
+<h4>15.3</h4>
+<p>The testing methodology of <a href="/es/criteres#test-15-3-1">test 15.3.1</a> has been modified to cover mobile content delivery technologies.</p>
+<blockquote>
+<ol start="7">
+<li>For each content published in a mobile application, check
+<ul>
+<li>that the information necessary for it to comply with RAAM (e.g., image alternatives, heading levels) is preserved in the generated content.</li>
+<li>that the information, if restructured, remains compatible with assistive technologies (for example, if the author enters a table and after saving, the tool linearises the table, the restructured information must be understandable to users of assistive technologies, as it would have been in its original form).</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h4>15.5</h4>
+<p><a href="/es/criteres#test-15-5-4">Test 15.5.4</a> has been created to cover mobile content delivery technologies. The testing methodology has been created accordingly.</p>
+<h4>16.2</h4>
+<p><a href="/es/criteres#crit-16-2">Criterion 16.2</a> and <a href="/es/criteres#test-16-2-1">test 16.2.1</a> are modified to cover the possibility of having multiple support services. The methodology is modified accordingly.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>16.2: The support service meets the communication needs of people with disabilities directly or through a relay service. Is this rule respected?</p>
+<p>Test 16.2.1: The support service meets the communication needs of people with disabilities directly or through a relay service. Is this rule respected?</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>16.2: Each support service meets the communication needs of people with disabilities directly or through a relay service. Is this rule respected?</p>
+<p>Test 16.2.1: Each support service meets the communication needs of people with disabilities directly or through a relay service. Is this rule respected?</p>
+</blockquote>
+<h3>Additions and deletions of new links to WCAG criteria, techniques and failures</h3>
+<p>New links to WCAG criteria, techniques and failures are added in correspondence with certain RAWeb criteria:</p>
+<ul>
+<li>Criteria <a href="criteres.html#crit-4-1">4.1</a>, <a href="criteres.html#crit-4-2">4.2</a>, <a href="criteres.html#crit-4-5">4.5</a> and <a href="criteres.html#crit-4-6">4.6</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G226">G226</a></li>
+<li>Criteria <a href="criteres.html#crit-4-3">4.3</a> and <a href="criteres.html#crit-4-4">4.4</a>: <a href="https://www.w3.org/Translations/WCAG21-fr/#captions-live">1.2.4 Captions (live)</a></li>
+<li>Criterion <a href="criteres.html#crit-4-3">4.3</a> and <a href="criteres.html#crit-4-3">4.4</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G9">G9</a></li>
+<li>Criteria <a href="criteres.html#crit-4-5">4.5</a> and <a href="criteres.html#crit-4-6">4.6</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F113">F113</a></li>
+<li>Criteria <a href="criteres.html#crit-5-1">5.1</a> and <a href="criteres.html#crit-5-2">5.2</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39">H39</a>.</li>
+<li>Criterion <a href="criteres.html#crit-9-2">9.2</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA4">ARIA4</a></li>
+<li>Criterion <a href="criteres.html#crit-10-7">10.7</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/css/C45">C45</a></li>
+<li>Criteria <a href="criteres.html#crit-6-1">6.1</a>, <a href="criteres.html#crit-7-1">7.1</a>, <a href="criteres.html#crit-11-2">11.2</a>, <a href="criteres.html#crit-11-9">11.9</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F111">F111</a>.</li>
+<li>Criterion <a href="criteres.html#crit-10-11">10.11</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G224">G224</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G225">G225</a></li>
+<li>Criterion <a href="criteres.html#crit-11-3">11.3</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G197">G197</a></li>
+<li>Criterion <a href="criteres.html#crit-12-8">12.8</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H102">H102</a></li>
+<li>Criterion <a href="criteres.html#crit-13-8">13.8</a>: <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F112">F112</a></li>
+</ul>
+<p>Other techniques and failures have been removed:</p>
+<ul>
+<li>Criteria <a href="criteres.html#crit-4-8">4.8</a> and <a href="criteres.html#crit-4-9">4.9</a>: removal of link <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H46">H46</a>. This technique has been classified as obsolete by the AG WG.</li>
+<li>Criteria <a href="criteres.html#crit-5-1">5.1</a> and <a href="criteres.html#crit-5-2">5.2</a>: removal of link <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73">H73</a>. This technique has been classified as obsolete by the AG WG.</li>
+<li>Criterion <a href="criteres.html#crit-7-1">7.1</a>: removal of link <a href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR21">SCR21</a>. This technique has been abandoned by the AG WG because it has no impact on accessibility.</li>
+<li>Criterion <a href="criteres.html#crit-7-4">7.4</a>:
+<ul>
+<li>Removal of links <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F9">F9</a> and <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F22">F22</a>. These failures are related to triple A criterion <a href="https://www.w3.org/Translations/WCAG22-fr/#change-on-request">3.2.5 Change on request</a>.</li>
+<li>Removal of the link <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G76">G76</a>. This technique is related to the triple A criteria <a href="https://www.w3.org/Translations/WCAG22-fr/#interruptions">2.2.4 Interruptions</a> and <a href="https://www.w3.org/Translations/WCAG22-fr/#change-on-request">3.2.5 Change on request</a>.</li>
+</ul>
+</li>
+<li>Criterion <a href="criteres.html#crit-9-3">9.3</a>:
+<ul>
+<li>Removal of link <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G153">G153</a>. This technique is related to triple A criterion <a href="https://www.w3.org/Translations/WCAG22-fr/#reading-level">3.1.5 Reading Level</a>.</li>
+<li>Removal of link <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H40">H40</a>. This technique is related to triple A criterion <a href="https://www.w3.org/Translations/WCAG22-fr/#unusual-words">3.1.3 Unusual words</a>.</li>
+</ul>
+</li>
+<li>Criterion <a href="criteres.html#crit-10-2">10.2</a>: removal of link <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F87">F87</a>. The failure has been classified as obsolete by the AG WG.</li>
+<li>Criterion <a href="criteres.html#crit-12-8">12.8</a>: removal of links <a href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR37">SCR37</a> and <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H4">H4</a>. These techniques have been classified as obsolete by the AG WG.</li>
+<li>Criterion <a href="criteres.html#crit-13-1">13.1</a>:
+<ul>
+<li>Removal of links <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F61">F61</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G110">G110</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H76">H76</a> and <a href="https://www.w3.org/WAI/WCAG21/Techniques/server-side-script/SVR1">SVR1</a>. These techniques and failures are related to the triple A criterion <a href="https://www.w3.org/Translations/WCAG22-fr/#change-on-request">3.2.5 Change on request</a>.</li>
+<li>Removal of the link <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G75">G75</a>. This technique is related to the triple A criterion <a href="https://www.w3.org/Translations/WCAG22-fr/#interruptions">2.2.4 Interruptions</a>.</li>
+<li>Removal of link <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G76">G76</a>. This technique is related to triple A criteria <a href="https://www.w3.org/Translations/WCAG22-fr/#interruptions">2.2.4 Interruptions</a> and <a href="https://www.w3.org/Translations/WCAG22-fr/#change-on-request">3.2.5 Change on Demand</a>.</li>
+</ul>
+</li>
+<li>Criterion <a href="criteres.html#crit-13-8">13.8</a>: removal of links <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G187">G187</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F4">F4</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F47">F47</a>. Failures have been classified as obsolete by the AG WG.</li>
+</ul>
+<h3>Glossary</h3>
+<h4>Accessible and operable by keyboard and any pointing device</h4>
+<p>The glossary entry <a href="glossaire.html#accessible-and-operable-by-keyboard-and-any-pointing-device">Accessible and operable by keyboard and any pointing device</a> has been modified so that keyboard use is not restricted to the <kbd>Enter</kbd> key.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>A user interface component (link, button, etc.) can be activated from the keyboard and by any pointing device when the user can initiate the action provided for by the interface component by pressing either the pointer or the enter key on the keyboard.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>A user interface component (link, button, etc.) can be activated from the keyboard and by any pointing device when the user can  trigger the action intended by the interface component by pressing either the pointer or the default key(s) in the user agents (e.g. <kbd>Enter</kbd>, <kbd>Space</kbd>);</p>
+</blockquote>
+<h4>Accessible name (of a link)</h4>
+<p>The glossary entry <a href="glossaire.html#accessible-name-of-a-link">Accessible name (of a link)</a> has been modified. The 5 notes have been removed.</p>
+<p>Note 1 has been deleted, as it is already covered by <a href="/es/criteres#test-6-1-5">test 6.1.5</a>.</p>
+<p>For the record, note 1 in RAWeb 1:</p>
+<blockquote>
+<p>Note 1: the accessible name of a link will be considered as non-explicit if it does not include the visible label of the link.</p>
+</blockquote>
+<p>Note 2 has been removed, as rendering tests on the testing environment show that the case described therein is no longer valid today. Except in very specific configuration cases, the content of <code>title</code> is never rendered in place of the accessible name. Thus, a <code>title</code> that does not include the accessible name can no longer constitute non-compliance with RAWeb.</p>
+<p>For the record, note 2 in RAWeb 1:</p>
+<blockquote>
+<p>Note 2: due to the possible configuration of assistive technologies allowing the &quot;accessible name&quot; derived from the value of the <code>title</code> attribute to be forced to the detriment of the &quot;accessible name&quot; derived from the content of the link. The accessible name of a link will be considered as non-explicit if the link has a <code>title</code> attribute whose value does not include at least the &quot;accessible name&quot; taken from the content of the link.</p>
+</blockquote>
+<p>Note 3 has been deleted and incorporated as a new test: <a href="/es/criteres#test-6-1-6">test 6.1.6</a>.</p>
+<p>For the record, note 3 in RAWeb 1:</p>
+<blockquote>
+<p>Note 3: In the case of several links with different destinations whose &quot;accessible name&quot; is identical. The accessible name of a link alone will be considered non-explicit if the link context does not allow them to be differentiated.</p>
+</blockquote>
+<p>Note 4 has been removed, as the absence of content in a link is not a valid reason for non-compliance.
+Criterion 6.2 requires the presence of an accessible name. Invalidating criterion 10.2 on the basis of a lack of content in a link is not based on any WCAG technique.</p>
+<p>For the record, note 4 in RAWeb 1:</p>
+<blockquote>
+<p>Note 4: when a link contains no content, it will be non-compliant with regard to criterion 10.2 and criterion 6.2.</p>
+</blockquote>
+<p>Note 5 has been deleted because WCAG failure <a href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F87">F87</a> has been rendered obsolete.</p>
+<p>For the record, note 5 in RAWeb 1:</p>
+<blockquote>
+<p>Note 5: Although the calculation of the accessible name of a link takes into account text content generated in CSS via the <code>::before</code> and <code>::after</code> pseudo-elements, this practice must not be used, as it constitutes non-compliance with WCAG 2.1 criterion 1.3.1 (see F87).</p>
+</blockquote>
+<h4>Accessible version (for a downloadable document)</h4>
+<p>The glossary entry <a href="glossaire.html#accessible-version-for-a-downloadable-document">Accessible version (for a downloadable document)</a> has been modified to replace the reference to Open Office Org (ODF) with LibreOffice.</p>
+<h4>Column or row header</h4>
+<p>The glossary entry <a href="glossaire.html#column-or-row-header">Column or row header</a> has been modified to take into account the <a href="/es/criteres#crit-5-7">change in criterion 5.7</a> regarding the support of column groups and row groups.</p>
+<p>In RAWeb 1.1, the concept of a group has been added to the sentence:</p>
+<blockquote>
+<p>Content of a cell in a data table (usually the first cell in a column or row) which serves as the heading for all or some of the cells in the column <strong>(or group of columns)</strong> or row <strong>(or group of rows)</strong>.</p>
+</blockquote>
+<h4>Computed role - creation</h4>
+<p>Creation of the glossary entry <a href="glossaire.html#computed-role">computed role</a> to support the <a href="#9.2">modification of criterion 9.2</a> and the <a href="#12.6">modification of criterion 12.6</a>.</p>
+<h4>Complex data table</h4>
+<p>The glossary entry <a href="glossaire.html#complex-data-table">Complex data table</a> has been modified to better define what a complex table is. In the old definition, if a header row was not positioned as the first row of the table, the table was considered complex, even though it was still a simple table. The definition has been revised to better reflect what a complex table is.</p>
+<h5>In RAWeb 1</h5>
+<p>The following sentence has been modified:</p>
+<blockquote>
+<p>When a data table contains headers that are not distributed solely over the first row and/or column of the grid, or whose scope does not apply to the entire column or row, it is referred to as a complex data table.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>When a data table contains headers that span multiple rows and/or columns of the grid, or whose scope is not valid for the entire column or row, it is referred to as a complex data table.</p>
+</blockquote>
+<h4>Control (moving or blinking content)</h4>
+<p>The glossary entry <a href="glossaire.html#control-moving-or-blinking-content">Control (moving or blinking content)</a> has been modified to:</p>
+<ul>
+<li>move note 3 as a special case of <a href="/es/criteres#crit-13-8">criterion 13.8</a>;</li>
+<li>revise note 2 describing an example of non-compliance to make it more explicit.</li>
+</ul>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>Note 2: The control (moving or blinking content) method must allow the user to interact with the rest of the page. Consequently, stopping or pausing via an event triggered only when focused does not validate the criterion.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>The method used to control moving or blinking content must allow the user to interact with the rest of the page.</p>
+<p>Therefore, the fact that the animation stops when the user moves the mouse pointer or the keyboard focus to the underlying component (and resumes as soon as the user moves the mouse pointer or the keyboard focus elsewhere on the page) would not be considered a ‘mechanism for controlling moving or flashing content’, as the page would become unusable during that time.</p>
+<p>Consequently, stopping or pausing via an event triggered only on focus or mouseover does not satisfy the criterion.</p>
+</blockquote>
+<h5>Note 3</h5>
+<p>For the record, note 3 in RAWeb 1</p>
+<blockquote>
+<p>Note 3: In some cases, movement is an integral part of the component and it is not possible to give the user control of it, for example a progress bar whose function is to indicate the progress of an event such as a download by movement. In this case the criterion is Not Applicable.</p>
+</blockquote>
+<h4>Cryptic content - creation</h4>
+<p>Creation of the glossary entry <a href="glossaire.html#cryptic-content">Cryptic content</a>.</p>
+<h4>Data type and format - deletion</h4>
+<p>The glossary entry <em>Data type and format</em> has been deleted, as it did not provide any additional information compared to the entry <a href="glossaire.html#indication-of-data-type-and/or-format">Indication of data type and/or format</a> and was not referenced in the technical framework. The information has been merged into the entry <a href="glossaire.html#indication-of-data-type-and/or-format">Indication of data type and/or format</a>.</p>
+<p>For the record, in RAWeb 1:</p>
+<blockquote>
+<p>Indication of the data type and format expected when entering a form input field. For example</p>
+<p>Date (dd/mm/yyyy);
+Amount in euros;
+Postcode (5 digits: e.g. 75001).</p>
+<p>Important note: when the type of form input field offers an input mask, for example the <code>date</code> or <code>time</code> fields, the format indication is not necessary.</p>
+</blockquote>
+<h4>Detailed description (image)</h4>
+<p>Note 2 has been deleted as it is obsolete.</p>
+<p>For the record, note 2 in RAWeb 1:</p>
+<blockquote>
+<p>Note 2: To ensure maximum compatibility with user agents, particularly Internet Explorer 11, it is recommended to implement a <code>tabindex=&quot;-1&quot;</code> on tags which contain a passage of text and which are not interactive elements (buttons, links, form elements, etc.).</p>
+</blockquote>
+<h4>Document - creation</h4>
+<p>Creation of the glossary entry <a href="glossaire.html#document">Document</a>.</p>
+<h4>Form</h4>
+<p>The glossary entry <a href="glossaire.html#form">Form</a> has been modified so that the evaluation of certain criteria in the Forms theme is not restricted to <code>&lt;form&gt;</code> tags or tags with a WAI-ARIA <code>role=&quot;form&quot;</code> attribute.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p><code>&lt;form&gt;</code> tag or tag with a WAI-ARIA <code>role=&quot;form&quot;</code> attribute.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>A form does not necessarily have to be wrapped in a <code>&lt;form&gt;</code> tag or a tag with a WAI-ARIA <code>role=&quot;form&quot;</code> attribute.</p>
+</blockquote>
+<h4>Form field label</h4>
+<p>The glossary entry <a href="glossaire.html#form-field-label">Form field label</a> is modified to remove the obsolete note concerning Internet Explorer.</p>
+<blockquote>
+<p>To ensure maximum compatibility with user agents, in particular Internet Explorer 11, we recommend implementing a tabindex=&quot;-1&quot; on passages of text that are not interactive elements (buttons, links, form elements, etc.).</p>
+</blockquote>
+<h4>Hidden content</h4>
+<p>The <code>inert</code> property has been added to the list of properties that hide content from assistive technologies in the glossary note <a href="glossaire.html#hidden-content">Hidden content</a>.</p>
+<h4>Identical link - creation</h4>
+<p>Creation of the glossary entry <a href="glossaire.html#identical-link">Identical link</a> to provide documentation for the new <a href="/es/criteres#test-6-1-6">test 6.1.6</a>.</p>
+<h4>Indication of data type and/or format</h4>
+<p>The glossary entry <a href="glossaire.html#indication-of-data-type-and/or-format">Indication of data type and/or format</a> has been modified:</p>
+<ul>
+<li>to merge elements present in a redundant glossary entry <em>Data type and format</em>, which has therefore been deleted;</li>
+<li>to remove the reference to mandatory fields only, since input formats may be expected on fields that are not mandatory.</li>
+</ul>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>Text indication enabling the user to know what type of data and/or input format is required for a mandatory field, before filling it in.</p>
+<p>Examples</p>
+<ul>
+<li>Email (format: <a href="mailto:you@domain.com">you@domain.com</a>);</li>
+<li>Postcode (format: 00000);</li>
+<li>Date (format: DD/MM/YYYY).</li>
+</ul>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>Text indication enabling the user to know what type of data and/or input format is required.</p>
+<p>Examples</p>
+<ul>
+<li>Email (format: <a href="mailto:you@domain.com">you@domain.com</a>);</li>
+<li>Postcode (format: 00000);</li>
+<li>Date (format: DD/MM/YYYY).</li>
+<li>Amount in euros.</li>
+</ul>
+<p>Important note: when the type of form input field offers an input mask, for example the <code>date</code> or <code>time</code> fields, the format indication is not necessary.</p>
+</blockquote>
+<h4>Landmarks</h4>
+<p>The glossary entry <a href="#landmarks">Landmarks</a> has been modified to take into account <a href="#9.2">the modification of criterion 9.2</a> and <a href="#12.6">the modification of criterion 12.6</a>.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>WAI-ARIA provides roles for indicating the main areas (regions) of the document. These roles are very useful for screen reader users in particular, but also for keyboard navigation users who can benefit from quick navigation functions in the document structure.</p>
+<p>The roles must be defined in the document according to the nature of the zone:</p>
+<ul>
+<li>The header region must have a WAI-ARIA <code>role=&quot;banner&quot;</code> attribute;</li>
+<li>The main navigation menu must have a WAI-ARIA <code>role=&quot;navigation&quot;</code> attribute;</li>
+<li>The main content region must have a WAI-ARIA <code>role=&quot;main&quot;</code> attribute;</li>
+<li>The footer region must have a WAI-ARIA <code>role=&quot;contentinfo&quot;</code> attribute;</li>
+<li>The search engine area on the website must have a WAI-ARIA <code>role=&quot;search&quot;</code> attribute.</li>
+</ul>
+<p>Note 1: While most screen readers provide these functions, browsers have yet to offer a dedicated navigation function for users who cannot use the mouse. The implementation of skip links therefore remains to be favoured over landmarks.</p>
+<p>Note 2: The WAI-ARIA <code>banner</code>, <code>main</code> and <code>contentinfo</code> roles must be unique in the page. The WAI-ARIA <code>navigation</code> role is reserved for main and secondary navigation zones. When there are several WAI-ARIA <code>navigation</code> roles, it may be useful to differentiate them by specifying a name for each of the zones using the WAI-ARIA <code>aria-label</code> or <code>aria-labelledby</code> attribute.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>WAI-ARIA provides roles that enable navigation landmarks to be identified. These roles are very useful for screen reader users in particular, but also for keyboard navigation users who can benefit from quick navigation functions.</p>
+<p>Roles must be defined in the document according to the nature of the region (using the WAI-ARIA <code>role</code> attribute or an HTML tag with an implicit role). WAI-ARIA designates eight landmarks.</p>
+<p>Five landmarks are used in the document structure (criterion 9.2):</p>
+<ul>
+<li><code>banner</code></li>
+<li><code>contentinfo</code></li>
+<li><code>main</code></li>
+<li><code>navigation</code></li>
+<li><code>search</code></li>
+</ul>
+<p>Three landmarks are available to identify other regions:</p>
+<ul>
+<li><code>form</code> (<code>&lt;form&gt;</code> or <code>role=&quot;form&quot;</code>)</li>
+<li><code>complementary</code> (<code>&lt;aside&gt;</code> or <code>role=&quot;complementary&quot;</code>)</li>
+<li><code>region</code> (<code>role=&quot;region&quot;</code>).</li>
+</ul>
+<p><code>form</code> and <code>region</code> landmarks are only identified as navigation landmarks if they have an accessible name.</p>
+<p>See the Landmark Roles section in the documentation.</p>
+<p>Note 1: Given the variable support for the <code>form</code>, <code>complementary</code> and <code>region</code> landmarks, if they are used on the page as navigation landmarks, they must be tested for navigation and rendering in the test environment.</p>
+<p>Note 2: It is not mandatory to identify navigation landmarks other than those required by criterion 9.2 if the context does not require it. For example, it is not mandatory to identify all forms with a <code>form</code> element, but only if a more or less complex navigation context (e.g. application) would require more navigation landmarks than already required by criterion 9.2.</p>
+</blockquote>
+<h4>Link whose nature is not obvious</h4>
+<p>The example in the glossary entry <a href="glossaire.html#link-whose-nature-is-not-obvious">Link whose nature is not obvious</a> has been modified.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>For example, in this text &quot;New strike at SNCF&quot;, if the word &quot;strike&quot; is a link indicated by colour only, its nature may be ignored by non-colour-perceptive users accessing the activated CSS content.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>For example, in this text &quot;New summer timetable&quot;, if the word &quot;timetable&quot; is a link indicated by colour only, its nature may be ignored by users who cannot perceive colour and are accessing the content with CSS enabled.</p>
+</blockquote>
+<h4>Mandatory field indication</h4>
+<p>The glossary entry <a href="glossaire.html#indication-of-mandatory-or-optional-fields">Mandatory field indication</a> has been renamed and modified to accompany the introduction of optional fields in the tests for <a href="/es/criteres#crit-11-10">criterion 11.10</a>.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>Mandatory field indication</p>
+<p>Textual or graphic indication (icon) letting the user know that a field is mandatory before entering it.</p>
+<p>Note: If this indication is not made explicitly in text (icon, &quot;*&quot;, &quot;!&quot;, etc.), the explanation of the meaning of this indication must be located, visually and in the order of the source code, before the indication is used for the first time.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>Indication of mandatory or optional fields</p>
+<p>Text or graphic indication (icon) letting the user know whether a field is mandatory or optional before entering data.</p>
+<p>Note: If this indication is not made explicitly in text (icon, &quot;*&quot;, &quot;!&quot;, etc.), the explanation of the meaning of this indication must be located, visually and in the order of the source code, before the indication is used for the first time.</p>
+</blockquote>
+<h4>Passage of text linked by <code>aria-labelledby</code> or <code>aria-describedby</code></h4>
+<p>The glossary entry <a href="glossaire.html#passage-of-text-linked-by-aria-labelledby-or-aria-describedby">Passage of text linked by <code>aria-labelledby</code> or <code>aria-describedby</code></a> has been modified to remove the obsolete note concerning Internet Explorer.</p>
+<blockquote>
+<p>Note 1: to ensure maximum compatibility with user agents, in particular Internet Explorer 11, we recommend implementing a <code>tabindex=&quot;-1&quot;</code> on passages of text which are not interactive elements (buttons, links, form elements, etc.).</p>
+</blockquote>
+<h4>Presentation of information</h4>
+<p>The glossary entry <a href="glossaire.html#presentation-of-information">Presentation of information</a> has been modified to provide documentation for exceptions to the prohibition of <code>width</code> attributes for <code>&lt;iframe&gt;</code>, <code>&lt;source&gt;</code> and <code>&lt;svg&gt;</code> children.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>The <code>width</code> and <code>height</code> attributes used on elements other than the <code>&lt;img&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;canvas&gt;</code> and <code>&lt;svg&gt;</code> elements are also prohibited;</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>The <code>width</code> and <code>height</code> attributes are prohibited except on <code>&lt;canvas&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;iframe&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;object&gt;</code>, <code>&lt;source&gt;</code> elements, as well as <code>&lt;svg&gt;</code> and its children;</p>
+</blockquote>
+<h4>Synchronised audio description (time-based media)</h4>
+<p>Note 2 of the glossary entry <a href="glossaire.html#synchronised-audio-description-time-based-media">Synchronised audio description (time-based media)</a> has been modified to remove the reference to the glossary entry &quot;extended audio description&quot;, which does not exist in RAWeb (definition associated with a triple A level criterion not present in RAWeb).</p>
+<p>Note 2 in RAWeb 1:</p>
+<blockquote>
+<p>Note 2: In standard audio description, narration is added during pauses in the dialogue (see also extended audio description).</p>
+</blockquote>
+<p>Note 2 in RAWeb 1.1:</p>
+<blockquote>
+<p>Note 2: In standard audio description, narration is added during pauses in the dialogue.</p>
+</blockquote>
+<h4>Text alternative (image)</h4>
+<p>The glossary entry <a href="glossaire.html#text-alternative-image">Text alternative (image)</a> has been modified to:</p>
+<ul>
+<li>take into account the evolution of support for the <code>&lt;title&gt;</code> element for the <code>&lt;svg&gt;</code> element in the computation of the accessible name;</li>
+<li>take into account the support of accessible name computation by assistive technologies.</li>
+</ul>
+<h5>1</h5>
+<p>The <code>&lt;title&gt;</code> element is added to the end of the list of elements taken into account for the accessible name.</p>
+<blockquote>
+<p>Otherwise, the value of the <code>&lt;title&gt;</code> element for the <code>&lt;svg&gt;</code> element.</p>
+</blockquote>
+<h5>2</h5>
+<p>Note 4 is modified to remove the reference to the <code>&lt;title&gt;</code> element.</p>
+<p>Note 4 in RAWeb 1:</p>
+<blockquote>
+<p>Note 4: for vector images (<code>&lt;svg&gt;</code> tag) the text alternative could also be present in a <code>&lt;title&gt;</code> or in a <code>&lt;text&gt;</code> tag whether or not the latter tag is visible, even if this is not the role assigned to this element in SVG.</p>
+</blockquote>
+<p>Note 4 in RAWeb 1.1:</p>
+<blockquote>
+<p>Note 4: for vector images (<code>&lt;svg&gt;</code> tag) the text alternative could also be present in a <code>&lt;text&gt;</code> tag, whether or not this tag is visible, even if this is not the role assigned to this element in SVG.</p>
+</blockquote>
+<h5>3</h5>
+<p>Note 5 is deleted (and note 6 becomes note 5)</p>
+<p>Note 5 in RAWeb 1:</p>
+<blockquote>
+<p>Note 5: As the use of the <code>alt</code> attribute is the only technique fully supported by assistive technologies, it is recommended that this solution be preferred when implementing an alternative to an <code>&lt;img&gt;</code>, <code>&lt;area&gt;</code> and <code>&lt;input type=&quot;image&quot;&gt;</code> tag.</p>
+</blockquote>
+<h4>Time-based media (audio, video and synchronised)</h4>
+<p>The glossary entry <a href="glossaire.html#time-based-media-audio-video-and-synchronised">Time-based media (audio, video and synchronised)</a> has been modified to remove the obsolete note concerning Internet Explorer.</p>
+<blockquote>
+<p>Note 2: The <code>&lt;bgsound&gt;</code> element is specific to Internet Explorer and should not be used.</p>
+</blockquote>
+<h4>Visible content</h4>
+<p>The glossary entry <a href="glossaire.html#visible-content">Visible content</a> has been modified to accompany the revision of <a href="/es/criteres#crit-10-2">criterion 10.2</a>, carried out to facilitate understanding of the scope of the criterion.</p>
+<h5>In RAWeb 1</h5>
+<blockquote>
+<p>For test 10.2.1: &quot;Present content&quot; means that visible content remains present when CSS is deactivated. For example, an image conveying information as a CSS background property invalidates this test because the information is no longer &quot;present&quot; when CSS is deactivated. On the other hand, an image conveying information as a CSS background property but accompanied by hidden text validates this test because the information is indeed &quot;present&quot; when CSS is deactivated.</p>
+<p>Note: the practice of managing images as background properties of elements via CSS is formally not recommended, even if accompanied by hidden text.</p>
+</blockquote>
+<h5>In RAWeb 1.1</h5>
+<blockquote>
+<p>Content is visible when it is shown on the web page, either when the page loads or after an interface component is activated (e.g., displaying a modal window or submenu).</p>
+<p>Test 10.2.1 requires that visible content be accessible to assistive technologies. This means that any visible content that is implemented using a method that does not natively provide an alternative should be accompanied by a secondary method to provide that alternative. For example, an image conveying information in CSS background property on an element that contains visually hidden text passes this test because the information is accessible to assistive technologies. Without this hidden text, the test fails.</p>
+</blockquote>
+<h4>When focused</h4>
+<p>The glossary entry <a href="glossaire.html#when-focused">When focused</a> has been modified to:</p>
+<ul>
+<li>remove the reference to <code>accesskey</code>;</li>
+<li>explicitly specify that the associated criterion (<a href="/es/criteres#crit-10-7">criterion 10.7</a>) only concerns keyboard focus.</li>
+</ul>
+<p>Addition of a sentence:</p>
+<blockquote>
+<p>Criterion 10.7 only concerns keyboard focus (tabulation, shift + tabulation, keyboard shortcut).</p>
+</blockquote>
+
+        </article>
+      </main>
+    </div>
+		<script>
+			document.addEventListener('click', (event) => {
+				const action = event.target.closest('[data-details-action]');
+				if (!action) return;
+				const root = document.querySelector(action.getAttribute('data-details-target') || 'article');
+				if (!root) return;
+				const shouldOpen = action.getAttribute('data-details-action') === 'expand';
+				root.querySelectorAll('details').forEach((node) => {
+					node.open = shouldOpen;
+				});
+			});
+		</script>
+  </body>
+</html>

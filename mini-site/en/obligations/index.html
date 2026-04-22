@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Obligations | RAWeb mini site</title>
+    <style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f8;
+  --text: #1f2328;
+  --muted: #57606a;
+  --link: #0969da;
+  --border: #d0d7de;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+.brand {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+}
+.nav-section { margin: 18px 0; }
+.nav-title {
+  margin: 0 0 10px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.nav-list { list-style: none; margin: 0; padding: 0; }
+.nav-list li { margin: 6px 0; }
+.main {
+  padding: 28px 36px;
+  max-width: 1200px;
+}
+h1, h2, h3, h4 { line-height: 1.25; }
+h1 { margin-top: 0; }
+article img { max-width: 100%; }
+article pre {
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f6f8fa;
+}
+article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace;
+}
+.details {
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+  padding-top: 16px;
+}
+.criterion {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.tests { margin-top: 8px; }
+.tests > li { margin-bottom: 10px; }
+.muted { color: var(--muted); }
+.collapse {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	margin: 10px 0;
+	background: #fff;
+}
+.collapse > summary {
+	cursor: pointer;
+	padding: 10px 12px;
+	font-weight: 600;
+}
+.collapse-content {
+	padding: 0 12px 12px;
+}
+.collapse.nested {
+	border-color: #e5e7eb;
+	margin: 8px 0;
+}
+.mapping-list {
+	margin: 0;
+	padding-left: 20px;
+}
+.mapping-list > li { margin: 8px 0; }
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 16px;
+}
+.page-header h1 {
+	margin: 0;
+}
+.page-actions {
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+.page-actions button {
+	border: 1px solid var(--border);
+	background: #fff;
+	border-radius: 6px;
+	padding: 8px 12px;
+	cursor: pointer;
+	font: inherit;
+}
+.page-actions button:hover {
+	background: var(--surface);
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  .main { padding: 20px; }
+	.page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.page-actions {
+		margin-left: 0;
+	}
+}
+</style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">RAWeb mini site</h1>
+        <div class="nav-section">
+          <p class="nav-title">English</p>
+          <ul class="nav-list">
+            <li><a href="/en">Introduction</a></li>
+<li><a href="/en/criteres">Criteria and tests</a></li>
+<li><a href="/en/glossaire">Glossary</a></li>
+<li><a href="/en/methodo-test">Test methodology</a></li>
+<li><a href="/en/environnement">Test environment</a></li>
+<li><a href="/en/references">References</a></li>
+<li><a href="/en/notes-revision">Review notes</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <p class="nav-title">Languages</p>
+          <ul class="nav-list">
+            <li><a href="/en/obligations">English</a></li>
+<li><a href="/fr/obligations">Français</a></li>
+<li><a href="/es/obligations">Español</a></li>
+          </ul>
+        </div>
+      </aside>
+      <main class="main">
+        <article>
+          <h3>Understanding disability and digital accessibility</h3>
+<blockquote><p>Disability is not just one health problem. It is a complex phenomenon, reflecting the interaction between features of a person’s body and features of the society in which he or she lives. Overcoming the difficulties faced by people with disabilities requires interventions to remove environmental and social barriers.</p><footer>World Health Organisation</footer></blockquote>
+Digital accessibility involves making websites and mobile applications accessible to people with disabilities, i.e.
+<ul>
+<li>perceivable: for example, facilitating the user's visual and auditory perception of content; offering text equivalents to any non-textual content; creating content that can be presented in different ways without loss of information or structure (e.g. with a simplified layout);</li>
+<li>operable: for example, providing the user with guidance for navigating and finding content; making all functions accessible via the keyboard; giving the user enough time to read and use the content; not designing content that is likely to cause epileptic seizures;</li>
+<li>understandable: for example, ensuring that pages function in a predictable way; helping users to correct input errors;</li>
+<li>and robust: for example, optimising compatibility with current and future uses, including assistive technologies.</li>
+</ul>
+<h3>Reminder of the scope of application</h3>
+<h4>Concerned content</h4>
+<p>According to Articles 1 and 2 of the <a href="http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo">law of 28 May 2019</a>, the public sector bodies affected by this law are as follows:</p>
+<ul>
+<li>the State;</li>
+<li>municipalities;</li>
+<li>bodies governed by public law. According to article 2, letter d), of the amended law of 8 April 2018 on public procurement contracts, these are bodies with all the following characteristics:
+<ul>
+<li>it has been established for the specific purpose of meeting needs in the general interest, not having an industrial or commercial character;</li>
+<li>it has legal personality; and</li>
+<li>it is financed for the most part by the State, local authorities or other bodies governed by public law, or its management is subject to supervision by these authorities or bodies, or its administrative, management or supervisory body is made up of members, more than half of whom are appointed by the State, local authorities or other bodies governed by public law.</li>
+<li>associations formed by one or more of these authorities or one or more of these bodies governed by public law, if these associations have been created specifically to meet needs in the general interest that are not of an industrial or commercial nature;</li>
+</ul>
+</li>
+</ul>
+<p>This does not apply to:</p>
+<ul>
+<li>websites and mobile applications of public service broadcasters and their subsidiaries, and of other bodies or their subsidiaries fulfilling a public service broadcasting remit;</li>
+<li>websites and mobile applications of NGOs that do not provide services that are essential to the public, or services that specifically address the needs of, or are meant for, persons with disabilities;</li>
+<li>websites and mobile applications of primary and secondary schools or nurseries, except for the content thereof relating to essential online administrative functions.</li>
+</ul>
+<p>Article 2 of the <a href="http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo">law of 28 May 2019</a> defines what constitutes a mobile application:</p>
+<blockquote><p>Application software designed and developed, by or on behalf of public sector bodies, for use by the general public on mobile devices such as smartphones and tablets. It does not include the software that controls those devices (mobile operating systems) or hardware.</p></blockquote>
+<h4>Exempt content</h4>
+<p>Some content is exempt from the accessibility obligation and falls outside the scope of the legal requirements:</p>
+<ul>
+<li>office file formats published before 23 September 2018, unless such content is needed for active administrative processes relating to the tasks performed by the public sector body concerned;</li>
+<li>pre-recorded time-based media published before 23 September 2020;</li>
+<li>live time-based media;</li>
+<li>online maps and mapping services, as long as essential information is provided in an accessible digital manner for maps intended for navigational use;</li>
+<li>third-party content that is neither funded nor developed by, nor under the control of, the public sector body concerned;</li>
+<li>reproductions of items in heritage collections that cannot be made fully accessible because of either:
+<ul>
+<li>the incompatibility of accessibility requirements with either the preservation of the item concerned or the authenticity of the reproduction (e.g. contrast); or</li>
+<li>the unavailability of automated and cost-efficient solutions that would easily extract the text of manuscripts or other items in heritage collections and transform it into content compatible with the accessibility requirements;</li>
+</ul>
+</li>
+<li>content of extranets and intranets, that is to say, websites that are only available for a closed group of people and not to the - general public as such, published before 23 September 2019, until such websites undergo a substantial revision;</li>
+<li>content of websites and mobile applications qualifying as archives, meaning that they only contain content that is neither needed for active administrative processes nor updated or edited after 23 September 2019.</li>
+</ul>
+<h4>Reference standard and level of compliance</h4>
+<p>Websites and mobile applications must refer to and comply with the European standard <a href="https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf">EN 301 549 V3.2.1</a> in order to be considered compliant with legal accessibility requirements.</p>
+<h4>Derogation for disproportionate burden</h4>
+<p>Legal accessibility requirements are implemented insofar as they do not create a disproportionate burden for the organisation concerned. The disproportionate burden is a derogation that can be invoked, on a case-by-case basis, for a feature or content.</p>
+<p>The disproportionate burden can be invoked when it is reasonably impossible for the organisation to make a content or feature accessible, particularly in cases where making it accessible would compromise the organisation's ability to fulfil its public service mission or achieve its economic objectives.</p>
+<p>Content or features that are not made accessible due to a derogation for disproportionate burden shall be accompanied by an alternative enabling the user to access equivalent content or features, as long as the production of this alternative does not itself constitute a disproportionate burden.</p>
+<p>If the content or functionality relates to the main tasks of a body entrusted with a public service mission, the exemption must be accompanied by an alternative that provides an equivalent service to the user. Unless there is a justified exception, the derogation does not apply to an entire website or mobile application.</p>
+<p>In order to determine the existence of such a burden, the organisation concerned shall take account of the following circumstances in particular:</p>
+<ul>
+<li>the size, resources and nature of the public sector body concerned; and</li>
+<li>the estimated costs and benefits for the public sector body concerned in relation to the estimated benefits for persons with disabilities, taking into account the frequency and duration of use of the specific website or mobile application.</li>
+</ul>
+<p>The size of the organisation is determined by the composition of its workforce, the number, location and distribution of its users or customers, the scale, diversity and volume of its activities and services, and the territorial extent of its operations.</p>
+<p>The estimate of resources takes into account:</p>
+<ul>
+<li>its budget,</li>
+<li>fees and remuneration received,</li>
+<li>public subsidies or private donations,</li>
+<li>profits and miscellaneous income,</li>
+<li>compulsory expenditure,</li>
+<li>the wage bill,</li>
+<li>loans and rents.</li>
+</ul>
+<p>The cost estimate may include capital expenditure, operating expenditure and staff time and qualifications required. Lack of priority, time or knowledge are not legitimate circumstances.</p>
+<p>The derogation for disproportionate burden does not exempt the entity from producing an accessibility statement. The content and features that are not accessible on this basis are listed in the accessibility statement for the online service concerned, together with the justification for the derogation and an indication, where appropriate, of an accessible alternative.</p>
+<p>When a website or mobile application is simultaneously subject to the accessibility obligations imposed by the law of 28 May 2019, and those prescribed by the legal and regulatory provisions relating to the fight against discrimination of Directive <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32000L0078">2000/78/EC of 27 November 2000</a> and the national laws transposing it of <a href="http://legilux.public.lu/eli/etat/leg/loi/2006/11/28/n1/jo">28 November 2006</a> and of <a href="http://legilux.public.lu/eli/etat/leg/loi/2006/11/29/n1/jo">29 November 2006</a>, the assessment of the scope and level of accessibility obligations, as well as any disproportionate burden, is based on the provisions most favourable to accessibility in each of these two categories of rules. The provisions relating to the fight against discrimination apply to individual and concrete situations, whereas those of the law of 28 May 2019 and of this framework are intended to ensure that public sites and applications are accessible to all users.</p>
+<h3>Accessibility statement</h3>
+<h4>Content of the accessibility statement</h4>
+<p>The accessibility statement is the result of an effective assessment of the compliance of the website or mobile application with the reference standard.</p>
+<p>The accessibility statement includes:</p>
+<ul>
+<li>A compliance status:
+<ul>
+<li>Full compliance: if all the control criteria in the framework are met;</li>
+<li>Partial compliance: if at least 50% of the control criteria in the framework have been met;</li>
+<li>Non-compliance: if there are no valid audit results enabling compliance with the criteria to be measured, or if less than 50% of the control criteria in the framework are complied with;</li>
+</ul>
+</li>
+<li>A notification of content that is not accessible, with a distinction being made between content that does not comply with the framework, content that is exempt or content that is subject to a disproportionate burden derogation. In the latter case, exemptions must be explained and justified. Where appropriate, the notice should be accompanied by a presentation of the alternatives available;</li>
+<li>Assistance and contact options:
+<ul>
+<li>an accessible mechanism (e-mail address or form) to enable any person to report any accessibility shortcomings to the body concerned and a person with disabilities to request the relevant information or an accessible alternative solution;</li>
+</ul>
+</li>
+<li>A mention of the option for the person concerned to refer the matter to the SIP or the ombudsman.</li>
+</ul>
+<p>The accessibility statement can be generated in several languages using the <a href="../en/tools/decla.html">statement creation form</a>.</p>
+<h4>Updates to the accessibility statement</h4>
+<p>The accessibility statement is valid from the date of publication. It must be updated on a regular basis, in particular whenever the site or application concerned is substantially modified or redesigned. It may be advisable to update the accessibility statement more regularly in order to highlight the efforts made and to update the level of compliance.</p>
+<h4>Publication of the accessibility statement</h4>
+<p>The accessibility statement is published in an accessible format.</p>
+<p>For websites, the accessibility statement is published on the website concerned. It is made available on an accessibility page, directly accessible from the home page and from any page on the site.</p>
+<p>For mobile applications, it is available on the website of the organisation that developed the application or appears with other information available when the application is downloaded.</p>
+<p>Public sector bodies shall inform the Information and Press Service of the publication or update of the statement without any special formalities and within thirty days of its publication or update. The link to the accessibility statement should be sent to the SIP at <a href="mailto:accessibilite@sip.etat.lu">accessibilite@sip.etat.lu</a></p>
+<h4>Response to users</h4>
+<p>The organisation concerned provides users with the opportunity to make online complaints about the accessibility of its websites and mobile applications. It acknowledges receipt of these complaints.</p>
+<p>The organisation concerned shall respond to any complaint within one month of the date on which it was sent. If the user's complaint raises one or more complex issues justifying a longer examination period, the response will indicate a reasonable timeframe for the final response. The complex nature of the issues raised must be duly substantiated.</p>
+<p>If the information provided by the user in his/her complaint is incomplete or not sufficiently clear, the organisation concerned will ask the user to complete or clarify the information and will inform the user of the reasonable timeframe for processing or its final response once the requested information has been received.</p>
+
+        </article>
+      </main>
+    </div>
+		<script>
+			document.addEventListener('click', (event) => {
+				const action = event.target.closest('[data-details-action]');
+				if (!action) return;
+				const root = document.querySelector(action.getAttribute('data-details-target') || 'article');
+				if (!root) return;
+				const shouldOpen = action.getAttribute('data-details-action') === 'expand';
+				root.querySelectorAll('details').forEach((node) => {
+					node.open = shouldOpen;
+				});
+			});
+		</script>
+  </body>
+</html>

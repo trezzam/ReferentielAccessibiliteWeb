@@ -6,7 +6,9 @@
   "scripts": {
     "build:criteria": "node ./scripts/generate-criteria.js",
     "build:glossary": "node ./scripts/generate-glossary.js",
-    "build:methodo": "node ./scripts/generate-methodologies.js", 
+    "build:methodo": "node ./scripts/generate-methodologies.js",
+    "build:mini-site": "node ./scripts/generate-mini-site.js",
+    "serve:mini-site": "npx.cmd --yes serve ./mini-site -l 8010",
     "build": "npm run build:criteria && npm run build:glossary && npm run build:methodo"
   },
   "author": "SIP",

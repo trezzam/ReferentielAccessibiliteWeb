@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test methodology | RAWeb mini site</title>
+    <style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f8;
+  --text: #1f2328;
+  --muted: #57606a;
+  --link: #0969da;
+  --border: #d0d7de;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+.brand {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+}
+.nav-section { margin: 18px 0; }
+.nav-title {
+  margin: 0 0 10px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.nav-list { list-style: none; margin: 0; padding: 0; }
+.nav-list li { margin: 6px 0; }
+.main {
+  padding: 28px 36px;
+  max-width: 1200px;
+}
+h1, h2, h3, h4 { line-height: 1.25; }
+h1 { margin-top: 0; }
+article img { max-width: 100%; }
+article pre {
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f6f8fa;
+}
+article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace;
+}
+.details {
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+  padding-top: 16px;
+}
+.criterion {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.tests { margin-top: 8px; }
+.tests > li { margin-bottom: 10px; }
+.muted { color: var(--muted); }
+.collapse {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	margin: 10px 0;
+	background: #fff;
+}
+.collapse > summary {
+	cursor: pointer;
+	padding: 10px 12px;
+	font-weight: 600;
+}
+.collapse-content {
+	padding: 0 12px 12px;
+}
+.collapse.nested {
+	border-color: #e5e7eb;
+	margin: 8px 0;
+}
+.mapping-list {
+	margin: 0;
+	padding-left: 20px;
+}
+.mapping-list > li { margin: 8px 0; }
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 16px;
+}
+.page-header h1 {
+	margin: 0;
+}
+.page-actions {
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+.page-actions button {
+	border: 1px solid var(--border);
+	background: #fff;
+	border-radius: 6px;
+	padding: 8px 12px;
+	cursor: pointer;
+	font: inherit;
+}
+.page-actions button:hover {
+	background: var(--surface);
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  .main { padding: 20px; }
+	.page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.page-actions {
+		margin-left: 0;
+	}
+}
+</style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">RAWeb mini site</h1>
+        <div class="nav-section">
+          <p class="nav-title">Español</p>
+          <ul class="nav-list">
+            <li><a href="/es">Introducción</a></li>
+<li><a href="/es/criteres">Criterios y tests</a></li>
+<li><a href="/es/glossaire">Glosario</a></li>
+<li><strong>Metodología de test</strong></li>
+<li><a href="/es/environnement">Entorno de test</a></li>
+<li><a href="/es/references">Referencias</a></li>
+<li><a href="/es/notes-revision">Notas de revisión</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <p class="nav-title">Languages</p>
+          <ul class="nav-list">
+            <li><a href="/en/methodo-test">English</a></li>
+<li><a href="/fr/methodo-test">Français</a></li>
+<li><a href="/es/methodo-test">Español</a></li>
+          </ul>
+        </div>
+      </aside>
+      <main class="main">
+        <article>
+          <p>This document has been drawn up as part of the resources to accompany the introduction of version 1 of the Web Accessibility Assessment Framework (RAWeb).</p>
+<p>It is intended for anyone wishing to check that web content complies with the RAWeb. It is a testing methodology that documents the steps involved in checking whether or not a RAWeb criterion is met. This methodology is therefore to be used in addition to the RAWeb technical framework and cannot be used on its own. It does not replace a thorough reading of the technical framework, nor does it replace a RAWeb training.</p>
+<p>For each of the tests of a criterion, there is a corresponding test procedure. The implementation of this procedure may sometimes require the use of specific tools, otherwise a browser is sufficient to perform most of the tests.
+A list of tools is also provided to assist in carrying out the tests. They have been selected both because they are frequently used by experts in the field and because they make it easier to find certain results.</p>
+<div class="fr-callout"><p class="fr-text--lg">
+The testing methodology is now available for each test on the <a href="criteres.html">criteria and tests</a> page.</p>
+</div>
+<h3>Assessment of compliance with the reference standard</h3>
+<h4>General framework</h4>
+<p>In order to assess the compliance of the website with the reference standard, the organisation must conduct an accessibility audit. The audit (or evaluation) may be carried out by the organisation itself (self-evaluation) or by a third party. The evaluation is carried out on a sample of pages representative of the site.</p>
+<p>The verification of compliance of the sample pages with the applicable criteria is carried out using the <a href="./index.html">Web Accessibility Assessment Framework (RAWeb)</a>.</p>
+<p>The final phase of the audit is the accessibility statement, which reports on compliance with the applicable rules.</p>
+<p>The audit (or evaluation) meets the following criteria:</p>
+<ul>
+<li>it is reliable: it is the responsibility of the organisation concerned to ensure the reliability of its statement by all possible means (recourse to an external service provider, training of internal experts, cross-audits, etc.);</li>
+<li>it is representative: it is based on a representative sample (see &quot;Sample&quot; section below).</li>
+</ul>
+<p>It is possible to use another test method, subject to three conditions:</p>
+<ul>
+<li>ensure that the test method used can be communicated on request to a user or an administration;</li>
+<li>produce an explicit mapping table between the criteria and tests and the chosen reference standard;</li>
+<li>indicate this information in the accessibility statement.</li>
+</ul>
+<h4>Sample</h4>
+<p>The sample on which the audit of a website is carried out covers at least the following pages, where they exist:</p>
+<ol>
+<li>the home page;</li>
+<li>the legal notices;</li>
+<li>the authentication page;</li>
+<li>the contact page;</li>
+<li>the &quot;accessibility&quot; page;</li>
+<li>the &quot;help&quot; page;</li>
+<li>the web page or set of web pages making up the website <a href="./glossaire.html#documentation">documentation</a> (if different from the &quot;accessibility&quot; page and the &quot;help&quot; page);</li>
+<li>the web page or set of web pages making up the <a href="./glossaire.html#documentation">documentation</a> for the <a href="./glossaire.html#support-service">support service</a>;</li>
+<li>the &quot;site map&quot; page;</li>
+<li>at least one relevant page for each type of service provided and any other main intended use (e.g. 1st level headings in the tree structure), including the search functionality (see below if you are subject to the law of 8 March 2023);</li>
+<li>a page containing at least one relevant downloadable document, where applicable, for each type of service provided and for any other main intended use;</li>
+<li>the set of web pages making up a process, for example, an input form or a multi-page transaction (see below if you are subject to the law of 8 March 2023);</li>
+<li>examples of pages with a significantly distinct appearance or different type of content (e.g. a page containing data tables, multimedia elements, illustrations, forms, real-time communication functionality, etc.).</li>
+</ol>
+<p>The selection of pages audited and their number must be representative of the site. Web analytics can be taken into account when selecting the sample.</p>
+<p>Finally, randomly selected pages representing at least 10% of the elements in the sample described above are also taken into account.</p>
+<h5>Entities covered by the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a></h5>
+<p>For entities that provide the services specified in the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a>, specific mandatory pages and processes must be included in the assessment sample, depending on the services provided.</p>
+<p>For example, for online banking services, the following pages and features should be included in the sample as a priority, if they exist:</p>
+<ul>
+<li>A page with electronic signature;</li>
+<li>Account information:
+<ul>
+<li>List of accounts;</li>
+<li>Account details;</li>
+<li>Account information;</li>
+<li>Latest transactions;</li>
+<li>Transaction details.</li>
+</ul>
+</li>
+<li>Account management:
+<ul>
+<li>Opening;</li>
+<li>Closing;</li>
+<li>Overdraft management.</li>
+</ul>
+</li>
+<li>Transfers and standing orders:
+<ul>
+<li>Transfer;</li>
+<li>Standing order (creation, modification, deletion);</li>
+<li>Beneficiary (creation, modification, deletion).</li>
+</ul>
+</li>
+<li>Card orders;</li>
+<li>Investments:
+<ul>
+<li>Portfolio management;</li>
+<li>Investment advice;</li>
+<li>Order execution.</li>
+</ul>
+</li>
+<li>Payment validation system (3D Secure).</li>
+<li>Electronic communication functionality (secure messaging);</li>
+<li>E-commerce functionality (purchase funnel through to payment).</li>
+</ul>
+<p>Such a list must be drawn up for each service offered online, whether it is an electronic communication feature (secure messaging) or an e-commerce feature (purchase funnel through to payment).</p>
+<p>This list is not exhaustive; it is intended merely to illustrate the specific obligation incumbent on entities that provide the services designated in the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a>.</p>
+<h4>Test environment (or &quot;baseline&quot;)</h4>
+<p>Some <a href="./criteres.html">RAWeb criteria</a>, particularly those in the Scripts theme, include rendering tests to be carried out on assistive technologies associated with browsers and operating systems.</p>
+<h5>Definition of the test environment</h5>
+<p>To validate these criteria, a test environment (or &quot;baseline&quot;) needs to be defined. By default, it is made up of the platforms and assistive technologies most commonly used by people with disabilities.</p>
+<p>To carry out the evaluation tests within the framework of RAWeb, it is necessary to take into account the <a href="./environnement.md">RAWeb test environment</a>.</p>
+<p>This minimum test environment may be supplemented, where appropriate, by available free and open source solutions or by older technologies, depending on the use of the site. Whenever it is possible to know the configuration of the workstations and the hardware used, the baseline is composed of the services actually used in this environment.</p>
+<h4>Testing pages</h4>
+<p>Each page in the sample must be checked against the criteria applicable to it.</p>
+<p>There are 3 reasons why a criterion may not be applicable to a page:</p>
+<ol>
+<li>The criterion relates to content or a functionality that does not exist. For example: if the page does not include a video, the criteria relating to videos will not be applicable.</li>
+<li>The criterion relates to an exempt content or service which is therefore not subject to the accessibility obligation.</li>
+<li>The criterion concerns content subject to derogation for disproportionate burden that is accompanied by an accessible digital alternative. For example, a statistical table with graphics that offers a text alternative. In this case, the criteria applicable to content subject to derogation will not apply.
+Please note: if the content subject to derogation for disproportionate burden does not offer an accessible digital alternative, the criteria for this content are considered applicable.</li>
+</ol>
+<p>The pages are then tested against the applicable criteria. These tests provide:</p>
+<ul>
+<li>the number of validated and non-validated criteria for each page;</li>
+<li>the compliance rate for each page.</li>
+</ul>
+<p>Please note:</p>
+<ul>
+<li>a criterion is validated for a given page when all the elements of the page have passed the tests used to validate the criterion;</li>
+<li>if a single element of the page does not pass the tests for a criterion, the criterion cannot be validated;</li>
+<li>if the page is part of a process (making a declaration, taking part in a public consultation, making an appointment), a criterion is validated for a page in the process only if it is validated for all the pages in the process.</li>
+</ul>
+<p>Some criteria or themes are applicable to the whole site and not to a particular page, so it is not necessary to evaluate them on all the pages in the sample. In this case, they may, for example, be evaluated on a single page in the sample and considered as not applicable to all the other pages. This methodology for reporting the results of the evaluation of these criteria is, of course, optional. Whatever methodology is chosen, there will be no impact on the site's overall compliance rate. This is particularly the case for the following criteria and themes:</p>
+<ul>
+<li>Criterion 12.3: Is the site map page relevant?</li>
+<li>Theme 14: Documentation and accessibility features</li>
+<li>Theme 16: Support services.</li>
+</ul>
+<h4>Compliance rate with the standard</h4>
+<p>The compliance rate measures the progress made by the online service in complying with accessibility requirements.</p>
+<p>This rate indicates the percentage of criteria met by the online service.</p>
+<p>The percentage of criteria met is obtained by dividing the number of validated criteria by the number of applicable criteria.</p>
+<ul>
+<li>Validated criterion: a criterion is validated if it is validated on all the pages in the sample. If a criterion is invalidated on only one page in the sample, it cannot be considered valid for calculating the rate.</li>
+<li>Applicable criterion: for a criterion to be applicable, it only needs to be applicable on one page in the sample. The corollary of this is that a criterion is not applicable if it is not applicable on all the pages in the sample without exception.</li>
+</ul>
+<p>This compliance rate determines the compliance status to be mentioned in the <a href="../obligations.md#content-of-the-accessibility-statement">accessibility statement</a>.</p>
+<h4>Non-interference principle</h4>
+<p>In an audit sample, there may be content that is not subject to the accessibility obligation:</p>
+<ul>
+<li><a href="../obligations.md#exempt-content">exempt content</a>;</li>
+<li><a href="../obligations.md#derogation-for-disproportionate-burden">content derogated for disproportionate burden</a>;</li>
+<li>non-accessible content that has an accessible alternative.</li>
+</ul>
+<p>It is essential to ensure that this content does not prevent users from accessing the rest of the page.</p>
+<p>Therefore, although the compliance of this content is not required, it must comply with the following criteria and tests:</p>
+<ul>
+<li><a href="./criteres.html#crit-4-10">Criterion 4.10</a>: Is each automatically triggered sound controllable by the user?</li>
+<li><a href="./criteres.html#crit-12-9">Criterion 12.9</a>: On each web page, navigation must not contain any keyboard traps. Is this rule respected?</li>
+<li><a href="./criteres.html#test-13-1-1">Test 13.1.1</a>: For each web page, does each refresh process (<code>&lt;object&gt;</code> tag, <code>&lt;embed&gt;</code> tag, <code>&lt;svg&gt;</code> tag, <code>&lt;canvas&gt;</code> tag, <code>&lt;meta&gt;</code> tag) meet one of these conditions (excluding special cases)?</li>
+<li><a href="./criteres.html#crit-13-7">Criterion 13.7</a>: On each web page, are sudden changes in brightness or blinking used appropriately?</li>
+<li><a href="./criteres.html#crit-13-8">Criterion 13.8</a>: On each web page, can each moving or blinking content be controlled by the user?</li>
+</ul>
+<p>Failure to comply with one of these criteria or tests for one of the types of content listed renders the corresponding criteria non-compliant.</p>
+<p>The non-interference principle is identified in standard EN 301 549 in criterion 9.6 WCAG conformance requirements.</p>
+<h3>Tools</h3>
+<p>The most useful tool is the code inspector available in every browser. It makes it easy to find the elements and attributes required for an accessibility test. Nowadays, development tools also offer features for accessing the properties of the accessibility tree exposed by the browser. However, this information does not replace the need for technical assistance when a criterion or test requires it.</p>
+<p>The assistive technologies listed in the chosen test environment constitute a second set of essential tools (see the section <a href="environnement.html#contenu">Testing environment</a>). They are required to ensure that accessible content (alternatives to images, link headings, table titles, etc.) is rendered correctly, particularly in cases where examining the code alone would not suffice.</p>
+<p>Other tools are available to help search for content elements. They are often presented as browser extensions and can be used to explore one or more aspects of an accessibility test.</p>
+<p>The following toolbars are browser extensions that make it easier to visually locate certain elements in a document:</p>
+<ul>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/web-developer/">Web Developer Toolbar for Firefox</a>: a toolbar for developers that can help you visually locate certain elements in a document to check its accessibility;</li>
+<li><a href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">Web Developer Toolbar for Chrome</a>: the same toolbar as above, for Chrome.</li>
+</ul>
+<p>In addition to the simple toolbar, other tools provide a complete analysis of the document by visually highlighting accessibility errors on the page or, conversely, beneficial elements. Filters are then often used to display only some of these aspects. This is what Wave offers, a solution available both online (<a href="http://wave.webaim.org">http://wave.webaim.org</a>) and as a browser extension (<a href="https://wave.webaim.org/extension/">https://wave.webaim.org/extension/</a>).</p>
+<p>Although it is no longer necessary to check the validity of the source code, it can be useful to use the HTML validator to search for anomalies. Validation of the source code of an HTML document uses the W3C online validator (<a href="https://validator.w3.org/nu/">https://validator.w3.org/nu/</a>). Note that to validate the source code generated by the browser, use the &quot;Text input&quot; option in the &quot;Check by&quot; listbox and copy the HTML source available from the browser's code inspector into the multiline input box.
+Browser extensions are also available, but you need to be careful, as the validation algorithms of these extensions are not necessarily up to date with the W3C validator and the results obtained may therefore be different.</p>
+<p>Various tools are available for checking colour contrasts:</p>
+<ul>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/wcag-contrast-checker/">WCAG Contrast checker for Firefox</a>: Firefox extension that automatically checks text colour contrasts in a document;</li>
+<li><a href="https://chromewebstore.google.com/detail/wcag-color-contrast-check/plnahcmalebffmaghcpcmpaciebdhgdf">WCAG Contrast checker for Chrome</a>: same extension as above for Chrome;</li>
+<li><a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</a>: Windows or Mac application for checking colour contrasts.</li>
+</ul>
+<p>A very useful extension is available for checking the document tree structure and headings hierarchy:</p>
+<ul>
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/headingsmap/">HeadingsMap for Firefox</a>: Firefox extension that lets you preview the document map and its tree structure;</li>
+<li><a href="https://chrome.google.com/webstore/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi">HeadingsMap for Chrome</a>: same extension as above for Chrome.</li>
+</ul>
+<p>Various tools can be used to analyse office files, depending on the file format:</p>
+<ul>
+<li><a href="https://pac.pdf-accessibility.org/en">PAC (PDF Accessibility Checker) 2024 for Windows</a>: software for checking certain accessibility issues in PDF documents;</li>
+<li>Recent versions of Microsoft Office offer a built-in accessibility validation feature (see the article <a href="https://support.microsoft.com/en-us/office/make-your-word-documents-accessible-to-people-with-disabilities-d9bf3683-87ac-47ea-b91a-78dcacb3c66d">Make your Word documents accessible to people with disabilities</a> and related articles);</li>
+<li><a href="https://inclusivepublishing.org/toolbox/ace-by-daisy-app/">Ace by DAISY App</a> is a tool for checking the accessibility of an EPUB file.</li>
+</ul>
+<p>Finally, an old but still useful program for assessing the potential of certain web content to cause epileptic seizures: <a href="https://trace.umd.edu/peat">PEAT (Photosensitive Epilepsy Analysis Tool) for Windows</a>.</p>
+
+        </article>
+      </main>
+    </div>
+		<script>
+			document.addEventListener('click', (event) => {
+				const action = event.target.closest('[data-details-action]');
+				if (!action) return;
+				const root = document.querySelector(action.getAttribute('data-details-target') || 'article');
+				if (!root) return;
+				const shouldOpen = action.getAttribute('data-details-action') === 'expand';
+				root.querySelectorAll('details').forEach((node) => {
+					node.open = shouldOpen;
+				});
+			});
+		</script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build RAWeb mini site",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"build:mini-site"
+			]
+		},
+		{
+			"label": "Serve RAWeb mini site",
+			"type": "shell",
+			"command": "npx.cmd",
+			"args": [
+				"--yes",
+				"serve",
+				"./mini-site",
+				"-l",
+				"8010"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Serve RAWeb (Markdown rendered)",
+			"type": "shell",
+			"command": "npx.cmd",
+			"args": [
+				"--yes",
+				"markserv",
+				".",
+				"-p",
+				"8000",
+				"-a",
+				"127.0.0.1",
+				"-b",
+				"false"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Serve RAWeb (static)",
+			"type": "shell",
+			"command": "npx.cmd",
+			"args": [
+				"--yes",
+				"serve",
+				".",
+				"-l",
+				"8000"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Serve RAWeb (python)",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"http.server",
+				"8000"
+			],
+			"isBackground": true
+		}
+	]
+}

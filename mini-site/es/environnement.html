@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entorno de pruebas | RAWeb mini site</title>
+    <style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f8;
+  --text: #1f2328;
+  --muted: #57606a;
+  --link: #0969da;
+  --border: #d0d7de;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+.brand {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+}
+.nav-section { margin: 18px 0; }
+.nav-title {
+  margin: 0 0 10px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.nav-list { list-style: none; margin: 0; padding: 0; }
+.nav-list li { margin: 6px 0; }
+.main {
+  padding: 28px 36px;
+  max-width: 1200px;
+}
+h1, h2, h3, h4 { line-height: 1.25; }
+h1 { margin-top: 0; }
+article img { max-width: 100%; }
+article pre {
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f6f8fa;
+}
+article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace;
+}
+.details {
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+  padding-top: 16px;
+}
+.criterion {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.tests { margin-top: 8px; }
+.tests > li { margin-bottom: 10px; }
+.muted { color: var(--muted); }
+.collapse {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	margin: 10px 0;
+	background: #fff;
+}
+.collapse > summary {
+	cursor: pointer;
+	padding: 10px 12px;
+	font-weight: 600;
+}
+.collapse-content {
+	padding: 0 12px 12px;
+}
+.collapse.nested {
+	border-color: #e5e7eb;
+	margin: 8px 0;
+}
+.mapping-list {
+	margin: 0;
+	padding-left: 20px;
+}
+.mapping-list > li { margin: 8px 0; }
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 16px;
+}
+.page-header h1 {
+	margin: 0;
+}
+.page-actions {
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+.page-actions button {
+	border: 1px solid var(--border);
+	background: #fff;
+	border-radius: 6px;
+	padding: 8px 12px;
+	cursor: pointer;
+	font: inherit;
+}
+.page-actions button:hover {
+	background: var(--surface);
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  .main { padding: 20px; }
+	.page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.page-actions {
+		margin-left: 0;
+	}
+}
+</style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">RAWeb mini site</h1>
+        <div class="nav-section">
+          <p class="nav-title">Español</p>
+          <ul class="nav-list">
+            <li><a href="/es">Introducción</a></li>
+<li><a href="/es/criteres">Criterios y tests</a></li>
+<li><a href="/es/glossaire">Glosario</a></li>
+<li><a href="/es/methodo-test">Metodología de test</a></li>
+<li><strong>Entorno de test</strong></li>
+<li><a href="/es/references">Referencias</a></li>
+<li><a href="/es/notes-revision">Notas de revisión</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <p class="nav-title">Languages</p>
+          <ul class="nav-list">
+            <li><a href="/en/environnement">English</a></li>
+<li><a href="/fr/environnement">Français</a></li>
+<li><a href="/es/environnement">Español</a></li>
+          </ul>
+        </div>
+      </aside>
+      <main class="main">
+        <article>
+          <p>Algunos criterios RAWeb, en particular los del tema JavaScript, incluyen pruebas de renderizado que deben realizarse con tecnologías de apoyo asociadas a navegadores y sistemas operativos.</p>
+<p>Las pruebas realizadas utilizando estas combinaciones (tecnología de apoyo, sistema operativo, navegador) permiten declarar que un componente HTML / WAI-ARIA es “compatible con la accesibilidad”, tal como lo define WCAG.</p>
+<p>Las combinaciones se han establecido sobre la base de la lista de tecnologías de apoyo cuyo uso está suficientemente extendido, o en algunos casos cuando están incluidas de forma nativa y constituyen el medio preferido de acceso a la información y a las funcionalidades.</p>
+<h3>Entorno de pruebas informático (escritorio)</h3>
+<p>Los sistemas operativos seleccionados son Windows y macOS, y los navegadores Firefox, Chrome, Edge y Safari. Es responsabilidad del auditor definir, en consulta con los responsables del sitio auditado, las versiones del sistema operativo y del navegador que sean adecuadas para el contexto de uso del sitio y para el entorno de pruebas utilizado durante el desarrollo del sitio. Las versiones de las tecnologías de apoyo que se utilizarán serán la última disponible en el sistema operativo seleccionado o la versión anterior.</p>
+<p>Cuando el sitio o la aplicación esté destinado a un público cuyo equipamiento esté controlado, las pruebas deberán realizarse en un entorno de pruebas adaptado al contexto del entorno controlado.</p>
+<p>Para que un componente HTML / WAI-ARIA o su alternativa se considere compatible con la accesibilidad, debe ser completamente funcional, en términos de representación y funcionalidades de accesibilidad, en todas las configuraciones siguientes.</p>
+<table>
+  <caption>Entorno de pruebas informático (escritorio)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Tecnología de apoyo</th>
+      <th scope="col">Navegador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NVDA (última versión)</td>
+      <td>Firefox o Chrome o Edge</td>
+    </tr>
+    <tr>
+      <td>JAWS (versión anterior)</td>
+      <td>Firefox o Chrome o Edge</td>
+    </tr>
+    <tr>
+      <td>VoiceOver (última versión)</td>
+      <td>Safari</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Entorno de pruebas móvil</h3>
+<p>Los sistemas operativos seleccionados son Android e iOS, y los navegadores Chrome y Safari. Corresponde al auditor definir, en consulta con los responsables del sitio auditado, las versiones del sistema operativo y del navegador que sean adecuadas para el contexto de uso del sitio y para el entorno de pruebas utilizado durante el desarrollo del sitio.</p>
+<p>Las versiones de las tecnologías de apoyo que se utilizarán serán la última disponible en el sistema operativo seleccionado o la versión anterior.</p>
+<p>Para probar un sitio web en un dispositivo móvil, el entorno de pruebas debe incluir una de las dos combinaciones complementarias siguientes:</p>
+<table>
+  <caption>Entorno de pruebas en dispositivo móvil – Combinación 1</caption>
+  <thead>
+    <tr>
+      <th scope="col">Sistema operativo</th>
+      <th scope="col">Tecnología de apoyo</th>
+      <th scope="col">Navegador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Android nativo</td>
+      <td>TalkBack (última versión)</td>
+      <td>Chrome</td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <caption>Entorno de pruebas en dispositivo móvil – Combinación 2</caption>
+  <thead>
+    <tr>
+      <th scope="col">Sistema operativo</th>
+      <th scope="col">Tecnología de apoyo</th>
+      <th scope="col">Navegador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>iOS</td>
+      <td>VoiceOver (última versión)</td>
+      <td>Safari</td>
+    </tr>
+  </tbody>
+</table>
+<p>Obsérvese que, en el caso de un sitio web móvil destinado al público general, se recomienda encarecidamente realizar las pruebas en ambos entornos.</p>
+<h3>Otros entornos</h3>
+<p>Finalmente, según el contexto del sitio auditado, otras tecnologías de apoyo complementarias pueden resultar útiles, tales como:</p>
+<ul>
+<li>ZoomText en Windows o macOS;</li>
+<li>Dragon Naturally Speaking en Windows o macOS.</li>
+</ul>
+<h3>Entorno controlado</h3>
+<p>Cuando el sitio web esté destinado a ser distribuido y utilizado en un entorno controlado, el entorno de pruebas (línea base) debe consistir en las configuraciones (tecnología de apoyo, sistema operativo, navegador) que se utilicen realmente en dicho entorno controlado.</p>
+<p>Por ejemplo, si el sitio web se distribuye exclusivamente en un entorno GNU/Linux, las pruebas deberán realizarse únicamente en los navegadores y tecnologías de apoyo utilizados por los agentes en esta plataforma. Este entorno de pruebas sustituye al entorno de pruebas utilizado en un entorno no controlado.</p>
+
+        </article>
+      </main>
+    </div>
+		<script>
+			document.addEventListener('click', (event) => {
+				const action = event.target.closest('[data-details-action]');
+				if (!action) return;
+				const root = document.querySelector(action.getAttribute('data-details-target') || 'article');
+				if (!root) return;
+				const shouldOpen = action.getAttribute('data-details-action') === 'expand';
+				root.querySelectorAll('details').forEach((node) => {
+					node.open = shouldOpen;
+				});
+			});
+		</script>
+  </body>
+</html>

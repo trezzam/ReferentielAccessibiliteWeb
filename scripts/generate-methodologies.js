@@ -72,18 +72,32 @@ async function generateMethodologies(lang) {
 	);
 }
 
-generateMethodologies('fr')
-	.then(() => {
-		console.log(`✅ Methodologies successfully generated.`);
-	})
-	.catch((err) => {
-		console.error(`❌ An error occured while generating methodologies: ${err}`);
-	});
+async function pathExists(targetPath) {
+	try {
+		await fs.access(targetPath);
+		return true;
+	} catch {
+		return false;
+	}
+}
 
-generateMethodologies('en')
-	.then(() => {
-		console.log(`✅ Methodologies successfully generated.`);
-	})
-	.catch((err) => {
-		console.error(`❌ An error occured while generating methodologies: ${err}`);
-	});
+async function canGenerateMethodologies(lang) {
+	const criteriaPath = path.join(__dirname, "..", lang, "rgaa", "criteres");
+	return pathExists(criteriaPath);
+}
+
+async function run() {
+	const languages = ["fr", "en", "es"];
+	for (const lang of languages) {
+		if (await canGenerateMethodologies(lang)) {
+			await generateMethodologies(lang);
+			console.log(`✅ Methodologies successfully generated for '${lang}'.`);
+		} else if (lang === "es") {
+			console.log("ℹ️ Skipping methodologies generation for 'es' (missing rgaa/criteres).");
+		}
+	}
+}
+
+run().catch((err) => {
+	console.error(`❌ An error occured while generating methodologies: ${err}`);
+});

@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const md = require('markdown-it')({ html: true })
 const fm = require('front-matter')
+const path = require('path')
 
 
 
@@ -9,21 +10,21 @@ const fm = require('front-matter')
  * @returns {object} Frontmatter attributes and main content
  */
 async function parseMarkdownFile(filename, GLOSSARY_SOURCE) {
-	const data = await fs.readFile(`${GLOSSARY_SOURCE}/${filename}`, "utf-8");
-	const result = fm(data);
+  const data = await fs.readFile(`${GLOSSARY_SOURCE}/${filename}`, "utf-8");
+  const result = fm(data);
 
-	return {
-		title: result.attributes.title,
-		content: md.render(result.body),
-	};
+  return {
+    title: result.attributes.title,
+    content: md.render(result.body),
+  };
 }
 /**
  * Generate a JSON file containing all the glossary entries
  * from `src/rgaa/glossaire` with 2 `title` and `content`
  */
 async function generateGlossary(lang) {
-	const GLOSSARY_SOURCE = `${__dirname}/../${lang}/rgaa/glossaire`;
-	const GLOSSARY_DESTINATION = `${__dirname}/../${lang}/json/glossaire.json`;  
+  const GLOSSARY_SOURCE = `${__dirname}/../${lang}/rgaa/glossaire`;
+  const GLOSSARY_DESTINATION = `${__dirname}/../${lang}/json/glossaire.json`;
 
   try {
     // Init JSON data
@@ -33,8 +34,8 @@ async function generateGlossary(lang) {
     const files = await fs.readdir(GLOSSARY_SOURCE);
     for (const file of files) {
       if (!file.endsWith(".md")) {
-				console.error(`❌ Ignoring "${file}" as it is not a Markdown file.`);
-			} else {
+        console.error(`❌ Ignoring "${file}" as it is not a Markdown file.`);
+      } else {
         const { title, content } = await parseMarkdownFile(file, GLOSSARY_SOURCE)
         let cleanedContent = null
 
@@ -55,7 +56,7 @@ async function generateGlossary(lang) {
 
     // Remove line breaks (\n) and create JSON file
     let data = JSON.stringify(jsonData, null, 2).replaceAll(/\\n/g, ' ')
-    fs.writeFile(GLOSSARY_DESTINATION, data);
+    await fs.writeFile(GLOSSARY_DESTINATION, data);
 
     console.log(`✅ Glossary successfully generated.`);
 
@@ -64,5 +65,31 @@ async function generateGlossary(lang) {
   }
 }
 
-generateGlossary('fr');
-generateGlossary('en');
+async function pathExists(targetPath) {
+  try {
+    await fs.access(targetPath)
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function canGenerateGlossary(lang) {
+  const glossaryPath = path.join(__dirname, '..', lang, 'rgaa', 'glossaire')
+  return pathExists(glossaryPath)
+}
+
+async function run() {
+  const languages = ['fr', 'en', 'es']
+  for (const lang of languages) {
+    if (await canGenerateGlossary(lang)) {
+      await generateGlossary(lang)
+    } else if (lang === 'es') {
+      console.log("ℹ️ Skipping glossary generation for 'es' (missing rgaa/glossaire).")
+    }
+  }
+}
+
+run().catch((error) => {
+  console.error(`❌ Failed while generating glossary: ${error}`)
+})

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Introducción | RAWeb mini site</title>
+    <style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f8;
+  --text: #1f2328;
+  --muted: #57606a;
+  --link: #0969da;
+  --border: #d0d7de;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+.brand {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+}
+.nav-section { margin: 18px 0; }
+.nav-title {
+  margin: 0 0 10px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+.nav-list { list-style: none; margin: 0; padding: 0; }
+.nav-list li { margin: 6px 0; }
+.main {
+  padding: 28px 36px;
+  max-width: 1200px;
+}
+h1, h2, h3, h4 { line-height: 1.25; }
+h1 { margin-top: 0; }
+article img { max-width: 100%; }
+article pre {
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f6f8fa;
+}
+article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace;
+}
+.details {
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+  padding-top: 16px;
+}
+.criterion {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.tests { margin-top: 8px; }
+.tests > li { margin-bottom: 10px; }
+.muted { color: var(--muted); }
+.collapse {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	margin: 10px 0;
+	background: #fff;
+}
+.collapse > summary {
+	cursor: pointer;
+	padding: 10px 12px;
+	font-weight: 600;
+}
+.collapse-content {
+	padding: 0 12px 12px;
+}
+.collapse.nested {
+	border-color: #e5e7eb;
+	margin: 8px 0;
+}
+.mapping-list {
+	margin: 0;
+	padding-left: 20px;
+}
+.mapping-list > li { margin: 8px 0; }
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 16px;
+}
+.page-header h1 {
+	margin: 0;
+}
+.page-actions {
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+.page-actions button {
+	border: 1px solid var(--border);
+	background: #fff;
+	border-radius: 6px;
+	padding: 8px 12px;
+	cursor: pointer;
+	font: inherit;
+}
+.page-actions button:hover {
+	background: var(--surface);
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+  .main { padding: 20px; }
+	.page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.page-actions {
+		margin-left: 0;
+	}
+}
+</style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h1 class="brand">RAWeb mini site</h1>
+        <div class="nav-section">
+          <p class="nav-title">Español</p>
+          <ul class="nav-list">
+            <li><strong>Introducción</strong></li>
+<li><a href="/es/criteres">Criterios y tests</a></li>
+<li><a href="/es/glossaire">Glosario</a></li>
+<li><a href="/es/methodo-test">Metodología de test</a></li>
+<li><a href="/es/environnement">Entorno de test</a></li>
+<li><a href="/es/references">Referencias</a></li>
+<li><a href="/es/notes-revision">Notas de revisión</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <p class="nav-title">Languages</p>
+          <ul class="nav-list">
+            <li><a href="/en">English</a></li>
+<li><a href="/fr">Français</a></li>
+<li><a href="/es">Español</a></li>
+          </ul>
+        </div>
+      </aside>
+      <main class="main">
+        <article>
+          <p><em>Version 1.1, published on 6 February 2026</em></p>
+<p>According to the <a href="http://legilux.public.lu/eli/etat/leg/loi/2019/05/28/a373/jo">law of 28 May 2019</a>, all websites and mobile applications of Luxembourg public sector bodies must be accessible. The <a href="https://sip.gouvernement.lu/en.html">Information and Press Service</a> is responsible for monitoring their compliance with accessibility requirements. Furthermore, the <a href="https://legilux.public.lu/eli/etat/leg/loi/2023/03/08/a133/jo">law of 8 March 2023</a> extends this obligation to certain types of products and services. Monitoring their accessibility is the responsibility of the <a href="https://accessibilite-produits-services.public.lu/en.html">OSAPS</a>.</p>
+<p>In this context, the Web Accessibility Assessment Framework (RAWeb) has been defined as the accessibility framework for all public sector bodies in the scope of the law.</p>
+<p>The RAWeb technical method makes it possible to check that a web page - i.e. all HTML content (HTML4, XHTML1 and HTML5) - complies with the success criteria of the <a href="https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf">Harmonised European standard EN 301 549 (.pdf)</a> to establish the level of legal requirements in terms of digital accessibility.</p>
+<p>The RAWeb technical method provides an operational framework for checking compliance with accessibility requirements.</p>
+<p>It includes 136 control criteria. Some tests refer to implementation techniques (HTML, CSS, JavaScript, etc.) to check that the criterion has been met, in order to reduce the margin of interpretation as to whether accessibility standards have been complied with.</p>
+<p>Some tests, in particular those concerning user interface components developed in JavaScript, require content to be assessed using assistive technologies associated with browsers and operating systems. The test environment (or &quot;baseline&quot;) is described on the <a href="environnement.html">Test environment</a> page.</p>
+<p>The RAWeb technical method only covers Websites, native mobile applications are covered by <a href="../raam1.1/index.html">RAAM 1.1</a>.</p>
+<p>The current version is version 1.1 and contains content from <a href="https://accessibilite.numerique.gouv.fr/">RGAA 4.1.2</a>. This framework has been adapted by the <a href="https://sip.gouvernement.lu/en.html">Information and Press Service</a> to refer to the Luxembourg legal framework. The sources are available in the <a href="https://github.com/accessibility-luxembourg/ReferentielAccessibiliteWeb">accessibility-luxembourg/ReferentielAccessibiliteWeb</a> repository on GitHub.
+If you find any issue in this framework, feel free to create a ticket in this repository.</p>
+<h3>Contents</h3>
+<ul>
+<li><a href="criteres.html">Criteria and tests</a></li>
+<li><a href="glossaire.html">Glossary</a></li>
+<li><a href="methodo-test.html">Test methodology</a></li>
+<li><a href="environnement.html">Test environment</a></li>
+<li><a href="references.html">References</a></li>
+<li><a href="notes-revision.html">Review notes</a></li>
+</ul>
+
+        </article>
+      </main>
+    </div>
+		<script>
+			document.addEventListener('click', (event) => {
+				const action = event.target.closest('[data-details-action]');
+				if (!action) return;
+				const root = document.querySelector(action.getAttribute('data-details-target') || 'article');
+				if (!root) return;
+				const shouldOpen = action.getAttribute('data-details-action') === 'expand';
+				root.querySelectorAll('details').forEach((node) => {
+					node.open = shouldOpen;
+				});
+			});
+		</script>
+  </body>
+</html>
